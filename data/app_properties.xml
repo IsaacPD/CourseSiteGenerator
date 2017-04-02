@@ -20,6 +20,7 @@
         <property name="EXIT_ICON"          value="Exit.png"></property>
         <property name="EXPORT_ICON"          value="Export.png"></property>  
         <property name="SAVE_AS_ICON"	    value="SaveAs.png"></property>
+        <property name="REMOVE_ICON"	    value="Remove.png"></property>
         
         <!-- TOOLTIPS FOR BUTTONS -->
         <property name="NEW_TOOLTIP"		value="Build a new Course Site Generator"></property>
@@ -28,7 +29,8 @@
         <property name="EXIT_TOOLTIP"		value="Exit the Application"></property>
         <property name="EXPORT_TOOLTIP"		value="Export the Application"></property>
         <property name="SAVE_AS_TOOLTIP"	value="Save the current Course Site Generator"></property>
-        
+        <property name="REMOVE_TOOLTIP"	    value="Remove element from table"></property>
+
         <!-- ERROR MESSAGES -->
         <property name="CLOSE_BUTTON_TEXT"              value="Close"></property>
 
