@@ -1,17 +1,23 @@
 package csg.data;
 
+import csg.CSGApp;
 import djf.components.AppDataComponent;
 
 public class CSGData implements AppDataComponent {
+
+	CSGApp app;
+
 	private ScheduleData scheduleData;
 	private TAData taData;
 	private RecitationData recitationData;
 	private ProjectData projectData;
 	private DetailsData detailsData;
 
-	public CSGData(){
+	public CSGData(CSGApp initApp){
+		app = initApp;
+
 		scheduleData = new ScheduleData();
-		taData = new TAData();
+		taData = new TAData(initApp);
 		recitationData = new RecitationData();
 		projectData = new ProjectData();
 		detailsData = new DetailsData();

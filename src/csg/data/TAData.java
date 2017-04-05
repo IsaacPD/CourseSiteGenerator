@@ -324,7 +324,7 @@ public class TAData {
 			endHour = end;
 
 			(((CSGWorkspace) app.getWorkspaceComponent()).getTeachingAssistantPane()).reloadTimes(this);
-			fileComponent.loadData(app.getDataComponent(), "temp.json");
+			fileComponent.loadTAData(this, "temp.json");
 
 			File temp = new File("temp.json");
 			temp.delete();

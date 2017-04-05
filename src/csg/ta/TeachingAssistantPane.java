@@ -4,17 +4,22 @@ import csg.CSGApp;
 import csg.CSGAppProp;
 import csg.data.CSGData;
 import csg.data.TAData;
+import csg.style.CSGStyle;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import properties_manager.PropertiesManager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TeachingAssistantPane extends HBox{
@@ -134,6 +139,47 @@ public class TeachingAssistantPane extends HBox{
 
 		this.getChildren().add(taPane);
 		this.getChildren().add(ohPane);
+
+		controller = new TAController(app);
+
+		taTable.setOnMouseClicked(e ->{
+			controller.handleTableClick();
+		});
+
+		// CONTROLS FOR ADDING TAs
+		clear.setOnAction(e->{
+			add.setText(props.getProperty(CSGAppProp.ADD_BUTTON_TEXT.toString()));
+			emailTF.clear();
+			nameTF.clear();
+			nameTF.requestFocus();
+		});
+		nameTF.setOnAction(e -> {
+			controller.handleAddTA();
+		});
+		emailTF.setOnAction(e -> {
+			controller.handleAddTA();
+		});
+		add.setOnAction(e -> {
+			controller.handleAddTA();
+		});
+
+		remove.setOnAction(e ->{
+			controller.handleRemoveTA();
+		});
+
+		// CONTROLS FOR KEY PRESSES
+		this.setOnKeyPressed(e -> {
+			controller.handleKeyPress(e);
+		});
+
+		// CONTROLS FOR COMBOBOX
+		startTime.setOnAction(e -> {
+			controller.handleComboBox();
+		});
+
+		endTime.setOnAction(e -> {
+			controller.handleComboBox();
+		});
 	}
 
 	public TableView getTaTable() {
@@ -240,11 +286,189 @@ public class TeachingAssistantPane extends HBox{
 		return ohGridTACellLabels;
 	}
 
-	public void reloadTimes(TAData taData) {
+	public String buildCellKey(int col, int row) {
+		return "" + col + "_" + row;
+	}
 
+	public String buildCellText(int militaryHour, String minutes) {
+		// FIRST THE START AND END CELLS
+		int hour = militaryHour;
+		if (hour > 12) {
+			hour -= 12;
+		}
+		String cellText = "" + hour + ":" + minutes;
+		if (militaryHour < 12) {
+			cellText += "am";
+		} else {
+			cellText += "pm";
+		}
+		return cellText;
+	}
+
+	public void resetWorkspace() {
+		// CLEAR OUT THE GRID PANE
+		ohGrid.getChildren().clear();
+
+		// AND THEN ALL THE GRID PANES AND LABELS
+		ohGridTimeHeaderPanes.clear();
+		ohGridTimeHeaderLabels.clear();
+		ohGridDayHeaderPanes.clear();
+		ohGridDayHeaderLabels.clear();
+		ohGridTimeCellPanes.clear();
+		ohGridTimeCellLabels.clear();
+		ohGridTACellPanes.clear();
+		ohGridTACellLabels.clear();
+
+		// CLEAR TRANSACTIONS AND TEXT FIELD
+		app.jtps.clearTransactions();
+		clear.fireEvent(new ActionEvent());
+	}
+
+	public void reloadWorkspace(){
+		TAData taData = ((CSGData) app.getDataComponent()).getTAData();
+		reloadOfficeHoursGrid(taData);
 	}
 
 	public void reloadOfficeHoursGrid(TAData taData) {
+		ArrayList<String> gridHeaders = taData.getGridHeaders();
 
+		// ADD THE TIME HEADERS
+		for (int i = 0; i < 2; i++) {
+			addCellToGrid(taData, ohGridTimeHeaderPanes, ohGridTimeHeaderLabels, i, 0);
+			taData.getCellTextProperty(i, 0).set(gridHeaders.get(i));
+		}
+
+		// THEN THE DAY OF WEEK HEADERS
+		for (int i = 2; i < 7; i++) {
+			addCellToGrid(taData, ohGridDayHeaderPanes, ohGridDayHeaderLabels, i, 0);
+			taData.getCellTextProperty(i, 0).set(gridHeaders.get(i));
+		}
+
+		// THEN THE TIME AND TA CELLS
+		int row = 1;
+		for (int i = taData.getStartHour(); i < taData.getEndHour(); i++) {
+			// START TIME COLUMN
+			int col = 0;
+			addCellToGrid(taData, ohGridTimeCellPanes, ohGridTimeCellLabels, col, row);
+			taData.getCellTextProperty(col, row).set(buildCellText(i, "00"));
+			addCellToGrid(taData, ohGridTimeCellPanes, ohGridTimeCellLabels, col, row + 1);
+			taData.getCellTextProperty(col, row + 1).set(buildCellText(i, "30"));
+
+			// END TIME COLUMN
+			col++;
+			int endHour = i;
+			addCellToGrid(taData, ohGridTimeCellPanes, ohGridTimeCellLabels, col, row);
+			taData.getCellTextProperty(col, row).set(buildCellText(endHour, "30"));
+			addCellToGrid(taData, ohGridTimeCellPanes, ohGridTimeCellLabels, col, row + 1);
+			taData.getCellTextProperty(col, row + 1).set(buildCellText(endHour + 1, "00"));
+			col++;
+
+			// AND NOW ALL THE TA TOGGLE CELLS
+			while (col < 7) {
+				addCellToGrid(taData, ohGridTACellPanes, ohGridTACellLabels, col, row);
+				addCellToGrid(taData, ohGridTACellPanes, ohGridTACellLabels, col, row + 1);
+				col++;
+			}
+			row += 2;
+		}
+
+		// CONTROLS FOR TOGGLING TA OFFICE HOURS
+		for (Pane p : ohGridTACellPanes.values()) {
+			p.setOnMouseClicked(e -> {
+				controller.handleCellToggle((Pane) e.getSource());
+			});
+
+			p.setOnMouseEntered(e -> {
+				controller.handleCellHover((Pane) e.getSource());
+			});
+
+			p.setOnMouseExited(e -> {
+				controller.handleCellExit((Pane) e.getSource());
+			});
+		}
+
+		// AND MAKE SURE ALL THE COMPONENTS HAVE THE PROPER STYLE
+		CSGStyle taStyle = (CSGStyle) app.getStyleComponent();
+		taStyle.initTAOfficeHoursGridStyle();
+	}
+
+	public void reloadTimes(TAData taData) {
+		ohGrid.getChildren().clear();
+
+		ohGridTimeCellPanes.clear();
+		ohGridTimeCellLabels.clear();
+		ohGridTACellPanes.clear();
+		ohGridTACellLabels.clear();
+
+		// THEN THE TIME AND TA CELLS
+		int row = 1;
+		for (int i = taData.getStartHour(); i < taData.getEndHour(); i++) {
+			// START TIME COLUMN
+			int col = 0;
+			addCellToGrid(taData, ohGridTimeCellPanes, ohGridTimeCellLabels, col, row);
+			taData.getCellTextProperty(col, row).set(buildCellText(i, "00"));
+			addCellToGrid(taData, ohGridTimeCellPanes, ohGridTimeCellLabels, col, row + 1);
+			taData.getCellTextProperty(col, row + 1).set(buildCellText(i, "30"));
+
+			// END TIME COLUMN
+			col++;
+			int endHour = i;
+			addCellToGrid(taData, ohGridTimeCellPanes, ohGridTimeCellLabels, col, row);
+			taData.getCellTextProperty(col, row).set(buildCellText(endHour, "30"));
+			addCellToGrid(taData, ohGridTimeCellPanes, ohGridTimeCellLabels, col, row + 1);
+			taData.getCellTextProperty(col, row + 1).set(buildCellText(endHour + 1, "00"));
+			col++;
+
+			// AND NOW ALL THE TA TOGGLE CELLS
+			while (col < 7) {
+				addCellToGrid(taData, ohGridTACellPanes, ohGridTACellLabels, col, row);
+				addCellToGrid(taData, ohGridTACellPanes, ohGridTACellLabels, col, row + 1);
+				col++;
+			}
+			row += 2;
+		}
+
+		// CONTROLS FOR TOGGLING TA OFFICE HOURS
+		for (Pane p : ohGridTACellPanes.values()) {
+			p.setOnMouseClicked(e -> {
+				controller.handleCellToggle((Pane) e.getSource());
+			});
+
+			p.setOnMouseEntered(e -> {
+				controller.handleCellHover((Pane) e.getSource());
+			});
+
+			p.setOnMouseExited(e -> {
+				controller.handleCellExit((Pane) e.getSource());
+			});
+		}
+
+		// AND MAKE SURE ALL THE COMPONENTS HAVE THE PROPER STYLE
+		CSGStyle taStyle = (CSGStyle) app.getStyleComponent();
+		taStyle.initTAOfficeHoursGridStyle();
+	}
+
+	public void addCellToGrid(TAData dataComponent, HashMap<String, Pane> panes, HashMap<String, Label> labels, int col, int row) {
+		// MAKE THE LABEL IN A PANE
+		Label cellLabel = new Label("");
+		HBox cellPane = new HBox();
+		cellPane.setAlignment(Pos.CENTER);
+		cellPane.getChildren().add(cellLabel);
+
+		// BUILD A KEY TO EASILY UNIQUELY IDENTIFY THE CELL
+		String cellKey = dataComponent.getCellKey(col, row);
+		cellPane.setId(cellKey);
+		cellLabel.setId(cellKey);
+
+		// NOW PUT THE CELL IN THE WORKSPACE GRID
+		ohGrid.add(cellPane, col, row);
+
+		// AND ALSO KEEP IN IN CASE WE NEED TO STYLIZE IT
+		panes.put(cellKey, cellPane);
+		labels.put(cellKey, cellLabel);
+
+		// AND FINALLY, GIVE THE TEXT PROPERTY TO THE DATA MANAGER
+		// SO IT CAN MANAGE ALL CHANGES
+		dataComponent.setCellProperty(col, row, cellLabel.textProperty());
 	}
 }

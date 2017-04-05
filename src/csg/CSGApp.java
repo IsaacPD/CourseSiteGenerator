@@ -10,13 +10,13 @@ import jtps.jTPS;
 import java.util.Locale;
 
 public class CSGApp extends AppTemplate {
-	jTPS jTPS = new jTPS();
+	public jTPS jtps = new jTPS();
 
 	@Override
 	public void buildAppComponentsHook() {
-		dataComponent = new CSGData();
+		dataComponent = new CSGData(this);
 		workspaceComponent = new CSGWorkspace(this);
-		fileComponent = new CSGFiles();
+		fileComponent = new CSGFiles(this);
 		styleComponent = new  CSGStyle(this);
 	}
 
