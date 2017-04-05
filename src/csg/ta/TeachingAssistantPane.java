@@ -3,6 +3,7 @@ package csg.ta;
 import csg.CSGApp;
 import csg.CSGAppProp;
 import csg.data.CSGData;
+import csg.data.TAData;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -55,13 +56,13 @@ public class TeachingAssistantPane extends HBox{
 		Tooltip tooltip = new  Tooltip(props.getProperty(CSGAppProp.REMOVE_TOOLTIP));
 		remove.setTooltip(tooltip);
 
-		taHeader.getChildren().add(remove);
 		taHeader.getChildren().add(taLabel);
+		taHeader.getChildren().add(remove);
 
 		// MAKE THE TABLE AND SETUP THE DATA MODEL
 		taTable = new TableView<>();
 		taTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-		CSGData data = (CSGData) app.getDataComponent();
+		TAData data = ((CSGData) app.getDataComponent()).getTAData();
 		ObservableList<TeachingAssistant> tableData = data.getTeachingAssistants();
 		taTable.setItems(tableData);
 		String nameColumnText = props.getProperty(CSGAppProp.NAME_COLUMN_TEXT.toString());
@@ -86,7 +87,7 @@ public class TeachingAssistantPane extends HBox{
 		nameTF = new TextField();
 		nameTF.setPromptText(namePromptText);
 		add = new Button(addButtonText);
-		clear = new Button("CLEAR");
+		clear = new Button(props.getProperty(CSGAppProp.CLEAR_TEXT));
 		userInput = new HBox();
 		emailTF.prefWidthProperty().bind(userInput.widthProperty().multiply(.4));
 		nameTF.prefWidthProperty().bind(userInput.widthProperty().multiply(.4));
@@ -133,5 +134,117 @@ public class TeachingAssistantPane extends HBox{
 
 		this.getChildren().add(taPane);
 		this.getChildren().add(ohPane);
+	}
+
+	public TableView getTaTable() {
+		return taTable;
+	}
+
+	public Button getRemove() {
+		return remove;
+	}
+
+	public Button getAdd() {
+		return add;
+	}
+
+	public Button getClear() {
+		return clear;
+	}
+
+	public ComboBox<String> getStartTime() {
+		return startTime;
+	}
+
+	public ComboBox<String> getEndTime() {
+		return endTime;
+	}
+
+	public TextField getNameTF() {
+		return nameTF;
+	}
+
+	public TextField getEmailTF() {
+		return emailTF;
+	}
+
+	public Label getTaLabel() {
+		return taLabel;
+	}
+
+	public Label getOfficeHoursGridLabel() {
+		return ohGridLabel;
+	}
+
+	public Label getStartLabel() {
+		return startLabel;
+	}
+
+	public Label getEndLabel() {
+		return endLabel;
+	}
+
+	public HBox getTaHeader() {
+		return taHeader;
+	}
+
+	public HBox getOfficeHoursHeader() {
+		return ohHeader;
+	}
+
+	public HBox getUserInput() {
+		return userInput;
+	}
+
+	public VBox getTaPane() {
+		return taPane;
+	}
+
+	public VBox getOfficeHoursPane() {
+		return ohPane;
+	}
+
+	public GridPane getOfficeHoursGrid() {
+		return ohGrid;
+	}
+
+	public HashMap<String, Pane> getOfficeHoursGridTimeHeaderPanes() {
+		return ohGridTimeHeaderPanes;
+	}
+
+	public HashMap<String, Label> getOfficeHoursGridTimeHeaderLabels() {
+		return ohGridTimeHeaderLabels;
+	}
+
+	public HashMap<String, Pane> getOfficeHoursGridDayHeaderPanes() {
+		return ohGridDayHeaderPanes;
+	}
+
+	public HashMap<String, Label> getOfficeHoursGridDayHeaderLabels() {
+		return ohGridDayHeaderLabels;
+	}
+
+	public HashMap<String, Pane> getOfficeHoursGridTimeCellPanes() {
+		return ohGridTimeCellPanes;
+	}
+
+	public HashMap<String, Label> getOfficeHoursGridTimeCellLabels() {
+		return ohGridTimeCellLabels;
+	}
+
+	public HashMap<String, Pane> getOfficeHoursGridTACellPanes() {
+		return ohGridTACellPanes;
+	}
+
+	public HashMap<String, Label> getOfficeHoursGridTACellLabels() {
+		return ohGridTACellLabels;
+	}
+
+	public void reloadTimes(TAData taData) {
+
+	}
+
+	public void reloadOfficeHoursGrid(TAData taData) {
+
 	}
 }

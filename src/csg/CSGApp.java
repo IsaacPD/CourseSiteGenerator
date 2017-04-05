@@ -17,7 +17,7 @@ public class CSGApp extends AppTemplate {
 		dataComponent = new CSGData();
 		workspaceComponent = new CSGWorkspace(this);
 		fileComponent = new CSGFiles();
-		styleComponent = new  CSGStyle();
+		styleComponent = new  CSGStyle(this);
 	}
 
 	public static void main(String... args){

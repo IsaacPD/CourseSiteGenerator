@@ -64,7 +64,74 @@
 	<property name="WORK_FILE_EXT"			value=".json"></property>
 	<property name="WORK_FILE_EXT_DESC"		value="TA Office Hours"></property>
 
-        <!-- WORKSPACE CONTROLS STUFF -->        
+        <!-- COURSE DETAILS CONTROLS STUFF -->
+        <property name="CD_INFO_TEXT"       value="Course Info"></property>
+        <property name="CD_SUBJECT_TEXT"    value="Subject"></property>
+        <property name="CD_NUMBER_TEXT"     value="Number"></property>
+        <property name="CD_SEMESTER_TEXT"   value="Semester"></property>
+        <property name="CD_YEAR_TEXT"       value="Year"></property>
+        <property name="CD_TITLE_TEXT"    value="Title"></property>
+        <property name="CD_INSTRUCTOR_NAME_TEXT"    value="Instructor Name"></property>
+        <property name="CD_INSTRUCTOR_HOME_TEXT"    value="Instructor Home"></property>
+        <property name="CD_EXPORT_TEXT"    value="Export Dir"></property>
+        <property name="CD_SITE_TEXT"    value="Site Template"></property>
+        <property name="CD_DESCRIPTION_TEXT"    value="The selected directory should contain the full site template, including the HTML files."></property>
+        <property name="CD_TEMPLATE_TEXT"    value=".\templates\CSE219"></property>
+        <property name="CD_SITE_PAGES_TEXT"    value="Site Pages"></property>
+        <property name="CD_PAGE_STYLE_TEXT"    value="Page Style"></property>
+        <property name="CD_BANNER_SCHOOL_IMAGE_TEXT"    value="Banner School Image"></property>
+        <property name="CD_LEFT_FOOTER_IMAGE_TEXT"    value="Left Footer Image"></property>
+        <property name="CD_RIGHT_FOOTER_IMAGE_TEXT"    value="Right Footer Image"></property>
+        <property name="CD_STYLESHEET_TEXT"     value="Stylesheet"></property>
+        <property name="CD_NOTE_TEXT"    value="NOTE: New stylesheets may be placed in work/css to be selectable"></property>
+        <property name="CD_NAVBAR_TITLE"       value="Navbar Title"></property>
+        <property name="CD_FILE_NAME"       value="File Name"></property>
+        <property name="CD_SCRIPT"       value="Script"></property>
+        <property name="CD_INFO_TEXT"       value="Course Info"></property>
+
+        <!-- SCHEDULE CONTROLS STUFF -->
+        <property name="S_TITLE"   value="Schedule"></property>
+        <property name="S_CALENDAR_BOUNDS"   value="Calendar Boundaries"></property>
+        <property name="S_CAL_START_TEXT"   value="Starting Monday"></property>
+        <property name="S_CAL_END_TEXT"   value="Ending Friday"></property>
+        <property name="S_ITEMS_TEXT"   value="Schedule Items"></property>
+        <property name="S_ADD_TEXT"   value="Add/Edit"></property>
+        <property name="S_TYPE_TEXT"   value="Type"></property>
+        <property name="S_DATE_TEXT"   value="Date"></property>
+        <property name="S_TIME_TEXT"   value="Time"></property>
+        <property name="S_TITLE_TEXT"   value="Title"></property>
+        <property name="S_TOPIC_TEXT"   value="Topic"></property>
+        <property name="LINK_TEXT"   value="Link"></property>
+        <property name="S_CRITERIA_TEXT"   value="Criteria"></property>
+        <property name="ADD_UP_TEXT"   value="Add/Update"></property>
+        <property name="CLEAR_TEXT"   value="Clear"></property>
+
+        <!-- RECITATION CONTROLS STUFF -->
+        <property name="R_HEADER_TEXT"   value="Recitations"></property>
+        <property name="R_SECTION_TEXT"   value="Section"></property>
+        <property name="R_INSTRUCTOR_TEXT"   value="Instructor"></property>
+        <property name="R_DAY_TIME_TEXT"   value="Day/Time"></property>
+        <property name="R_LOCATION_TEXT"   value="Location"></property>
+        <property name="R_TA_TEXT"   value="TA"></property>
+        <property name="R_SUP_TA_TEXT"   value="Supervising TA"></property>
+
+        <property name="ADD_EDIT_TEXT"   value="Add/Edit"></property>
+
+        <!-- PROJECT CONTROLS STUFF -->
+        <property name="P_HEADER_TEXT"   value="Projects"></property>
+        <property name="P_TEAM_TEXT"   value="Team"></property>
+        <property name="P_NAME_TEXT"   value="Name"></property>
+        <property name="P_COLOR_HEX_TEXT"   value="Color (hex#)"></property>
+        <property name="P_TEXT_COLOR_HEX_TEXT"   value="Text Color (hex#)"></property>
+        <property name="P_COLOR_TEXT"   value="Color"></property>
+        <property name="P_TEXT_COLOR_TEXT"   value="Text Color"></property>
+        <property name="P_STUDENTS_TEXT"   value="Students"></property>
+        <property name="P_FIRST_NAME_TEXT"   value="First Name"></property>
+        <property name="P_LAST_NAME_TEXT"   value="Last Name"></property>
+        <property name="P_ROLE_TEXT"   value="Role"></property>
+        <property name="P_TEAMS_TEXT"   value="Teams"></property>
+
+        <!-- TEACHING ASSISTANT CONTROLS STUFF -->
         <property name="TAS_HEADER_TEXT"                value="Teaching Assistants"></property>
         <property name="NAME_COLUMN_TEXT"               value="Name"></property>
         <property name="EMAIL_COLUMN_TEXT"              value="Email"></property>
