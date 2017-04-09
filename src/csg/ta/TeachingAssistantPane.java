@@ -10,9 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -22,12 +19,12 @@ import properties_manager.PropertiesManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TeachingAssistantPane extends HBox{
+public class TeachingAssistantPane extends HBox {
 	CSGApp app;
 	TAController controller;
 	TableView<TeachingAssistant> taTable;
 	TableColumn<TeachingAssistant, String> nameColumn, emailColumn;
-	TableColumn<TeachingAssistant, CheckBox>  ugColumn;
+	TableColumn<TeachingAssistant, CheckBox> ugColumn;
 	Button remove, add, clear;
 	ComboBox<String> startTime, endTime;
 	TextField nameTF, emailTF;
@@ -44,7 +41,7 @@ public class TeachingAssistantPane extends HBox{
 	HashMap<String, Pane> ohGridTACellPanes;
 	HashMap<String, Label> ohGridTACellLabels;
 
-	public TeachingAssistantPane(CSGApp initApp){
+	public TeachingAssistantPane(CSGApp initApp) {
 		app = initApp;
 
 		PropertiesManager props = PropertiesManager.getPropertiesManager();
@@ -55,14 +52,10 @@ public class TeachingAssistantPane extends HBox{
 		taHeader = new HBox();
 		String taHeaderText = props.getProperty(CSGAppProp.TAS_HEADER_TEXT.toString());
 		taLabel = new Label(taHeaderText);
-		remove = new Button();
-		Image buttonImage = new Image(props.getProperty(CSGAppProp.REMOVE_ICON));
-		remove.setGraphic(new ImageView(buttonImage));
-		Tooltip tooltip = new  Tooltip(props.getProperty(CSGAppProp.REMOVE_TOOLTIP));
-		remove.setTooltip(tooltip);
 
 		taHeader.getChildren().add(taLabel);
-		taHeader.getChildren().add(remove);
+		remove = app.getGUI().initChildButton(taHeader, CSGAppProp.REMOVE_ICON.toString(),
+				props.getProperty(CSGAppProp.REMOVE_TOOLTIP), false);
 
 		// MAKE THE TABLE AND SETUP THE DATA MODEL
 		taTable = new TableView<>();
@@ -142,12 +135,12 @@ public class TeachingAssistantPane extends HBox{
 
 		controller = new TAController(app);
 
-		taTable.setOnMouseClicked(e ->{
+		taTable.setOnMouseClicked(e -> {
 			controller.handleTableClick();
 		});
 
 		// CONTROLS FOR ADDING TAs
-		clear.setOnAction(e->{
+		clear.setOnAction(e -> {
 			add.setText(props.getProperty(CSGAppProp.ADD_BUTTON_TEXT.toString()));
 			emailTF.clear();
 			nameTF.clear();
@@ -163,7 +156,7 @@ public class TeachingAssistantPane extends HBox{
 			controller.handleAddTA();
 		});
 
-		remove.setOnAction(e ->{
+		remove.setOnAction(e -> {
 			controller.handleRemoveTA();
 		});
 
@@ -324,7 +317,7 @@ public class TeachingAssistantPane extends HBox{
 		clear.fireEvent(new ActionEvent());
 	}
 
-	public void reloadWorkspace(){
+	public void reloadWorkspace() {
 		TAData taData = ((CSGData) app.getDataComponent()).getTAData();
 		reloadOfficeHoursGrid(taData);
 	}

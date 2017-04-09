@@ -5,12 +5,11 @@ import csg.data.CSGData;
 import csg.data.ProjectData;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import properties_manager.PropertiesManager;
 import static csg.CSGAppProp.*;
+import javafx.beans.binding.Bindings;
 
 public class ProjectPane extends VBox{
 	Label header, teamsL, addEditL, nameL, colorL, textColorL, linkL;
@@ -49,11 +48,6 @@ public class ProjectPane extends VBox{
 		linkTF = new TextField();
 		addButton = new Button(props.getProperty(ADD_UP_TEXT));
 		clearButton = new Button(props.getProperty(CLEAR_TEXT));
-		removeTeam = new Button();
-		Tooltip tooltip = new Tooltip(props.getProperty(REMOVE_TOOLTIP));
-		Image image = new Image(props.getProperty(REMOVE_ICON));
-		removeTeam.setGraphic(new ImageView(image));
-		removeTeam.setTooltip(tooltip);
 
 		teamTable = new TableView<>(data.getTeams());
 		nameCol = new TableColumn<>(props.getProperty(P_NAME_TEXT));
@@ -64,7 +58,7 @@ public class ProjectPane extends VBox{
 		colorCol.setCellValueFactory(
 				new PropertyValueFactory<>("color")
 		);
-		textColorCol = new TableColumn<>(props.getProperty(P_TEXT_COLOR__HEX_TEXT));
+		textColorCol = new TableColumn<>(props.getProperty(P_TEXT_COLOR_HEX_TEXT));
 		textColorCol.setCellValueFactory(
 				new PropertyValueFactory<>("tColor")
 		);
@@ -75,7 +69,9 @@ public class ProjectPane extends VBox{
 		teamTable.getColumns().addAll(nameCol, colorCol, textColorCol, linkCol);
 
 		teamHead = new HBox();
-		teamHead.getChildren().addAll(teamsL, removeTeam);
+		teamHead.getChildren().add(teamsL);
+                removeTeam = app.getGUI().initChildButton(teamHead, REMOVE_ICON.toString(),
+                        props.getProperty(REMOVE_TOOLTIP), false);
 		nameRow = new HBox();
 		nameRow.getChildren().addAll(nameL, nameTF);
 		colorRow = new HBox();
@@ -106,6 +102,7 @@ public class ProjectPane extends VBox{
 		roleCol.setCellValueFactory(
 				new PropertyValueFactory<>("role")
 		);
+                studentTable.getColumns().addAll(fNameCol, lNameCol, teamCol, roleCol);
 
 		sAddEdit = new Label(props.getProperty(ADD_EDIT_TEXT));
 		fNameL = new Label(props.getProperty(P_FIRST_NAME_TEXT) + ":");
@@ -118,14 +115,13 @@ public class ProjectPane extends VBox{
 		roleTF = new TextField();
 		addStudent = new Button(props.getProperty(ADD_UP_TEXT));
 		clearStudent = new Button(props.getProperty(CLEAR_TEXT));
-		studentRemove = new Button();
-		studentRemove.setGraphic(new ImageView(image));
-		studentRemove.setTooltip(tooltip);
 		studentButtonsRow = new HBox();
 		studentButtonsRow.getChildren().addAll(addStudent, clearStudent);
 
 		studentHead = new HBox();
-		studentHead.getChildren().addAll(student, studentRemove);
+		studentHead.getChildren().add(student);
+                studentRemove = app.getGUI().initChildButton(studentHead, REMOVE_ICON.toString(),
+                        props.getProperty(REMOVE_TOOLTIP), false);
 		fNameRow = new HBox();
 		fNameRow.getChildren().addAll(fNameL, fNameTF);
 		lNameRow = new HBox();

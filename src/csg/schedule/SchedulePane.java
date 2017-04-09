@@ -67,11 +67,6 @@ public class SchedulePane extends VBox{
 		linkTF = new TextField();
 		criteriaL = new Label(props.getProperty(CSGAppProp.S_CRITERIA_TEXT) + ":");
 		criteriaTF = new TextField();
-		removeButton = new Button();
-		Tooltip tooltip = new Tooltip(props.getProperty(CSGAppProp.REMOVE_TOOLTIP));
-		Image icon = new Image(props.getProperty(CSGAppProp.REMOVE_ICON));
-		removeButton.setTooltip(tooltip);
-		removeButton.setGraphic(new ImageView(icon));
 
 		dateCol = new TableColumn<>(props.getProperty(CSGAppProp.S_DATE_TEXT));
 		dateCol.setCellValueFactory(
@@ -105,7 +100,9 @@ public class SchedulePane extends VBox{
 		criteria = new HBox();
 		buttons = new HBox();
 
-		inputHead.getChildren().addAll(itemL, removeButton);
+		inputHead.getChildren().add(itemL);
+                removeButton = app.getGUI().initChildButton(inputHead, CSGAppProp.REMOVE_ICON.toString(),
+                        props.getProperty(CSGAppProp.REMOVE_TOOLTIP), false);
 		add.getChildren().add(addL);
 		type.getChildren().addAll(typeL, typeCB);
 		date.getChildren().addAll(dateL, inDate);

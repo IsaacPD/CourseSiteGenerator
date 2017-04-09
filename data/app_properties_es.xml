@@ -21,31 +21,25 @@
         <property name="EXPORT_ICON"          value="Export.png"></property>  
         <property name="SAVE_AS_ICON"	    value="SaveAs.png"></property>
         <property name="REMOVE_ICON"	    value="Remove.png"></property>
-        <property name="UNDO_ICON"	    value="Undo.png"></property>
-        <property name="REDO_ICON"	    value="Redo.png"></property>
-        <property name="ABOUT_ICON"	    value="About.png"></property>
         
         <!-- TOOLTIPS FOR BUTTONS -->
-        <property name="NEW_TOOLTIP"		value="Build a new Course Site Generator"></property>
-        <property name="LOAD_TOOLTIP"		value="Load an existing Course Site Generator"></property>
-        <property name="SAVE_TOOLTIP"		value="Save the current Course Site Generator"></property>
-        <property name="EXIT_TOOLTIP"		value="Exit the Application"></property>
-        <property name="EXPORT_TOOLTIP"		value="Export the Application"></property>
-        <property name="SAVE_AS_TOOLTIP"	value="Save the current Course Site Generator"></property>
-        <property name="REMOVE_TOOLTIP"	    value="Remove element from table"></property>
-        <property name="UNDO_TOOLTIP"	    value="Undo last action"></property>
-        <property name="REDO_TOOLTIP"	    value="Redo action"></property>
-        <property name="ABOUT_TOOLTIP"	    value="About the Course Site Generator"></property>
+        <property name="NEW_TOOLTIP"		value="Crear un nuevo Generador de Sitios de Curso"></property>
+        <property name="LOAD_TOOLTIP"		value="Cargar un Generador de Sitios de Curso existente"></property>
+        <property name="SAVE_TOOLTIP"		value="Guardar el Course Site Generator presente"></property>
+        <property name="EXIT_TOOLTIP"		value="Terminar la Aplicación"></property>
+        <property name="EXPORT_TOOLTIP"		value="Exportar la Aplicación"></property>
+        <property name="SAVE_AS_TOOLTIP"	value="Guardar el Course Site Generator presente"></property>
+        <property name="REMOVE_TOOLTIP"	    value="Eliminar selección de la tabla"></property>
 
         <!-- ERROR MESSAGES -->
-        <property name="CLOSE_BUTTON_TEXT"              value="Close"></property>
+        <property name="CLOSE_BUTTON_TEXT"              value="Cerrar"></property>
 
-        <property name="NEW_ERROR_MESSAGE"              value="An error occured creating New work."></property>
-        <property name="NEW_ERROR_TITLE"		value="New Work Error"></property>
-        <property name="LOAD_ERROR_MESSAGE"             value="An error occured loading work."></property>
-        <property name="LOAD_ERROR_TITLE"		value="Load Work Error"></property>
-        <property name="SAVE_ERROR_MESSAGE"             value="An error occured saving work."></property>
-        <property name="SAVE_ERROR_TITLE"		value="Save Work Error"></property>
+        <property name="NEW_ERROR_MESSAGE"              value="Un error occurió creando datos"></property>
+        <property name="NEW_ERROR_TITLE"		value="Error de Datos Nuevos"></property>
+        <property name="LOAD_ERROR_MESSAGE"             value="Un error occurrió cargando datos."></property>
+        <property name="LOAD_ERROR_TITLE"		value="Error Cargando Datos"></property>
+        <property name="SAVE_ERROR_MESSAGE"             value="Un error occurrió guardando datos."></property>
+        <property name="SAVE_ERROR_TITLE"		value="Error Guardando Datos"></property>
         <property name="PROPERTIES_LOAD_ERROR_MESSAGE"	value="An error occured loading a properties file."></property>	
         <property name="PROPERTIES_LOAD_ERROR_TITLE"	value="Properties File Loading Error"></property>
 	

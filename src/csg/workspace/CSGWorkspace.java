@@ -10,7 +10,7 @@ import djf.components.AppDataComponent;
 import djf.components.AppWorkspaceComponent;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class CSGWorkspace extends AppWorkspaceComponent {
 	TabPane tabSpace;
@@ -33,6 +33,8 @@ public class CSGWorkspace extends AppWorkspaceComponent {
 		pPane = new ProjectPane(initApp);
 
 		tabSpace = new TabPane();
+		tabSpace.setMaxHeight(800);
+		tabSpace.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 		tabSpace.getTabs().add(new Tab("Course Details", cdPane));
 		tabSpace.getTabs().add(new Tab("TA Data", taPane));
 		tabSpace.getTabs().add(new Tab("Recitation Data", rPane));
@@ -40,8 +42,10 @@ public class CSGWorkspace extends AppWorkspaceComponent {
 		tabSpace.getTabs().add(new Tab("Project Data", pPane));
 
 		controller = new CSGController(initApp);
-		workspace = new Pane();
+		workspace = new VBox();
 		workspace.getChildren().add(tabSpace);
+
+		tabSpace.tabMinWidthProperty().bind(workspace.widthProperty().divide(6));
 
 		workspace.setOnKeyPressed(e -> {
 			controller.handleKeyPress(e);
@@ -64,5 +68,9 @@ public class CSGWorkspace extends AppWorkspaceComponent {
 	@Override
 	public void reloadWorkspace(AppDataComponent appDataComponent) {
 		taPane.reloadWorkspace();
+	}
+
+	public RecitationPane getRecitationPane() {
+		return (RecitationPane) tabSpace.getTabs().get(2).getContent();
 	}
 }

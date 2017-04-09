@@ -5,13 +5,10 @@ import csg.file.CSGFiles;
 import csg.workspace.CSGWorkspace;
 import csg.style.CSGStyle;
 import djf.AppTemplate;
-import jtps.jTPS;
 
 import java.util.Locale;
 
 public class CSGApp extends AppTemplate {
-	public jTPS jtps = new jTPS();
-
 	@Override
 	public void buildAppComponentsHook() {
 		dataComponent = new CSGData(this);

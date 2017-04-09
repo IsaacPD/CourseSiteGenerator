@@ -11,8 +11,6 @@ import javafx.scene.layout.VBox;
 import properties_manager.PropertiesManager;
 import static csg.CSGAppProp.*;
 
-import java.io.File;
-
 public class CourseDetailsPane extends VBox{
 	VBox courseInfo, siteTemplate, pageStyle;
 	Label infoL, subjectL, numberL, semesterL, yearL, titleL, instructorNameL, instructorHomeL, exportDirL;

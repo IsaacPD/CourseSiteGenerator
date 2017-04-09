@@ -1,0 +1,128 @@
+.root{
+    -fx-background-color: #ffecd7;
+}
+
+.dialog_pane {
+    -fx-padding: 15;
+}
+
+.vbox {
+    -fx-background-color: #e6e6e6;
+    -fx-border-insets: 3;
+    -fx-border-style: solid;
+    -fx-spacing: 10%;
+}
+
+.dialog_heading {
+}
+
+.dialog_prompt {
+}
+
+.plain_pane{
+}
+
+.bordered_pane {
+    -fx-border-style: solid;
+    -fx-border-insets: 3px;
+    -fx-padding: 5;
+    -fx-hgap: 5;
+}
+
+.header_pane{
+    -fx-hgap: 3;
+}
+
+.text-field{
+}
+
+.header_label {
+    -fx-font-size: 14;
+}
+
+.button {
+    -fx-text-alignment: center;
+    -fx-effect: none;
+}
+
+.label {
+    -fx-alignment: baseline-left;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.table {
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab{
+    -fx-background-color: #ffd8ad;
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #ffffff;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #e6e6e6;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: BLACK;
+    -fx-font-size: 12px;
+}
+
+.tab-pane:top *.tab-header-area{
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-color: #ffecd7;
+    -fx-padding: 0.416667em 0.166667em 0.0em 0.0em;
+}
+
+.table-view .column-header.table_column_header .label {
+}
+
+.add_ta_pane{
+}
+
+.clear_ta_button{
+}
+
+.add_ta_text_field{
+
+}
+
+.add_ta_button{
+}
+
+.office_hours_grid{
+
+}
+
+.office_hours_grid_time_column_header_pane{
+}
+
+.office_hours_grid_time_column_header_label{
+}
+
+.office_hours_grid_day_column_header_pane{
+}
+
+.office_hours_grid_day_column_header_label{
+}
+
+.office_hours_grid_time_cell_pane{
+}
+
+.office_hours_grid_time_cell_label{
+}
+
+.office_hours_grid_ta_cell_pane{
+}
+
+.office_hours_grid_ta_cell_label{
+}

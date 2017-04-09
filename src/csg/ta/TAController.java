@@ -41,7 +41,7 @@ public class TAController {
 	 */
 	public void handleAddTA() {
 		// WE'LL NEED THE WORKSPACE TO RETRIEVE THE USER INPUT VALUES
-		TeachingAssistantPane workspace = ((CSGWorkspace)app.getWorkspaceComponent()).getTeachingAssistantPane();
+		TeachingAssistantPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getTeachingAssistantPane();
 		TextField nameTextField = workspace.getNameTF();
 		TextField emailTextField = workspace.getEmailTF();
 		String name = nameTextField.getText();
@@ -50,7 +50,7 @@ public class TAController {
 		EmailValidator boss = new EmailValidator();
 
 		// WE'LL NEED TO ASK THE DATA SOME QUESTIONS TOO
-		TAData data = ((CSGData)app.getDataComponent()).getTAData();
+		TAData data = ((CSGData) app.getDataComponent()).getTAData();
 
 		// WE'LL NEED THIS IN CASE WE NEED TO DISPLAY ANY ERROR MESSAGES
 		PropertiesManager props = PropertiesManager.getPropertiesManager();
@@ -59,14 +59,13 @@ public class TAController {
 		if (name.isEmpty()) {
 			AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 			dialog.show(props.getProperty(MISSING_TA_NAME_TITLE), props.getProperty(MISSING_TA_NAME_MESSAGE));
-		}
-		else if (email.isEmpty()){
+		} else if (email.isEmpty()) {
 			AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 			dialog.show(props.getProperty(MISSING_TA_EMAIL_TITLE), props.getProperty(MISSING_TA_EMAIL_MESSAGE));
 		}
 
 		// IS IT A VALID EMAIL?
-		else if (!boss.validate(email)){
+		else if (!boss.validate(email)) {
 			AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 			dialog.show(props.getProperty(TA_INVALID_EMAIL_TITLE), props.getProperty(TA_INVALID_EMAIL_MESSAGE));
 		}
@@ -78,7 +77,7 @@ public class TAController {
 		}
 
 		// UPDATE TA IF BUTTON IS SET TO DO SO
-		else if (workspace.getAdd().getText().equals("Update TA")){
+		else if (workspace.getAdd().getText().equals("Update TA")) {
 
 			TeachingAssistant ta = (TeachingAssistant) workspace.taTable.getSelectionModel().getSelectedItem();
 
@@ -114,25 +113,19 @@ public class TAController {
 	 *
 	 * @param event The key that was pressed.
 	 */
-	public void handleKeyPress(KeyEvent event){
-		if (event.getCode() == KeyCode.DELETE){
+	public void handleKeyPress(KeyEvent event) {
+		if (event.getCode() == KeyCode.DELETE) {
 			handleRemoveTA();
-		}
-		else if (event.getCode() == KeyCode.Z && event.isControlDown()){
-			app.jtps.undoTransaction();
-		}
-		else if (event.getCode() == KeyCode.Y && event.isControlDown()){
-			app.jtps.doTransaction();
 		}
 	}
 
-	public void handleRemoveTA(){
-		TeachingAssistantPane workspace = ((CSGWorkspace)app.getWorkspaceComponent()).getTeachingAssistantPane();
+	public void handleRemoveTA() {
+		TeachingAssistantPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getTeachingAssistantPane();
 		TableView taTable = workspace.getTaTable();
 
 		Object selectedItem = taTable.getSelectionModel().getSelectedItem();
 
-		TeachingAssistant ta = (TeachingAssistant)selectedItem;
+		TeachingAssistant ta = (TeachingAssistant) selectedItem;
 
 		if (ta != null)
 			app.jtps.addTransaction(new DeleteTATransaction(ta, app));
@@ -146,21 +139,21 @@ public class TAController {
 	 */
 	public void handleCellToggle(Pane pane) {
 		// GET THE TABLE
-		TeachingAssistantPane workspace = ((CSGWorkspace)app.getWorkspaceComponent()).getTeachingAssistantPane();
+		TeachingAssistantPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getTeachingAssistantPane();
 		TableView taTable = workspace.getTaTable();
 
 		// IS A TA SELECTED IN THE TABLE?
 		Object selectedItem = taTable.getSelectionModel().getSelectedItem();
 
 		// GET THE TA
-		TeachingAssistant ta = (TeachingAssistant)selectedItem;
+		TeachingAssistant ta = (TeachingAssistant) selectedItem;
 
 		if (ta != null)
 			app.jtps.addTransaction(new ToggleTATransaction(app, pane, ta));
 	}
 
 	public void handleCellHover(Pane pane) {
-		TeachingAssistantPane workspace = ((CSGWorkspace)app.getWorkspaceComponent()).getTeachingAssistantPane();
+		TeachingAssistantPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getTeachingAssistantPane();
 		HashMap<String, Pane> tas = workspace.getOfficeHoursGridTACellPanes();
 		HashMap<String, Pane> times = workspace.getOfficeHoursGridTimeCellPanes();
 		HashMap<String, Pane> days = workspace.getOfficeHoursGridDayHeaderPanes();
@@ -168,23 +161,23 @@ public class TAController {
 		int row = GridPane.getRowIndex(pane);
 		int col = GridPane.getColumnIndex(pane);
 
-		for (Pane p: tas.values()) {
-			if (GridPane.getRowIndex(p) == row && GridPane.getColumnIndex(p) < col){
+		for (Pane p : tas.values()) {
+			if (GridPane.getRowIndex(p) == row && GridPane.getColumnIndex(p) < col) {
 				p.setStyle("-fx-border-color: #364e87;");
 			}
-			if (GridPane.getRowIndex(p) < row && GridPane.getColumnIndex(p) == col){
+			if (GridPane.getRowIndex(p) < row && GridPane.getColumnIndex(p) == col) {
 				p.setStyle("-fx-border-color: #364e87;");
 			}
 		}
 
-		for (Pane p: times.values()) {
-			if (GridPane.getRowIndex(p) == row){
+		for (Pane p : times.values()) {
+			if (GridPane.getRowIndex(p) == row) {
 				p.setStyle("-fx-border-color: yellow; -fx-border-style: solid;");
 			}
 		}
 
-		for (Pane p: days.values()) {
-			if (GridPane.getColumnIndex(p) == col){
+		for (Pane p : days.values()) {
+			if (GridPane.getColumnIndex(p) == col) {
 				p.setStyle("-fx-border-color: yellow;");
 			}
 		}
@@ -193,7 +186,7 @@ public class TAController {
 	}
 
 	public void handleCellExit(Pane pane) {
-		TeachingAssistantPane workspace = ((CSGWorkspace)app.getWorkspaceComponent()).getTeachingAssistantPane();
+		TeachingAssistantPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getTeachingAssistantPane();
 		HashMap<String, Pane> cells = workspace.getOfficeHoursGridTACellPanes();
 		HashMap<String, Pane> times = workspace.getOfficeHoursGridTimeCellPanes();
 		HashMap<String, Pane> days = workspace.getOfficeHoursGridDayHeaderPanes();
@@ -201,20 +194,20 @@ public class TAController {
 		int row = GridPane.getRowIndex(pane);
 		int col = GridPane.getColumnIndex(pane);
 
-		for(Pane p: cells.values()){
-			if (GridPane.getRowIndex(p) == row || GridPane.getColumnIndex(pane) == col){
+		for (Pane p : cells.values()) {
+			if (GridPane.getRowIndex(p) == row || GridPane.getColumnIndex(pane) == col) {
 				p.setStyle("-fx-border-color: black;");
 			}
 		}
 
-		for (Pane p: times.values()) {
-			if (GridPane.getRowIndex(p) == row){
+		for (Pane p : times.values()) {
+			if (GridPane.getRowIndex(p) == row) {
 				p.setStyle("-fx-border-style: dotted; -fx-border-color: white;");
 			}
 		}
 
-		for (Pane p: days.values()) {
-			if (GridPane.getColumnIndex(p) == col){
+		for (Pane p : days.values()) {
+			if (GridPane.getColumnIndex(p) == col) {
 				p.setStyle("-fx-border-color: black;");
 			}
 		}
@@ -223,29 +216,30 @@ public class TAController {
 	public void handleTableClick() {
 		try {
 			// GET THE TABLE
-			TeachingAssistantPane workspace = ((CSGWorkspace)app.getWorkspaceComponent()).getTeachingAssistantPane();
+			TeachingAssistantPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getTeachingAssistantPane();
 			TableView taTable = workspace.getTaTable();
 
 			// GET SELECTED ITEM
 			Object selectedItem = taTable.getSelectionModel().getSelectedItem();
 
 			// GET TA
-			TeachingAssistant ta = (TeachingAssistant)selectedItem;
+			TeachingAssistant ta = (TeachingAssistant) selectedItem;
 
-			if (ta != null){
+			if (ta != null) {
 				workspace.getAdd().setText("Update TA");
 				workspace.getNameTF().setText(ta.getName());
 				workspace.getEmailTF().setText(ta.getEmail());
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 	}
 
-	public void handleComboBox(){
-		TeachingAssistantPane workspace = ((CSGWorkspace)app.getWorkspaceComponent()).getTeachingAssistantPane();
+	public void handleComboBox() {
+		TeachingAssistantPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getTeachingAssistantPane();
 		TAData dataSpace = ((CSGData) app.getDataComponent()).getTAData();
 
-		String start = (String) workspace.getStartTime().getSelectionModel().getSelectedItem();
-		String end = (String) workspace.getEndTime().getSelectionModel().getSelectedItem();
+		String start = workspace.getStartTime().getSelectionModel().getSelectedItem();
+		String end = workspace.getEndTime().getSelectionModel().getSelectedItem();
 
 		int startTime = (start != null) ? getTime(start) : dataSpace.getStartHour();
 		int endTime = (end != null) ? getTime(end) : dataSpace.getEndHour();
@@ -253,11 +247,10 @@ public class TAController {
 		if (startTime >= endTime || startTime < TAData.MIN_START_HOUR || endTime > TAData.MAX_END_HOUR) {
 			AppMessageDialogSingleton single = AppMessageDialogSingleton.getSingleton();
 			single.show("Invalid Times", "Start Time must be less than the End Time");
-		}
-		else if (start != null || end != null) {
+		} else if (start != null || end != null) {
 			boolean verify = true;
 
-			if (startTime > dataSpace.getStartHour() || endTime < dataSpace.getEndHour()){
+			if (startTime > dataSpace.getStartHour() || endTime < dataSpace.getEndHour()) {
 				verify = false;
 
 				AppYesNoCancelDialogSingleton dialog = AppYesNoCancelDialogSingleton.getSingleton();
@@ -271,23 +264,23 @@ public class TAController {
 			if (verify) app.jtps.addTransaction(new ComboTimeTransaction(app, startTime, endTime));
 		}
 
-		if (start != null) workspace.getStartTime().getSelectionModel().clearSelection();
-		if (end != null) workspace.getEndTime().getSelectionModel().clearSelection();
+		//if (start != null) workspace.getStartTime().getSelectionModel().clearSelection();
+		//if (end != null) workspace.getEndTime().getSelectionModel().clearSelection();
 	}
 
-	private static int getTime(String time){
+	private static int getTime(String time) {
 		String[] t = time.split(":");
 		int hour = Integer.parseInt(t[0]);
 
-		if(t[1].charAt(t[1].indexOf("m")-1) == 'p'){
-			if(hour != 12) hour += 12;
+		if (t[1].charAt(t[1].indexOf("m") - 1) == 'p') {
+			if (hour != 12) hour += 12;
 		} else if (hour == 12)
 			hour = 0;
 
 		return hour;
 	}
 
-	private class EmailValidator{
+	private class EmailValidator {
 		private final Pattern pattern;
 		private Matcher matcher;
 
@@ -302,8 +295,7 @@ public class TAController {
 		/**
 		 * Validate hex with regular expression
 		 *
-		 * @param hex
-		 *            hex for validation
+		 * @param hex hex for validation
 		 * @return true valid hex, false invalid hex
 		 */
 		public boolean validate(final String hex) {
