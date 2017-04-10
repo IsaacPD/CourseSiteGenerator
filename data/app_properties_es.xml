@@ -8,7 +8,7 @@
 -->
 <properties>
     <property_list>
-        <property name="APP_TITLE"	    value="Course Site Generator"></property>
+        <property name="APP_TITLE"	    value="Generador de Sitios de Curso"></property>
 	<property name="APP_LOGO"	    value="Logo.png"></property>
 	<property name="APP_PATH_CSS"	    value="style/"></property>
 	<property name="APP_CSS"	    value="style.css"></property>
@@ -21,16 +21,22 @@
         <property name="EXPORT_ICON"          value="Export.png"></property>  
         <property name="SAVE_AS_ICON"	    value="SaveAs.png"></property>
         <property name="REMOVE_ICON"	    value="Remove.png"></property>
+        <property name="UNDO_ICON"	    value="Undo.png"></property>
+        <property name="REDO_ICON"	    value="Redo.png"></property>
+        <property name="ABOUT_ICON"	    value="About.png"></property>
         
         <!-- TOOLTIPS FOR BUTTONS -->
         <property name="NEW_TOOLTIP"		value="Crear un nuevo Generador de Sitios de Curso"></property>
         <property name="LOAD_TOOLTIP"		value="Cargar un Generador de Sitios de Curso existente"></property>
-        <property name="SAVE_TOOLTIP"		value="Guardar el Course Site Generator presente"></property>
+        <property name="SAVE_TOOLTIP"		value="Guardar el Generador de Sitios de Curso presente"></property>
         <property name="EXIT_TOOLTIP"		value="Terminar la Aplicación"></property>
         <property name="EXPORT_TOOLTIP"		value="Exportar la Aplicación"></property>
-        <property name="SAVE_AS_TOOLTIP"	value="Guardar el Course Site Generator presente"></property>
+        <property name="SAVE_AS_TOOLTIP"	value="Guardar el Generador de Sitios de Curso presente"></property>
         <property name="REMOVE_TOOLTIP"	    value="Eliminar selección de la tabla"></property>
-
+        <property name="UNDO_TOOLTIP"	    value="Deshacer la última acción"></property>
+        <property name="REDO_TOOLTIP"	    value="Rehacer acción"></property>
+        <property name="ABOUT_TOOLTIP"	    value="Sobre el Generador de Sitios de Curso"></property>
+        
         <!-- ERROR MESSAGES -->
         <property name="CLOSE_BUTTON_TEXT"              value="Cerrar"></property>
 
@@ -40,23 +46,23 @@
         <property name="LOAD_ERROR_TITLE"		value="Error Cargando Datos"></property>
         <property name="SAVE_ERROR_MESSAGE"             value="Un error occurrió guardando datos."></property>
         <property name="SAVE_ERROR_TITLE"		value="Error Guardando Datos"></property>
-        <property name="PROPERTIES_LOAD_ERROR_MESSAGE"	value="An error occured loading a properties file."></property>	
-        <property name="PROPERTIES_LOAD_ERROR_TITLE"	value="Properties File Loading Error"></property>
+        <property name="PROPERTIES_LOAD_ERROR_MESSAGE"	value="Un error occurrió cargando un archivo de propiedades"></property>	
+        <property name="PROPERTIES_LOAD_ERROR_TITLE"	value="Error Cargando Archivo de Propiedades"></property>
 	
         <!-- VERIFICATION MESSAGES -->
 	
-        <property name="NEW_COMPLETED_MESSAGE"		value="New Work Ready for Editing"></property>
-        <property name="NEW_COMPLETED_TITLE"		value="New Work Created"></property>
-        <property name="LOAD_COMPLETED_MESSAGE"		value="File Loading Completed and ready for editing"></property>
-        <property name="LOAD_COMPLETED_TITLE"		value="Loading Completed"></property>
-        <property name="SAVE_COMPLETED_MESSAGE"		value="File Saving Completed"></property>
-        <property name="SAVE_COMPLETED_TITLE"		value="Saving Completed"></property>
-        <property name="SAVE_UNSAVED_WORK_MESSAGE"	value="Would you like to save your unsaved work first?"></property>
-        <property name="SAVE_UNSAVED_WORK_TITLE"	value="Save unsaved work?"></property>
+        <property name="NEW_COMPLETED_MESSAGE"		value="Nueva trabajo listo para editar"></property>
+        <property name="NEW_COMPLETED_TITLE"		value="Nueva trabajo Creado"></property>
+        <property name="LOAD_COMPLETED_MESSAGE"		value="Cargando Archivos Terminado y listo para editar"></property>
+        <property name="LOAD_COMPLETED_TITLE"		value="Cargando Terminado"></property>
+        <property name="SAVE_COMPLETED_MESSAGE"		value="Guardando Archivos Terminado"></property>
+        <property name="SAVE_COMPLETED_TITLE"		value="Guardando Terminado"></property>
+        <property name="SAVE_UNSAVED_WORK_MESSAGE"	value="¿Deseas guardar su trabajo no guardado?"></property>
+        <property name="SAVE_UNSAVED_WORK_TITLE"	value="¿Guardar trabajo no guardado?"></property>
 	
-        <property name="NEW_CREATED_MESSAGE"		value="New Work Created but not yet Saved"></property>
-        <property name="WORK_LOADED_MESSAGE"		value="The Work has been Loaded"></property>
-        <property name="WORK_SAVED_MESSAGE"		value="The Work has been Saved"></property>
+        <property name="NEW_CREATED_MESSAGE"		value="Nueva trabajo creado pero no está guardado"></property>
+        <property name="WORK_LOADED_MESSAGE"		value="Los datos se cargaron"></property>
+        <property name="WORK_SAVED_MESSAGE"		value="El trabajo ha sido guardado"></property>
         <property name="SAVE_UNSAVED_WORK_MESSAGE"	value="Do you want to save your unsaved work first?"></property>
 	<property name="SAVE_WORK_TITLE"		value="Save your work"></property>
         <property name="EXPORT_WORK_TITLE"		value="Export your work"></property>
