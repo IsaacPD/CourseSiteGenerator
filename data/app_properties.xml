@@ -85,7 +85,7 @@
         <property name="CD_TEMPLATE_TEXT"    value=".\templates\CSE219"></property>
         <property name="CD_SITE_PAGES_TEXT"    value="Site Pages"></property>
         <property name="CD_PAGE_STYLE_TEXT"    value="Page Style"></property>
-        <property name="CD_BANNER_SCHOOL_IMAGE_TEXT"    value="Banner School Image"></property>
+        <property name="CD_BANNER_SCHOOL_IMAGE_TEXT"    value="School Banner Image"></property>
         <property name="CD_LEFT_FOOTER_IMAGE_TEXT"    value="Left Footer Image"></property>
         <property name="CD_RIGHT_FOOTER_IMAGE_TEXT"    value="Right Footer Image"></property>
         <property name="CD_STYLESHEET_TEXT"     value="Stylesheet"></property>
@@ -136,6 +136,13 @@
         <property name="P_LAST_NAME_TEXT"   value="Last Name"></property>
         <property name="P_ROLE_TEXT"   value="Role"></property>
         <property name="P_TEAMS_TEXT"   value="Teams"></property>
+
+        <!-- TAB NAMES -->
+        <property name="TAB_COURSE_DETAILS" value="Course Details"></property>
+        <property name="TAB_PROJECT_DATA" value="Project Data"></property>
+        <property name="TAB_TA_DATA" value="TA Data"></property>
+        <property name="TAB_RECITATION_DATA" value="Recitation Data"></property>
+        <property name="TAB_SCHEDULE_DATA" value="Schedule Data"></property>
 
         <!-- TEACHING ASSISTANT CONTROLS STUFF -->
         <property name="TAS_HEADER_TEXT"                value="Teaching Assistants"></property>

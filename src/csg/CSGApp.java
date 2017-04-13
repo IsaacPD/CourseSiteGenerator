@@ -5,6 +5,8 @@ import csg.file.CSGFiles;
 import csg.workspace.CSGWorkspace;
 import csg.style.CSGStyle;
 import djf.AppTemplate;
+import djf.settings.AppStartupConstants;
+import javafx.application.Application;
 
 import java.util.Locale;
 

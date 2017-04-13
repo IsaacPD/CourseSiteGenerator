@@ -55,7 +55,7 @@ public class TeachingAssistantPane extends HBox {
 
 		taHeader.getChildren().add(taLabel);
 		remove = app.getGUI().initChildButton(taHeader, CSGAppProp.REMOVE_ICON.toString(),
-				props.getProperty(CSGAppProp.REMOVE_TOOLTIP), false);
+				CSGAppProp.REMOVE_TOOLTIP.toString(), false);
 
 		// MAKE THE TABLE AND SETUP THE DATA MODEL
 		taTable = new TableView<>();

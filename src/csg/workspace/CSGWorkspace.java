@@ -11,6 +11,9 @@ import djf.components.AppWorkspaceComponent;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
+import properties_manager.PropertiesManager;
+
+import static csg.CSGAppProp.*;
 
 public class CSGWorkspace extends AppWorkspaceComponent {
 	TabPane tabSpace;
@@ -24,6 +27,7 @@ public class CSGWorkspace extends AppWorkspaceComponent {
 	RecitationPane rPane;
 
 	public CSGWorkspace(CSGApp initApp) {
+		PropertiesManager properties = PropertiesManager.getPropertiesManager();
 		app = initApp;
 
 		taPane = new TeachingAssistantPane(initApp);
@@ -35,11 +39,11 @@ public class CSGWorkspace extends AppWorkspaceComponent {
 		tabSpace = new TabPane();
 		tabSpace.setMaxHeight(800);
 		tabSpace.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
-		tabSpace.getTabs().add(new Tab("Course Details", cdPane));
-		tabSpace.getTabs().add(new Tab("TA Data", taPane));
-		tabSpace.getTabs().add(new Tab("Recitation Data", rPane));
-		tabSpace.getTabs().add(new Tab("Schedule Data", sPane));
-		tabSpace.getTabs().add(new Tab("Project Data", pPane));
+		tabSpace.getTabs().add(new Tab(properties.getProperty(TAB_COURSE_DETAILS), cdPane));
+		tabSpace.getTabs().add(new Tab(properties.getProperty(TAB_TA_DATA), taPane));
+		tabSpace.getTabs().add(new Tab(properties.getProperty(TAB_RECITATION_DATA), rPane));
+		tabSpace.getTabs().add(new Tab(properties.getProperty(TAB_SCHEDULE_DATA), sPane));
+		tabSpace.getTabs().add(new Tab(properties.getProperty(TAB_PROJECT_DATA), pPane));
 
 		controller = new CSGController(initApp);
 		workspace = new VBox();

@@ -71,7 +71,7 @@ public class ProjectPane extends VBox{
 		teamHead = new HBox();
 		teamHead.getChildren().add(teamsL);
                 removeTeam = app.getGUI().initChildButton(teamHead, REMOVE_ICON.toString(),
-                        props.getProperty(REMOVE_TOOLTIP), false);
+                        REMOVE_TOOLTIP.toString(), false);
 		nameRow = new HBox();
 		nameRow.getChildren().addAll(nameL, nameTF);
 		colorRow = new HBox();
@@ -121,7 +121,7 @@ public class ProjectPane extends VBox{
 		studentHead = new HBox();
 		studentHead.getChildren().add(student);
                 studentRemove = app.getGUI().initChildButton(studentHead, REMOVE_ICON.toString(),
-                        props.getProperty(REMOVE_TOOLTIP), false);
+                        REMOVE_TOOLTIP.toString(), false);
 		fNameRow = new HBox();
 		fNameRow.getChildren().addAll(fNameL, fNameTF);
 		lNameRow = new HBox();

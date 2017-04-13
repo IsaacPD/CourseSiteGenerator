@@ -36,7 +36,7 @@ public class RecitationPane extends VBox {
 		headerBox = new HBox();
 		headerBox.getChildren().add(header);
 		remove = app.getGUI().initChildButton(headerBox, CSGAppProp.REMOVE_ICON.toString(),
-				props.getProperty(CSGAppProp.REMOVE_TOOLTIP), false);
+				CSGAppProp.REMOVE_TOOLTIP.toString(), false);
 
 		table = new TableView<>(data.getRecitations());
 		sectionCol = new TableColumn<>(props.getProperty(CSGAppProp.R_SECTION_TEXT));

@@ -102,7 +102,7 @@ public class SchedulePane extends VBox{
 
 		inputHead.getChildren().add(itemL);
                 removeButton = app.getGUI().initChildButton(inputHead, CSGAppProp.REMOVE_ICON.toString(),
-                        props.getProperty(CSGAppProp.REMOVE_TOOLTIP), false);
+                        CSGAppProp.REMOVE_TOOLTIP.toString(), false);
 		add.getChildren().add(addL);
 		type.getChildren().addAll(typeL, typeCB);
 		date.getChildren().addAll(dateL, inDate);

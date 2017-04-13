@@ -63,110 +63,117 @@
         <property name="NEW_CREATED_MESSAGE"		value="Nueva trabajo creado pero no está guardado"></property>
         <property name="WORK_LOADED_MESSAGE"		value="Los datos se cargaron"></property>
         <property name="WORK_SAVED_MESSAGE"		value="El trabajo ha sido guardado"></property>
-        <property name="SAVE_UNSAVED_WORK_MESSAGE"	value="Do you want to save your unsaved work first?"></property>
-	<property name="SAVE_WORK_TITLE"		value="Save your work"></property>
-        <property name="EXPORT_WORK_TITLE"		value="Export your work"></property>
-	<property name="LOAD_WORK_TITLE"		value="Select work file to load"></property>
+        <property name="SAVE_UNSAVED_WORK_MESSAGE"	value="¿Deseas guardar primero su trabajo no guardado?"></property>
+	<property name="SAVE_WORK_TITLE"		value="Guarda tu trabajo"></property>
+        <property name="EXPORT_WORK_TITLE"		value="Exportar su trabajo"></property>
+	<property name="LOAD_WORK_TITLE"		value="Seleccionar archivo de trabajo para cargar"></property>
 	<property name="WORK_FILE_EXT"			value=".json"></property>
-	<property name="WORK_FILE_EXT_DESC"		value="TA Office Hours"></property>
+	<property name="WORK_FILE_EXT_DESC"		value="AE horas de oficina"></property>
 
         <!-- COURSE DETAILS CONTROLS STUFF -->
-        <property name="CD_INFO_TEXT"       value="Course Info"></property>
-        <property name="CD_SUBJECT_TEXT"    value="Subject"></property>
-        <property name="CD_NUMBER_TEXT"     value="Number"></property>
-        <property name="CD_SEMESTER_TEXT"   value="Semester"></property>
-        <property name="CD_YEAR_TEXT"       value="Year"></property>
-        <property name="CD_TITLE_TEXT"    value="Title"></property>
-        <property name="CD_INSTRUCTOR_NAME_TEXT"    value="Instructor Name"></property>
-        <property name="CD_INSTRUCTOR_HOME_TEXT"    value="Instructor Home"></property>
-        <property name="CD_EXPORT_TEXT"    value="Export Dir"></property>
-        <property name="CD_SITE_TEXT"    value="Site Template"></property>
-        <property name="CD_DESCRIPTION_TEXT"    value="The selected directory should contain the full site template, including the HTML files."></property>
+        <property name="CD_INFO_TEXT"       value="Información del Curso"></property>
+        <property name="CD_SUBJECT_TEXT"    value="Sujeto"></property>
+        <property name="CD_NUMBER_TEXT"     value="Numero"></property>
+        <property name="CD_SEMESTER_TEXT"   value="Semestre"></property>
+        <property name="CD_YEAR_TEXT"       value="Año"></property>
+        <property name="CD_TITLE_TEXT"    value="Titulo"></property>
+        <property name="CD_INSTRUCTOR_NAME_TEXT"    value="Nombre del Instructor"></property>
+        <property name="CD_INSTRUCTOR_HOME_TEXT"    value="Instructor Inicio"></property>
+        <property name="CD_EXPORT_TEXT"    value="Directorio de Exportaciones"></property>
+        <property name="CD_SITE_TEXT"    value="Plantilla de sitio"></property>
+        <property name="CD_DESCRIPTION_TEXT"    value="El directorio seleccionado debe contener la plantilla completa del sitio, incluyendo los archivos HTML."></property>
         <property name="CD_TEMPLATE_TEXT"    value=".\templates\CSE219"></property>
-        <property name="CD_SITE_PAGES_TEXT"    value="Site Pages"></property>
-        <property name="CD_PAGE_STYLE_TEXT"    value="Page Style"></property>
-        <property name="CD_BANNER_SCHOOL_IMAGE_TEXT"    value="Banner School Image"></property>
-        <property name="CD_LEFT_FOOTER_IMAGE_TEXT"    value="Left Footer Image"></property>
-        <property name="CD_RIGHT_FOOTER_IMAGE_TEXT"    value="Right Footer Image"></property>
-        <property name="CD_STYLESHEET_TEXT"     value="Stylesheet"></property>
-        <property name="CD_NOTE_TEXT"    value="NOTE: New stylesheets may be placed in work/css to be selectable"></property>
-        <property name="CD_NAVBAR_TITLE"       value="Navbar Title"></property>
-        <property name="CD_FILE_NAME"       value="File Name"></property>
-        <property name="CD_SCRIPT"       value="Script"></property>
-        <property name="CD_INFO_TEXT"       value="Course Info"></property>
+        <property name="CD_SITE_PAGES_TEXT"    value="Páginas del Sitio"></property>
+        <property name="CD_PAGE_STYLE_TEXT"    value="Estilo del Sitio"></property>
+        <property name="CD_BANNER_SCHOOL_IMAGE_TEXT"    value="Imagen de la bandera de la escuela"></property>
+        <property name="CD_LEFT_FOOTER_IMAGE_TEXT"    value="Imagen de pie de página izquierda"></property>
+        <property name="CD_RIGHT_FOOTER_IMAGE_TEXT"    value="Imagen de pie de página derecha"></property>
+        <property name="CD_STYLESHEET_TEXT"     value="Hoja de estilo"></property>
+        <property name="CD_NOTE_TEXT"    value="NOTA: Las nuevas hojas de estilo se pueden colocar en work/css para ser seleccionables"></property>
+        <property name="CD_NAVBAR_TITLE"       value="Título de la barra de navegación"></property>
+        <property name="CD_FILE_NAME"       value="Nombre del Archivo"></property>
+        <property name="CD_SCRIPT"       value="Guión"></property>
+        <property name="CD_INFO_TEXT"       value="Información del Curso"></property>
 
         <!-- SCHEDULE CONTROLS STUFF -->
-        <property name="S_TITLE"   value="Schedule"></property>
-        <property name="S_CALENDAR_BOUNDS"   value="Calendar Boundaries"></property>
-        <property name="S_CAL_START_TEXT"   value="Starting Monday"></property>
-        <property name="S_CAL_END_TEXT"   value="Ending Friday"></property>
-        <property name="S_ITEMS_TEXT"   value="Schedule Items"></property>
-        <property name="S_ADD_TEXT"   value="Add/Edit"></property>
-        <property name="S_TYPE_TEXT"   value="Type"></property>
-        <property name="S_DATE_TEXT"   value="Date"></property>
-        <property name="S_TIME_TEXT"   value="Time"></property>
-        <property name="S_TITLE_TEXT"   value="Title"></property>
-        <property name="S_TOPIC_TEXT"   value="Topic"></property>
-        <property name="LINK_TEXT"   value="Link"></property>
-        <property name="S_CRITERIA_TEXT"   value="Criteria"></property>
-        <property name="ADD_UP_TEXT"   value="Add/Update"></property>
-        <property name="CLEAR_TEXT"   value="Clear"></property>
+        <property name="S_TITLE"   value="Horario"></property>
+        <property name="S_CALENDAR_BOUNDS"   value="Límites del calendario"></property>
+        <property name="S_CAL_START_TEXT"   value="Primer Lunes"></property>
+        <property name="S_CAL_END_TEXT"   value="Viernes Final"></property>
+        <property name="S_ITEMS_TEXT"   value="Itinerarios"></property>
+        <property name="S_ADD_TEXT"   value="Añadir/Editar"></property>
+        <property name="S_TYPE_TEXT"   value="Tipo"></property>
+        <property name="S_DATE_TEXT"   value="Fecha"></property>
+        <property name="S_TIME_TEXT"   value="Hora"></property>
+        <property name="S_TITLE_TEXT"   value="Titulo"></property>
+        <property name="S_TOPIC_TEXT"   value="Tema"></property>
+        <property name="LINK_TEXT"   value="Enlace"></property>
+        <property name="S_CRITERIA_TEXT"   value="Criterios"></property>
+        <property name="ADD_UP_TEXT"   value="Añadir/actualizar"></property>
+        <property name="CLEAR_TEXT"   value="Despejar"></property>
 
         <!-- RECITATION CONTROLS STUFF -->
-        <property name="R_HEADER_TEXT"   value="Recitations"></property>
-        <property name="R_SECTION_TEXT"   value="Section"></property>
+        <property name="R_HEADER_TEXT"   value="Recitaciones"></property>
+        <property name="R_SECTION_TEXT"   value="Secciones"></property>
         <property name="R_INSTRUCTOR_TEXT"   value="Instructor"></property>
-        <property name="R_DAY_TIME_TEXT"   value="Day/Time"></property>
-        <property name="R_LOCATION_TEXT"   value="Location"></property>
-        <property name="R_TA_TEXT"   value="TA"></property>
-        <property name="R_SUP_TA_TEXT"   value="Supervising TA"></property>
+        <property name="R_DAY_TIME_TEXT"   value="Fecha/Hora"></property>
+        <property name="R_LOCATION_TEXT"   value="Ubicación"></property>
+        <property name="R_TA_TEXT"   value="AE"></property>
+        <property name="R_SUP_TA_TEXT"   value="AE Supervisor"></property>
 
-        <property name="ADD_EDIT_TEXT"   value="Add/Edit"></property>
+        <property name="ADD_EDIT_TEXT"   value="Añadir/Editar"></property>
 
         <!-- PROJECT CONTROLS STUFF -->
-        <property name="P_HEADER_TEXT"   value="Projects"></property>
-        <property name="P_TEAM_TEXT"   value="Team"></property>
-        <property name="P_NAME_TEXT"   value="Name"></property>
+        <property name="P_HEADER_TEXT"   value="Proyectos"></property>
+        <property name="P_TEAM_TEXT"   value="Equipo"></property>
+        <property name="P_NAME_TEXT"   value="Nombre"></property>
         <property name="P_COLOR_HEX_TEXT"   value="Color (hex#)"></property>
-        <property name="P_TEXT_COLOR_HEX_TEXT"   value="Text Color (hex#)"></property>
+        <property name="P_TEXT_COLOR_HEX_TEXT"   value="Color de Texto (hex#)"></property>
         <property name="P_COLOR_TEXT"   value="Color"></property>
-        <property name="P_TEXT_COLOR_TEXT"   value="Text Color"></property>
-        <property name="P_STUDENTS_TEXT"   value="Students"></property>
-        <property name="P_FIRST_NAME_TEXT"   value="First Name"></property>
-        <property name="P_LAST_NAME_TEXT"   value="Last Name"></property>
-        <property name="P_ROLE_TEXT"   value="Role"></property>
-        <property name="P_TEAMS_TEXT"   value="Teams"></property>
+        <property name="P_TEXT_COLOR_TEXT"   value="Color de Texto"></property>
+        <property name="P_STUDENTS_TEXT"   value="Estudiantes"></property>
+        <property name="P_FIRST_NAME_TEXT"   value="Primer Nombre"></property>
+        <property name="P_LAST_NAME_TEXT"   value="Apellido"></property>
+        <property name="P_ROLE_TEXT"   value="Papel"></property>
+        <property name="P_TEAMS_TEXT"   value="Equipos"></property>
+
+        <!-- TAB NAMES -->
+        <property name="TAB_COURSE_DETAILS" value="Detalles del Curso"></property>
+        <property name="TAB_PROJECT_DATA" value="Datos del Proyecto"></property>
+        <property name="TAB_TA_DATA" value="Datos de AE"></property>
+        <property name="TAB_RECITATION_DATA" value="Datos de las Recitaciónes"></property>
+        <property name="TAB_SCHEDULE_DATA" value="Datos de los Horarios"></property>
 
         <!-- TEACHING ASSISTANT CONTROLS STUFF -->
-        <property name="TAS_HEADER_TEXT"                value="Teaching Assistants"></property>
-        <property name="NAME_COLUMN_TEXT"               value="Name"></property>
-        <property name="EMAIL_COLUMN_TEXT"              value="Email"></property>
-        <property name="NAME_PROMPT_TEXT"               value="Name"></property>
-        <property name="EMAIL_PROMPT_TEXT"              value="Email"></property>
-        <property name="ADD_BUTTON_TEXT"                value="Add TA"></property>
-        <property name="OFFICE_HOURS_SUBHEADER"         value="Office Hours Grid"></property>
+        <property name="TAS_HEADER_TEXT"                value="Asistentes de Enseñanza (AE)"></property>
+        <property name="NAME_COLUMN_TEXT"               value="Nombre"></property>
+        <property name="EMAIL_COLUMN_TEXT"              value="Correo Electrónico"></property>
+        <property name="NAME_PROMPT_TEXT"               value="Nombre"></property>
+        <property name="EMAIL_PROMPT_TEXT"              value="Correo Electrónico"></property>
+        <property name="ADD_BUTTON_TEXT"                value="Añadir AE"></property>
+        <property name="OFFICE_HOURS_SUBHEADER"         value="Horarios de oficina"></property>
         
         <!-- WORKSPACE ERROR MESSAGES -->
-        <property name="MISSING_TA_NAME_TITLE"          value="Missing TA Name"></property>
-        <property name="MISSING_TA_NAME_MESSAGE"        value="You must provide a TA Name"></property>
-        <property name="MISSING_TA_EMAIL_TITLE"         value="Missing TA Email"></property>
-        <property name="MISSING_TA_EMAIL_MESSAGE"       value="You must provide a TA Email"></property>
-        <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_TITLE"     value="TA Name and Email Not Unique"></property>
-        <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_MESSAGE"   value="You must provide a unique TA Name and Email"></property>
-        <property name="TA_INVALID_EMAIL_TITLE"        value="Invalid Email address"></property>
-        <property name="TA_INVALID_EMAIL_MESSAGE"      value="You must provide a valid Email address."></property>
+        <property name="MISSING_TA_NAME_TITLE"          value="Falta el nombre de AE"></property>
+        <property name="MISSING_TA_NAME_MESSAGE"        value="Tienes que suministrar un nombre de AE"></property>
+        <property name="MISSING_TA_EMAIL_TITLE"         value="Falta el Correo Electrónico de AE"></property>
+        <property name="MISSING_TA_EMAIL_MESSAGE"       value="Tienes que suministrar un Correo Electrónico de AE"></property>
+        <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_TITLE"     value="Correo Electrónico y Nombre de AE no son únicos"></property>
+        <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_MESSAGE"   value="Tienes que suministrar Correo Electrónicos y Nombres únicos"></property>
+        <property name="TA_INVALID_EMAIL_TITLE"        value="Correo Electrónico Invalido"></property>
+        <property name="TA_INVALID_EMAIL_MESSAGE"      value="Tienes que suministrar un Correo Electrónico válido."></property>
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">
-            <option>Start Time</option>
-            <option>End Time</option>
+            <option>Hora de Empezar</option>
+            <option>Hora de Terminar</option>
         </property_options>
         <property_options name="DAYS_OF_WEEK">
-            <option>MONDAY</option>
-            <option>TUESDAY</option>
-            <option>WEDNESDAY</option>
-            <option>THURSDAY</option>
-            <option>FRIDAY</option>
+            <option>LUNES</option>
+            <option>MARTES</option>
+            <option>MIÉRCOLES</option>
+            <option>JUEVES</option>
+            <option>VIERNES</option>
         </property_options>
     </property_options_list>
 </properties>
