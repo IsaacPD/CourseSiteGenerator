@@ -8,10 +8,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import properties_manager.PropertiesManager;
-import static csg.CSGAppProp.*;
-import javafx.beans.binding.Bindings;
 
-public class ProjectPane extends VBox{
+import static csg.CSGAppProp.*;
+
+public class ProjectPane extends VBox {
 	Label header, teamsL, addEditL, nameL, colorL, textColorL, linkL;
 	TableView<Team> teamTable;
 	TableView<Student> studentTable;
@@ -29,10 +29,10 @@ public class ProjectPane extends VBox{
 	CSGApp app;
 	ProjectController controller;
 
-	public ProjectPane(CSGApp initApp){
+	public ProjectPane(CSGApp initApp) {
 		app = initApp;
 
-		ProjectData data = ((CSGData)app.getDataComponent()).getProjectData();
+		ProjectData data = ((CSGData) app.getDataComponent()).getProjectData();
 		PropertiesManager props = PropertiesManager.getPropertiesManager();
 
 		header = new Label(props.getProperty(P_HEADER_TEXT));
@@ -70,8 +70,8 @@ public class ProjectPane extends VBox{
 
 		teamHead = new HBox();
 		teamHead.getChildren().add(teamsL);
-                removeTeam = app.getGUI().initChildButton(teamHead, REMOVE_ICON.toString(),
-                        REMOVE_TOOLTIP.toString(), false);
+		removeTeam = app.getGUI().initChildButton(teamHead, REMOVE_ICON.toString(),
+				REMOVE_TOOLTIP.toString(), false);
 		nameRow = new HBox();
 		nameRow.getChildren().addAll(nameL, nameTF);
 		colorRow = new HBox();
@@ -102,7 +102,7 @@ public class ProjectPane extends VBox{
 		roleCol.setCellValueFactory(
 				new PropertyValueFactory<>("role")
 		);
-                studentTable.getColumns().addAll(fNameCol, lNameCol, teamCol, roleCol);
+		studentTable.getColumns().addAll(fNameCol, lNameCol, teamCol, roleCol);
 
 		sAddEdit = new Label(props.getProperty(ADD_EDIT_TEXT));
 		fNameL = new Label(props.getProperty(P_FIRST_NAME_TEXT) + ":");
@@ -120,8 +120,8 @@ public class ProjectPane extends VBox{
 
 		studentHead = new HBox();
 		studentHead.getChildren().add(student);
-                studentRemove = app.getGUI().initChildButton(studentHead, REMOVE_ICON.toString(),
-                        REMOVE_TOOLTIP.toString(), false);
+		studentRemove = app.getGUI().initChildButton(studentHead, REMOVE_ICON.toString(),
+				REMOVE_TOOLTIP.toString(), false);
 		fNameRow = new HBox();
 		fNameRow.getChildren().addAll(fNameL, fNameTF);
 		lNameRow = new HBox();
@@ -136,5 +136,77 @@ public class ProjectPane extends VBox{
 				fNameRow, lNameRow, teamRow, roleRow, studentButtonsRow);
 
 		this.getChildren().addAll(header, team, students);
+	}
+
+	public VBox getTeam() {
+		return team;
+	}
+
+	public VBox getStudents() {
+		return students;
+	}
+
+	public Label getAddEditL() {
+		return addEditL;
+	}
+
+	public Label getSAddEdit() {
+		return sAddEdit;
+	}
+
+	public Label getHeader() {
+		return header;
+	}
+
+	public Label getTeamsL() {
+		return teamsL;
+	}
+
+	public Label getStudent() {
+		return student;
+	}
+
+	public HBox getTeamHead() {
+		return teamHead;
+	}
+
+	public HBox getStudentHead() {
+		return studentHead;
+	}
+
+	public HBox getNameRow() {
+		return nameRow;
+	}
+
+	public HBox getColorRow() {
+		return colorRow;
+	}
+
+	public HBox getLinkRow() {
+		return linkRow;
+	}
+
+	public HBox getTeamButtonRow() {
+		return teamButtonRow;
+	}
+
+	public HBox getfNameRow() {
+		return fNameRow;
+	}
+
+	public HBox getlNameRow() {
+		return lNameRow;
+	}
+
+	public HBox getTeamRow() {
+		return teamRow;
+	}
+
+	public HBox getRoleRow() {
+		return roleRow;
+	}
+
+	public HBox getStudentButtonsRow() {
+		return studentButtonsRow;
 	}
 }

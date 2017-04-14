@@ -94,6 +94,7 @@
         <property name="CD_FILE_NAME"       value="File Name"></property>
         <property name="CD_SCRIPT"       value="Script"></property>
         <property name="CD_INFO_TEXT"       value="Course Info"></property>
+        <property name="CD_USE_COL_TEXT"       value="Use"></property>
 
         <!-- SCHEDULE CONTROLS STUFF -->
         <property name="S_TITLE"   value="Schedule"></property>
@@ -146,8 +147,11 @@
 
         <!-- TEACHING ASSISTANT CONTROLS STUFF -->
         <property name="TAS_HEADER_TEXT"                value="Teaching Assistants"></property>
+        <property name="TA_COMBO_START"                value="Start"></property>
+        <property name="TA_COMBO_END"                value="End"></property>
         <property name="NAME_COLUMN_TEXT"               value="Name"></property>
         <property name="EMAIL_COLUMN_TEXT"              value="Email"></property>
+        <property name="UNDERGRAD_COLUMN_TEXT"              value="Undergraduate"></property>
         <property name="NAME_PROMPT_TEXT"               value="Name"></property>
         <property name="EMAIL_PROMPT_TEXT"              value="Email"></property>
         <property name="ADD_BUTTON_TEXT"                value="Add TA"></property>

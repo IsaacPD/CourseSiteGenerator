@@ -8,9 +8,20 @@
 
 .vbox {
     -fx-background-color: #e6e6e6;
-    -fx-border-insets: 3;
+    -fx-padding: 5;
     -fx-border-style: solid;
-    -fx-spacing: 10%;
+}
+
+.tab_vbox{
+    -fx-border-style: solid;
+    -fx-spacing: 8;
+    -fx-padding: 10;
+}
+
+.hbox {
+    -fx-spacing: 5;
+    -fx-padding: 3;
+    -fx-alignment: CENTER_LEFT;
 }
 
 .dialog_heading {
@@ -36,19 +47,24 @@
 .text-field{
 }
 
-.header_label {
-    -fx-font-size: 14;
-}
-
 .button {
     -fx-text-alignment: center;
     -fx-effect: none;
 }
 
 .label {
-    -fx-alignment: baseline-left;
     -fx-font-weight: bold;
     -fx-font-size: 12px;
+}
+
+.header_label {
+    -fx-font-weight: normal;
+    -fx-font-size: 20px;
+}
+
+.subheader_label{
+    -fx-font-weight: normal;
+    -fx-font-size: 14px;
 }
 
 .table {

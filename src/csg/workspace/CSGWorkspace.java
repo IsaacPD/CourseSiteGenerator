@@ -60,6 +60,22 @@ public class CSGWorkspace extends AppWorkspaceComponent {
 		return (TeachingAssistantPane) tabSpace.getTabs().get(1).getContent();
 	}
 
+	public RecitationPane getRecitationPane() {
+		return (RecitationPane) tabSpace.getTabs().get(2).getContent();
+	}
+
+	public ProjectPane getProjectPane() {
+		return (ProjectPane) tabSpace.getTabs().get(4).getContent();
+	}
+
+	public SchedulePane getSchedulePane() {
+		return (SchedulePane) tabSpace.getTabs().get(3).getContent();
+	}
+
+	public CourseDetailsPane getCourseDetailsPane() {
+		return (CourseDetailsPane) tabSpace.getTabs().get(0).getContent();
+	}
+
 	public TabPane getTabSpace() {
 		return tabSpace;
 	}
@@ -72,9 +88,5 @@ public class CSGWorkspace extends AppWorkspaceComponent {
 	@Override
 	public void reloadWorkspace(AppDataComponent appDataComponent) {
 		taPane.reloadWorkspace();
-	}
-
-	public RecitationPane getRecitationPane() {
-		return (RecitationPane) tabSpace.getTabs().get(2).getContent();
 	}
 }

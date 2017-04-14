@@ -5,8 +5,6 @@ import csg.file.CSGFiles;
 import csg.workspace.CSGWorkspace;
 import csg.style.CSGStyle;
 import djf.AppTemplate;
-import djf.settings.AppStartupConstants;
-import javafx.application.Application;
 
 import java.util.Locale;
 
@@ -16,10 +14,10 @@ public class CSGApp extends AppTemplate {
 		dataComponent = new CSGData(this);
 		workspaceComponent = new CSGWorkspace(this);
 		fileComponent = new CSGFiles(this);
-		styleComponent = new  CSGStyle(this);
+		styleComponent = new CSGStyle(this);
 	}
 
-	public static void main(String... args){
+	public static void main(String... args) {
 		Locale.setDefault(Locale.US);
 		launch(args);
 	}

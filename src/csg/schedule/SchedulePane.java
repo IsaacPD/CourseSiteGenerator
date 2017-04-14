@@ -9,13 +9,11 @@ import csg.data.CSGData;
 import csg.data.ScheduleData;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import properties_manager.PropertiesManager;
 
-public class SchedulePane extends VBox{
+public class SchedulePane extends VBox {
 	Label header, calendarL, start, end, itemL;
 	HBox calendarSelection, inputHead;
 	VBox calendar, input;
@@ -31,7 +29,7 @@ public class SchedulePane extends VBox{
 
 	CSGApp app;
 
-	public SchedulePane(CSGApp initApp){
+	public SchedulePane(CSGApp initApp) {
 		app = initApp;
 
 		PropertiesManager props = PropertiesManager.getPropertiesManager();
@@ -101,8 +99,8 @@ public class SchedulePane extends VBox{
 		buttons = new HBox();
 
 		inputHead.getChildren().add(itemL);
-                removeButton = app.getGUI().initChildButton(inputHead, CSGAppProp.REMOVE_ICON.toString(),
-                        CSGAppProp.REMOVE_TOOLTIP.toString(), false);
+		removeButton = app.getGUI().initChildButton(inputHead, CSGAppProp.REMOVE_ICON.toString(),
+				CSGAppProp.REMOVE_TOOLTIP.toString(), false);
 		add.getChildren().add(addL);
 		type.getChildren().addAll(typeL, typeCB);
 		date.getChildren().addAll(dateL, inDate);
@@ -121,6 +119,74 @@ public class SchedulePane extends VBox{
 				date, time, inTitle, topic, link, criteria, buttons);
 
 		this.getChildren().addAll(header, calendar, input);
+	}
+
+	public VBox getCalendar() {
+		return calendar;
+	}
+
+	public VBox getInput() {
+		return input;
+	}
+
+	public Label getHeader() {
+		return header;
+	}
+
+	public Label getCalendarL() {
+		return calendarL;
+	}
+
+	public Label getItemL() {
+		return itemL;
+	}
+
+	public Label getAddL() {
+		return addL;
+	}
+
+	public HBox getCalendarSelection() {
+		return calendarSelection;
+	}
+
+	public HBox getInputHead() {
+		return inputHead;
+	}
+
+	public HBox getAdd() {
+		return add;
+	}
+
+	public HBox getType() {
+		return type;
+	}
+
+	public HBox getDate() {
+		return date;
+	}
+
+	public HBox getTime() {
+		return time;
+	}
+
+	public HBox getInTitle() {
+		return inTitle;
+	}
+
+	public HBox getTopic() {
+		return topic;
+	}
+
+	public HBox getLink() {
+		return link;
+	}
+
+	public HBox getCriteria() {
+		return criteria;
+	}
+
+	public HBox getButtons() {
+		return buttons;
 	}
 }
 

@@ -9,9 +9,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import properties_manager.PropertiesManager;
+
 import static csg.CSGAppProp.*;
 
-public class CourseDetailsPane extends VBox{
+import javafx.scene.control.cell.CheckBoxTableCell;
+
+public class CourseDetailsPane extends VBox {
 	VBox courseInfo, siteTemplate, pageStyle;
 	Label infoL, subjectL, numberL, semesterL, yearL, titleL, instructorNameL, instructorHomeL, exportDirL;
 	Label siteL, descriptionL, templateDirL, sitePagesL;
@@ -21,6 +24,7 @@ public class CourseDetailsPane extends VBox{
 	Button exportChangeButton, selectTemplateButton;
 	TableView<Details> pages;
 	TableColumn<Details, String> navbarCol, fileCol, scriptCol;
+	TableColumn<Details, Boolean> useCol;
 	ImageView bannerImage, leftFImage, rightFImage;
 	ComboBox<String> styleCB;
 	Button bannerChange, leftChange, rightChange;
@@ -29,7 +33,7 @@ public class CourseDetailsPane extends VBox{
 
 	CSGApp app;
 
-	public CourseDetailsPane(CSGApp initApp){
+	public CourseDetailsPane(CSGApp initApp) {
 		app = initApp;
 
 		PropertiesManager props = PropertiesManager.getPropertiesManager();
@@ -90,7 +94,12 @@ public class CourseDetailsPane extends VBox{
 		scriptCol.setCellValueFactory(
 				new PropertyValueFactory<>("script")
 		);
-		pages.getColumns().addAll(navbarCol, fileCol, scriptCol);
+		useCol = new TableColumn<>(props.getProperty(CD_USE_COL_TEXT));
+		useCol.setCellValueFactory(
+				(TableColumn.CellDataFeatures<Details, Boolean> param) -> param.getValue().useProperty()
+		);
+		useCol.setCellFactory(CheckBoxTableCell.forTableColumn(useCol));
+		pages.getColumns().addAll(useCol, navbarCol, fileCol, scriptCol);
 
 		siteTemplate = new VBox();
 		siteTemplate.getChildren().addAll(siteL, descriptionL, templateDirL, selectTemplateButton, sitePagesL, pages);
@@ -124,5 +133,69 @@ public class CourseDetailsPane extends VBox{
 		this.getChildren().add(courseInfo);
 		this.getChildren().add(siteTemplate);
 		this.getChildren().add(pageStyle);
+	}
+
+	public VBox getCourseInfo() {
+		return courseInfo;
+	}
+
+	public VBox getSiteTemplate() {
+		return siteTemplate;
+	}
+
+	public VBox getPageStyle() {
+		return pageStyle;
+	}
+
+	public Label getInfoL() {
+		return infoL;
+	}
+
+	public Label getSiteL() {
+		return siteL;
+	}
+
+	public Label getPageStyleL() {
+		return pageStyleL;
+	}
+
+	public HBox getSubNumBox() {
+		return subNumBox;
+	}
+
+	public HBox getSemYearBox() {
+		return semYearBox;
+	}
+
+	public HBox getTitleBox() {
+		return titleBox;
+	}
+
+	public HBox getInstrNameBox() {
+		return instrNameBox;
+	}
+
+	public HBox getInstrHomeBox() {
+		return instrHomeBox;
+	}
+
+	public HBox getExporBox() {
+		return exporBox;
+	}
+
+	public HBox getBanner() {
+		return banner;
+	}
+
+	public HBox getLeftFoot() {
+		return leftFoot;
+	}
+
+	public HBox getRightFoot() {
+		return rightFoot;
+	}
+
+	public HBox getStylePane() {
+		return style;
 	}
 }

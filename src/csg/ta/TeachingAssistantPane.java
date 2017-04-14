@@ -19,12 +19,15 @@ import properties_manager.PropertiesManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.cell.CheckBoxTableCell;
+
 public class TeachingAssistantPane extends HBox {
 	CSGApp app;
 	TAController controller;
 	TableView<TeachingAssistant> taTable;
 	TableColumn<TeachingAssistant, String> nameColumn, emailColumn;
-	TableColumn<TeachingAssistant, CheckBox> ugColumn;
+	TableColumn<TeachingAssistant, Boolean> ugColumn;
 	Button remove, add, clear;
 	ComboBox<String> startTime, endTime;
 	TextField nameTF, emailTF;
@@ -65,16 +68,19 @@ public class TeachingAssistantPane extends HBox {
 		taTable.setItems(tableData);
 		String nameColumnText = props.getProperty(CSGAppProp.NAME_COLUMN_TEXT.toString());
 		String emailColumnText = props.getProperty(CSGAppProp.EMAIL_COLUMN_TEXT.toString());
+		String ugColumnText = props.getProperty(CSGAppProp.UNDERGRAD_COLUMN_TEXT.toString());
 		nameColumn = new TableColumn<>(nameColumnText);
 		emailColumn = new TableColumn<>(emailColumnText);
+		ugColumn = new TableColumn<>(ugColumnText);
 		nameColumn.setCellValueFactory(
 				new PropertyValueFactory<>("name")
 		);
 		emailColumn.setCellValueFactory(
 				new PropertyValueFactory<>("email")
 		);
-		taTable.getColumns().add(nameColumn);
-		taTable.getColumns().add(emailColumn);
+		ugColumn.setCellValueFactory((CellDataFeatures<TeachingAssistant, Boolean> param) -> param.getValue().undergradProperty());
+		ugColumn.setCellFactory(CheckBoxTableCell.forTableColumn(ugColumn));
+		taTable.getColumns().addAll(ugColumn, nameColumn, emailColumn);
 
 		// ADD BOX FOR ADDING A TA
 		String namePromptText = props.getProperty(CSGAppProp.NAME_PROMPT_TEXT.toString());
@@ -87,10 +93,10 @@ public class TeachingAssistantPane extends HBox {
 		add = new Button(addButtonText);
 		clear = new Button(props.getProperty(CSGAppProp.CLEAR_TEXT));
 		userInput = new HBox();
-		emailTF.prefWidthProperty().bind(userInput.widthProperty().multiply(.4));
-		nameTF.prefWidthProperty().bind(userInput.widthProperty().multiply(.4));
-		add.prefWidthProperty().bind(userInput.widthProperty().multiply(.1));
-		clear.prefWidthProperty().bind(userInput.widthProperty().multiply(.1));
+		emailTF.prefWidthProperty().bind(userInput.widthProperty().multiply(.3));
+		nameTF.prefWidthProperty().bind(userInput.widthProperty().multiply(.3));
+		add.prefWidthProperty().bind(userInput.widthProperty().multiply(.2));
+		clear.prefWidthProperty().bind(userInput.widthProperty().multiply(.2));
 		userInput.getChildren().add(nameTF);
 		userInput.getChildren().add(emailTF);
 		userInput.getChildren().add(add);
@@ -116,12 +122,13 @@ public class TeachingAssistantPane extends HBox {
 		// ORGANIZE THE COMBO BOXES
 		startTime = new ComboBox<>(data.getTimes());
 		endTime = new ComboBox<>(data.getTimes());
-		startLabel = new Label("Start Time:");
-		endLabel = new Label("End Time:  ");
-		ohHeader.getChildren().add(startLabel);
-		ohHeader.getChildren().add(startTime);
-		ohHeader.getChildren().add(endLabel);
-		ohHeader.getChildren().add(endTime);
+		startLabel = new Label(props.getProperty(CSGAppProp.TA_COMBO_START) + ": ");
+		endLabel = new Label(props.getProperty(CSGAppProp.TA_COMBO_END) + ": ");
+		HBox comboHeader = new HBox();
+		comboHeader.setAlignment(Pos.CENTER_RIGHT);
+		comboHeader.getChildren().addAll(startLabel, startTime, endLabel, endTime);
+
+		ohHeader.getChildren().add(comboHeader);
 
 		// FILL THE OFFICE HOURS AND TEACHING ASSISTANT PANES
 		taPane.getChildren().add(taHeader);
@@ -129,6 +136,7 @@ public class TeachingAssistantPane extends HBox {
 		taPane.getChildren().add(userInput);
 		ohPane.getChildren().add(ohHeader);
 		ohPane.getChildren().add(ohGrid);
+		taPane.prefWidthProperty().bind(this.widthProperty().multiply(.4));
 
 		this.getChildren().add(taPane);
 		this.getChildren().add(ohPane);

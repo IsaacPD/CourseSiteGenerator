@@ -12,7 +12,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="javax.json-1.0.4" level="project" />
     <orderEntry type="library" name="PropertiesManager" level="project" />
-    <orderEntry type="library" name="DesktopJavaFramework" level="project" />
     <orderEntry type="library" name="jTPS" level="project" />
+    <orderEntry type="library" name="DesktopJavaFramework" level="project" />
   </component>
 </module>
