@@ -55,6 +55,8 @@ public class TAController {
 		// WE'LL NEED THIS IN CASE WE NEED TO DISPLAY ANY ERROR MESSAGES
 		PropertiesManager props = PropertiesManager.getPropertiesManager();
 
+		TeachingAssistant ta = workspace.taTable.getSelectionModel().getSelectedItem();
+
 		// DID THE USER NEGLECT TO PROVIDE A TA NAME OR EMAIL?
 		if (name.isEmpty()) {
 			AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
@@ -77,9 +79,7 @@ public class TAController {
 		}
 
 		// UPDATE TA IF BUTTON IS SET TO DO SO
-		else if (workspace.getAdd().getText().equals("Update TA")) {
-
-			TeachingAssistant ta = (TeachingAssistant) workspace.taTable.getSelectionModel().getSelectedItem();
+		else if (ta != null) {
 
 			app.jtps.addTransaction(new UpdateTATransaction(ta, name, email, app));
 
@@ -89,8 +89,6 @@ public class TAController {
 
 			// AND SEND THE CARET BACK TO THE NAME TEXT FIELD FOR EASY DATA ENTRY
 			nameTextField.requestFocus();
-
-			workspace.getAdd().setText(props.getProperty(ADD_BUTTON_TEXT));
 		}
 
 		// EVERYTHING IS FINE, ADD A NEW TA

@@ -22,7 +22,7 @@ public class ProjectPane extends VBox {
 	HBox teamHead, studentHead, nameRow, colorRow, linkRow, teamButtonRow;
 	HBox fNameRow, lNameRow, teamRow, roleRow, studentButtonsRow;
 	Label sAddEdit, fNameL, lNameL, student, teamL, roleL;
-	ComboBox<String> teamCB;
+	ComboBox<Team> teamCB;
 	TableColumn<Team, String> nameCol, colorCol, textColorCol, linkCol;
 	TableColumn<Student, String> fNameCol, lNameCol, roleCol, teamCol;
 
@@ -110,7 +110,7 @@ public class ProjectPane extends VBox {
 		lNameL = new Label(props.getProperty(P_LAST_NAME_TEXT) + ":");
 		lNameTF = new TextField();
 		teamL = new Label(props.getProperty(P_TEAM_TEXT) + ":");
-		teamCB = new ComboBox<>(data.getTeamNames());
+		teamCB = new ComboBox<>(data.getTeams());
 		roleL = new Label(props.getProperty(P_ROLE_TEXT) + ":");
 		roleTF = new TextField();
 		addStudent = new Button(props.getProperty(ADD_UP_TEXT));

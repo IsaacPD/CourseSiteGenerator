@@ -13,21 +13,32 @@ public class ProjectData {
 
 	public ProjectData(){
 		teams = FXCollections.observableArrayList();
+		students = FXCollections.observableArrayList();
 	}
 
 	public ObservableList<Team> getTeams() {
 		return teams;
 	}
 
-	public ObservableList<String> getTeamNames(){
-		ArrayList<String> names = new ArrayList<>();
-		for(Team t: teams){
-			names.add(t.getName());
-		}
-		return FXCollections.observableArrayList(names);
-	}
-
 	public ObservableList<Student> getStudents() {
 		return students;
+	}
+
+	public void addTeam(Team t){
+		teams.add(t);
+	}
+
+	public void addStudent(Student s){
+		students.add(s);
+	}
+
+	public Team removeTeam(Team t){
+		teams.remove(t);
+		return t;
+	}
+
+	public Student removeStudent(Student s){
+		students.remove(s);
+		return s;
 	}
 }

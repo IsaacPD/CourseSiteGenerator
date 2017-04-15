@@ -125,6 +125,7 @@
 }
 
 .office_hours_grid_time_column_header_pane{
+    -fx-background-color: white;
 }
 
 .office_hours_grid_time_column_header_label{
@@ -137,12 +138,14 @@
 }
 
 .office_hours_grid_time_cell_pane{
+    -fx-background-color: #898c95;
 }
 
 .office_hours_grid_time_cell_label{
 }
 
 .office_hours_grid_ta_cell_pane{
+    -fx-background-color: #e6e6e6;
 }
 
 .office_hours_grid_ta_cell_label{

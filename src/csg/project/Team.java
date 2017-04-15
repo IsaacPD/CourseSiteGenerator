@@ -17,19 +17,19 @@ public class Team {
 		return name.get();
 	}
 
-	public StringProperty nameProperty() {
-		return name;
+	public String getColor() {
+		return color.get();
 	}
 
-	public StringProperty getColor() {
-		return color;
+	public String getTextColor() {
+		return textColor.get();
 	}
 
-	public StringProperty getTextColor() {
-		return textColor;
+	public String getLink() {
+		return link.get();
 	}
 
-	public StringProperty getLink() {
-		return link;
+	public String toString(){
+		return name.get();
 	}
 }

@@ -100,6 +100,22 @@ public class RecitationPane extends VBox {
 				supTA1Box, supTA2Box, buttons);
 
 		this.getChildren().addAll(headerBox, table, inputBox);
+
+		controller = new RecitationController(initApp);
+
+		clear.setOnAction(e ->{
+			dayTimeTF.clear();
+			instructorTF.clear();
+			sectionTF.clear();
+			locationTF.clear();
+			comboBox1.getSelectionModel().clearSelection();
+			comboBox2.getSelectionModel().clearSelection();
+			table.getSelectionModel().clearSelection();
+		});
+
+		addUp.setOnAction(e -> controller.handleAddUp());
+		remove.setOnAction(e -> controller.handleRemove());
+		table.setOnMouseClicked(e -> controller.handleTableClick());
 	}
 
 	public Label getHeader() {

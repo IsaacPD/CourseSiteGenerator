@@ -85,7 +85,7 @@ public class TeachingAssistantPane extends HBox {
 		// ADD BOX FOR ADDING A TA
 		String namePromptText = props.getProperty(CSGAppProp.NAME_PROMPT_TEXT.toString());
 		String emailPromptText = props.getProperty(CSGAppProp.EMAIL_PROMPT_TEXT.toString());
-		String addButtonText = props.getProperty(CSGAppProp.ADD_BUTTON_TEXT.toString());
+		String addButtonText = props.getProperty(CSGAppProp.ADD_UP_TEXT.toString());
 		emailTF = new TextField();
 		emailTF.setPromptText(emailPromptText);
 		nameTF = new TextField();
@@ -94,8 +94,8 @@ public class TeachingAssistantPane extends HBox {
 		clear = new Button(props.getProperty(CSGAppProp.CLEAR_TEXT));
 		userInput = new HBox();
 		emailTF.prefWidthProperty().bind(userInput.widthProperty().multiply(.3));
-		nameTF.prefWidthProperty().bind(userInput.widthProperty().multiply(.3));
-		add.prefWidthProperty().bind(userInput.widthProperty().multiply(.2));
+		nameTF.prefWidthProperty().bind(userInput.widthProperty().multiply(.2));
+		add.prefWidthProperty().bind(userInput.widthProperty().multiply(.3));
 		clear.prefWidthProperty().bind(userInput.widthProperty().multiply(.2));
 		userInput.getChildren().add(nameTF);
 		userInput.getChildren().add(emailTF);
@@ -149,10 +149,10 @@ public class TeachingAssistantPane extends HBox {
 
 		// CONTROLS FOR ADDING TAs
 		clear.setOnAction(e -> {
-			add.setText(props.getProperty(CSGAppProp.ADD_BUTTON_TEXT.toString()));
 			emailTF.clear();
 			nameTF.clear();
 			nameTF.requestFocus();
+			taTable.getSelectionModel().clearSelection();
 		});
 		nameTF.setOnAction(e -> {
 			controller.handleAddTA();
