@@ -4,13 +4,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Team {
-	private final StringProperty name, color, textColor, link;
+	private final StringProperty name, color, tColor, link;
 
 	public Team(String name, String color, String textColor, String link) {
 		this.color = new SimpleStringProperty(color);
 		this.link = new SimpleStringProperty(link);
 		this.name = new SimpleStringProperty(name);
-		this.textColor = new SimpleStringProperty(textColor);
+		this.tColor = new SimpleStringProperty(textColor);
 	}
 
 	public String getName() {
@@ -21,8 +21,8 @@ public class Team {
 		return color.get();
 	}
 
-	public String getTextColor() {
-		return textColor.get();
+	public String getTColor() {
+		return tColor.get();
 	}
 
 	public String getLink() {

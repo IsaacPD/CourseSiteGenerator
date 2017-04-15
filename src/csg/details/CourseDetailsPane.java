@@ -14,6 +14,8 @@ import static csg.CSGAppProp.*;
 
 import javafx.scene.control.cell.CheckBoxTableCell;
 
+import java.io.File;
+
 public class CourseDetailsPane extends VBox {
 	VBox courseInfo, siteTemplate, pageStyle;
 	Label infoL, subjectL, numberL, semesterL, yearL, titleL, instructorNameL, instructorHomeL, exportDirL;
@@ -26,7 +28,7 @@ public class CourseDetailsPane extends VBox {
 	TableColumn<Details, String> navbarCol, fileCol, scriptCol;
 	TableColumn<Details, Boolean> useCol;
 	ImageView bannerImage, leftFImage, rightFImage;
-	ComboBox<String> styleCB;
+	ComboBox<File> styleCB;
 	Button bannerChange, leftChange, rightChange;
 	HBox subNumBox, semYearBox, titleBox, instrNameBox, instrHomeBox, exporBox;
 	HBox banner, leftFoot, rightFoot, style;

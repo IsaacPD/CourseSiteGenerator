@@ -1,0 +1,52 @@
+
+{
+    "startHour":9,
+    "endHour":20,
+    "undergrad_tas":[
+        {
+            "name":"Isaac Duarte",
+            "email":"i@you.com"
+        }
+    ],
+    "officeHours":[
+        {
+            "day":"MONDAY",
+            "time":"10_00am",
+            "name":"Isaac"
+        }
+    ],
+    "recitations":[
+        {
+            "section":"23",
+            "instructor":"Prof. Duarte",
+            "day":"Tuesday",
+            "location":"OLD CS",
+            "ta1":"Isaac",
+            "ta2":"Duarte"
+        }
+    ],
+    "teams":[
+        {
+            "name":"ROBOBOTS",
+            "color":"FFFFFF",
+            "text_color":"000000",
+            "link":"www.youtube.com"
+        }
+    ],
+    "students":[
+        {
+            "first_name":"Isaac",
+            "last_name":"Pablo",
+            "team":"ROBOBOTS",
+            "role":"Cool Guy"
+        }
+    ],
+    "schedule_items":[
+        {
+            "type":"Holiday",
+            "date":"10/31/17",
+            "title":"HallowBEEN",
+            "topic":"SCARY"
+        }
+    ]
+}

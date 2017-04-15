@@ -1,8 +1,11 @@
 package csg.file;
 
 import csg.CSGApp;
-import csg.data.CSGData;
-import csg.data.TAData;
+import csg.data.*;
+import csg.project.Student;
+import csg.project.Team;
+import csg.recitation.Recitation;
+import csg.schedule.ScheduleItem;
 import csg.ta.TeachingAssistant;
 import csg.ta.TimeSlot;
 import djf.components.AppDataComponent;
@@ -17,7 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CSGFiles implements AppFileComponent{
+public class CSGFiles implements AppFileComponent {
 	CSGApp app;
 
 	// THESE ARE USED FOR IDENTIFYING JSON TYPES
@@ -29,26 +32,156 @@ public class CSGFiles implements AppFileComponent{
 	static final String JSON_NAME = "name";
 	static final String JSON_UNDERGRAD_TAS = "undergrad_tas";
 	static final String JSON_EMAIL = "email";
+	static final String JSON_R_SECTION = "section";
+	static final String JSON_R_INSTRUCTOR = "instructor";
+	static final String JSON_R_DAY = "day";
+	static final String JSON_R_LOCATION = "location";
+	static final String JSON_R_TA1 = "ta1";
+	static final String JSON_R_TA2 = "ta2";
+	static final String JSON_T_NAME = "name";
+	static final String JSON_T_COLOR = "color";
+	static final String JSON_T_TEXT_COLOR = "text_color";
+	static final String JSON_T_LINK = "link";
+	static final String JSON_S_FIRST_NAME = "first_name";
+	static final String JSON_S_LAST_NAME = "last_name";
+	static final String JSON_S_TEAM = "team";
+	static final String JSON_S_ROLE = "role";
+	static final String JSON_SI_TYPE = "type";
+	static final String JSON_SI_DATE = "date";
+	static final String JSON_SI_TITLE = "title";
+	static final String JSON_SI_TOPIC = "topic";
+	static final String JSON_STUDENT = "students";
+	static final String JSON_TEAM = "teams";
+	static final String JSON_RECITATION = "recitations";
+	static final String JSON_SCHEDULE_ITEM = "schedule_items";
 
-	public CSGFiles(CSGApp initApp){
+	public CSGFiles(CSGApp initApp) {
 		app = initApp;
 	}
 
 	@Override
-	public void saveData(AppDataComponent appDataComponent, String s) throws IOException {
+	public void saveData(AppDataComponent appDataComponent, String filePath) throws IOException {
+		CSGData data = (CSGData) appDataComponent;
+		RecitationData recitation = data.getRecitationData();
+		ProjectData project = data.getProjectData();
+		ScheduleData schedule = data.getScheduleData();
+		TAData teachingAssistant = data.getTAData();
 
+		// NOW BUILD THE TA JSON OBJCTS TO SAVE
+		JsonArrayBuilder taArrayBuilder = Json.createArrayBuilder();
+		ObservableList<TeachingAssistant> tas = teachingAssistant.getTeachingAssistants();
+		for (TeachingAssistant ta : tas) {
+			JsonObject taJson = Json.createObjectBuilder()
+					.add(JSON_NAME, ta.getName())
+					.add(JSON_EMAIL, ta.getEmail()).build();
+			taArrayBuilder.add(taJson);
+		}
+		JsonArray undergradTAsArray = taArrayBuilder.build();
+
+		// NOW BUILD THE TIME SLOT JSON OBJCTS TO SAVE
+		JsonArrayBuilder timeSlotArrayBuilder = Json.createArrayBuilder();
+		ArrayList<TimeSlot> officeHours = TimeSlot.buildOfficeHoursList(teachingAssistant);
+		for (TimeSlot ts : officeHours) {
+			JsonObject tsJson = Json.createObjectBuilder()
+					.add(JSON_DAY, ts.getDay())
+					.add(JSON_TIME, ts.getTime())
+					.add(JSON_NAME, ts.getName()).build();
+			timeSlotArrayBuilder.add(tsJson);
+		}
+		JsonArray timeSlotsArray = timeSlotArrayBuilder.build();
+
+		// NOW BUILD THE RECITATION JSON OBJECTS TO SAVE
+		JsonArrayBuilder recitationArrayBuilder = Json.createArrayBuilder();
+		ObservableList<Recitation> recitations = recitation.getRecitations();
+		for (Recitation r : recitations) {
+			JsonObject rJson = Json.createObjectBuilder()
+					.add(JSON_R_SECTION, r.getSection())
+					.add(JSON_R_INSTRUCTOR, r.getInstructor())
+					.add(JSON_R_DAY, r.getDay())
+					.add(JSON_R_LOCATION, r.getLocation())
+					.add(JSON_R_TA1, r.getTa1())
+					.add(JSON_R_TA2, r.getTa2()).build();
+			recitationArrayBuilder.add(rJson);
+		}
+		JsonArray recitationArray = recitationArrayBuilder.build();
+
+		// NOW BUILD THE TEAM JSON OBJECTS TO SAVE
+		JsonArrayBuilder teamArrayBuilder = Json.createArrayBuilder();
+		ObservableList<Team> teams = project.getTeams();
+		for (Team t : teams) {
+			JsonObject tJson = Json.createObjectBuilder()
+					.add(JSON_T_NAME, t.getName())
+					.add(JSON_T_COLOR, t.getColor())
+					.add(JSON_T_TEXT_COLOR, t.getTColor())
+					.add(JSON_T_LINK, t.getLink()).build();
+			teamArrayBuilder.add(tJson);
+		}
+		JsonArray teamArray = teamArrayBuilder.build();
+
+		// NOW BUILD THE STUDENT JSON OBJECTS TO SAVE
+		JsonArrayBuilder studentArrayBuilder = Json.createArrayBuilder();
+		ObservableList<Student> students = project.getStudents();
+		for (Student s: students) {
+			JsonObject sJson = Json.createObjectBuilder()
+					.add(JSON_S_FIRST_NAME, s.getFName())
+					.add(JSON_S_LAST_NAME, s.getLName())
+					.add(JSON_S_TEAM, s.getTeam())
+					.add(JSON_S_ROLE, s.getRole()).build();
+			studentArrayBuilder.add(sJson);
+		}
+		JsonArray studentArray = studentArrayBuilder.build();
+
+		// NOW BUILD THE SCHEDULE ITEM JSON OBJECTS TO SAVE
+		JsonArrayBuilder scheduleItemArrayBuilder = Json.createArrayBuilder();
+		ObservableList<ScheduleItem> scheduleItems = schedule.getSchedules();
+		for (ScheduleItem s: scheduleItems) {
+			JsonObject sJson = Json.createObjectBuilder()
+					.add(JSON_SI_TYPE, s.getType())
+					.add(JSON_SI_DATE, s.getDate())
+					.add(JSON_SI_TITLE, s.getTitle())
+					.add(JSON_SI_TOPIC, s.getTopic()).build();
+			scheduleItemArrayBuilder.add(sJson);
+		}
+		JsonArray scheduleArray = scheduleItemArrayBuilder.build();
+
+		JsonObject dataManagerJSO = Json.createObjectBuilder()
+				.add(JSON_START_HOUR, teachingAssistant.getStartHour())
+				.add(JSON_END_HOUR, teachingAssistant.getEndHour())
+				.add(JSON_UNDERGRAD_TAS, undergradTAsArray)
+				.add(JSON_OFFICE_HOURS, timeSlotsArray)
+				.add(JSON_RECITATION, recitationArray)
+				.add(JSON_TEAM, teamArray)
+				.add(JSON_STUDENT, studentArray)
+				.add(JSON_SCHEDULE_ITEM, scheduleArray).build();
+
+		Map<String, Object> properties = new HashMap<>(1);
+		properties.put(JsonGenerator.PRETTY_PRINTING, true);
+		JsonWriterFactory writerFactory = Json.createWriterFactory(properties);
+		StringWriter sw = new StringWriter();
+		JsonWriter jsonWriter = writerFactory.createWriter(sw);
+		jsonWriter.writeObject(dataManagerJSO);
+		jsonWriter.close();
+
+		// INIT THE WRITER
+		OutputStream os = new FileOutputStream(filePath);
+		JsonWriter jsonFileWriter = Json.createWriter(os);
+		jsonFileWriter.writeObject(dataManagerJSO);
+		String prettyPrinted = sw.toString();
+		PrintWriter pw = new PrintWriter(filePath);
+		pw.write(prettyPrinted);
+		pw.close();
 	}
 
 	@Override
-	public void loadData(AppDataComponent appDataComponent, String s) throws IOException {
+	public void loadData(AppDataComponent appDataComponent, String filePath) throws IOException {
 
 	}
 
-	public void loadTAData(TAData data, String filePath) throws IOException{
+	public void loadTAData(TAData data, String filePath) throws IOException {
 		AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 
 		// CLEAR THE OLD DATA OUT
-		TAData dataManager = (TAData)data;
+		TAData dataManager = (TAData) data;
 
 		// LOAD THE JSON FILE WITH ALL THE DATA
 		JsonObject json = loadJSONFile(filePath);
@@ -93,7 +226,7 @@ public class CSGFiles implements AppFileComponent{
 
 	public ArrayList<TimeSlot> saveData(AppDataComponent data, String filePath, String startTime, String endTime) throws IOException {
 		// GET THE DATA
-		TAData dataManager = ((CSGData)data).getTAData();
+		TAData dataManager = ((CSGData) data).getTAData();
 
 		// NOW BUILD THE TA JSON OBJCTS TO SAVE
 		JsonArrayBuilder taArrayBuilder = Json.createArrayBuilder();
@@ -111,15 +244,14 @@ public class CSGFiles implements AppFileComponent{
 		JsonArrayBuilder timeSlotArrayBuilder = Json.createArrayBuilder();
 		ArrayList<TimeSlot> officeHours = TimeSlot.buildOfficeHoursList(dataManager);
 		for (TimeSlot ts : officeHours) {
-			if(TimeSlot.compareTime(ts.getTime(), startTime) >= 0 &&
-					TimeSlot.compareTime(ts.getTime(), endTime) < 0){
+			if (TimeSlot.compareTime(ts.getTime(), startTime) >= 0 &&
+					TimeSlot.compareTime(ts.getTime(), endTime) < 0) {
 				JsonObject tsJson = Json.createObjectBuilder()
 						.add(JSON_DAY, ts.getDay())
 						.add(JSON_TIME, ts.getTime())
 						.add(JSON_NAME, ts.getName()).build();
 				timeSlotArrayBuilder.add(tsJson);
-			}
-			else {
+			} else {
 				removedTimeSlots.add(ts);
 			}
 		}

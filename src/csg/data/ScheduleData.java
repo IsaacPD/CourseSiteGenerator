@@ -15,7 +15,7 @@ public class ScheduleData {
 		types = FXCollections.observableArrayList("Holiday", "Lecture", "HW", "Midterm", "Final");
 	}
 
-	public ObservableList getSchedules() {
+	public ObservableList<ScheduleItem> getSchedules() {
 		return schedules;
 	}
 
