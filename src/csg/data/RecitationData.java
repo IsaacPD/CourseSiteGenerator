@@ -1,6 +1,5 @@
 package csg.data;
 
-import csg.CSGApp;
 import csg.recitation.Recitation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,11 +7,7 @@ import javafx.collections.ObservableList;
 public class RecitationData {
 	ObservableList<Recitation> recitations;
 
-	CSGApp app;
-
-	public RecitationData(CSGApp initApp) {
-		app = initApp;
-
+	public RecitationData() {
 		recitations = FXCollections.observableArrayList();
 	}
 

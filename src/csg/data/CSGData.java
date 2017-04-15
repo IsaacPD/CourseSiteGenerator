@@ -18,7 +18,7 @@ public class CSGData implements AppDataComponent {
 
 		scheduleData = new ScheduleData();
 		taData = new TAData(initApp);
-		recitationData = new RecitationData(initApp);
+		recitationData = new RecitationData();
 		projectData = new ProjectData();
 		detailsData = new DetailsData();
 	}

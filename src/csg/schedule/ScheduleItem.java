@@ -6,26 +6,26 @@ import javafx.beans.property.StringProperty;
 public class ScheduleItem {
 	private final StringProperty type, date, title, topic;
 
-	public ScheduleItem(String t, String d, String ti, String to) {
-		type = new SimpleStringProperty(t);
-		date = new SimpleStringProperty(d);
-		title = new SimpleStringProperty(ti);
-		topic = new SimpleStringProperty(to);
+	public ScheduleItem(String type, String date, String title, String topic) {
+		this.type = new SimpleStringProperty(type);
+		this.date = new SimpleStringProperty(date);
+		this.title = new SimpleStringProperty(title);
+		this.topic = new SimpleStringProperty(topic);
 	}
 
-	public StringProperty getType() {
-		return type;
+	public String getType() {
+		return type.get();
 	}
 
-	public StringProperty getDate() {
-		return date;
+	public String getDate() {
+		return date.get();
 	}
 
-	public StringProperty getTitle() {
-		return title;
+	public String getTitle() {
+		return title.get();
 	}
 
-	public StringProperty getTopic() {
-		return topic;
+	public String getTopic() {
+		return topic.get();
 	}
 }
