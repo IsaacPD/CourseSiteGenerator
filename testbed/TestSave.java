@@ -5,33 +5,43 @@ import csg.project.Team;
 import csg.recitation.Recitation;
 import csg.schedule.ScheduleItem;
 import csg.ta.TeachingAssistant;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class TestSave extends CSGApp{
+public class TestSave {
+	static Recitation testR = new Recitation("23", "Prof. Duarte", "Tuesday", "OLD CS", "Isaac", "Duarte");
+	static TeachingAssistant testTA = new TeachingAssistant("Isaac Duarte", "i@you.com");
+	static Team testTeam = new Team("ROBOBOTS", "FFFFFF", "000000", "www.youtube.com");
+	static Student testStudent = new Student("Isaac", "Pablo", testTeam.getName(), "Cool Guy");
+	static ScheduleItem testSchedule = new ScheduleItem("Holiday", "10/31/17", "HallowBEEN", "SCARY");
 
-	@Override
-	public void buildAppComponentsHook() {
-		super.buildAppComponentsHook();
-		gui.getFileController().handleNewRequest();
+	public static void main(String... args) throws InterruptedException {
+		CSGApp app = new CSGApp();
 
-		((CSGData) dataComponent).getRecitationData().addRecitation(new Recitation("23", "Prof. Duarte",
-				"Tuesday", "OLD CS", "Isaac", "Duarte"));
-		((CSGData) dataComponent).getTAData().addTA(new TeachingAssistant("Isaac Duarte", "i@you.com"));
-		((CSGData) dataComponent).getTAData().addOfficeHoursReservation("MONDAY", "10_00amm", "Isaac");
-		Team t = new Team("ROBOBOTS", "FFFFFF", "000000", "www.youtube.com");
-		((CSGData) dataComponent).getProjectData().addTeam(t);
-		((CSGData) dataComponent).getProjectData().addStudent(new Student("Isaac", "Pablo", t, "Cool Guy"));
-		((CSGData) dataComponent).getScheduleData().addSchedule(new ScheduleItem("Holiday", "10/31/17", "HallowBEEN", "SCARY"));
+		Thread thread = new Thread(() -> {
+			new JFXPanel(); // Initializes the JavaFx Platform
+			Platform.runLater(() -> {
+				app.start(new Stage());
+				app.getGUI().getFileController().handleNewRequest();
+				CSGData dataComponent = (CSGData) app.getDataComponent();
+				dataComponent.getRecitationData().addRecitation(testR);
+				dataComponent.getTAData().addTA(testTA);
+				dataComponent.getTAData().addOfficeHoursReservation("MONDAY", "10_00amm", "Isaac");
+				dataComponent.getProjectData().addTeam(testTeam);
+				dataComponent.getProjectData().addStudent(testStudent);
+				dataComponent.getScheduleData().addSchedule(testSchedule);
 
-		try {
-			getFileComponent().saveData(getDataComponent(), "./work/SiteSaveTest.json");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void main(String... args){
-		launch();
+				try {
+					app.getFileComponent().saveData(dataComponent, "./work/SiteSaveTest.json");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		});
+		thread.start();
+		Thread.sleep(10000);
 	}
 }

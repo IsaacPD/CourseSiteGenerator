@@ -48,4 +48,18 @@ public class Recitation {
 		ta1.set(all.getTa1());
 		ta2.set(all.getTa2());
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Recitation))
+			return false;
+
+		Recitation that = (Recitation) obj;
+
+		return getDay().equals(that.getDay()) && getSection().equals(that.getSection())
+				&& getLocation().equals(that.getLocation()) && getTa1().equals(that.getTa1())
+				&& getTa2().equals(that.getTa2()) && getInstructor().equals(getInstructor());
+	}
 }

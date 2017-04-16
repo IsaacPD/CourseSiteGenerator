@@ -15,7 +15,6 @@ import javafx.scene.layout.Pane;
 import properties_manager.PropertiesManager;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,7 +53,7 @@ public class TAData {
 		PropertiesManager props = PropertiesManager.getPropertiesManager();
 		ArrayList<String> timeHeaders = props.getPropertyOptionsList(CSGAppProp.OFFICE_HOURS_TABLE_HEADERS);
 		ArrayList<String> dowHeaders = props.getPropertyOptionsList(CSGAppProp.DAYS_OF_WEEK);
-		gridHeaders = new ArrayList();
+		gridHeaders = new ArrayList<>();
 		gridHeaders.addAll(timeHeaders);
 		gridHeaders.addAll(dowHeaders);
 
@@ -318,17 +317,13 @@ public class TAData {
 		try {
 			CSGFiles fileComponent = (CSGFiles) app.getFileComponent();
 			ArrayList<TimeSlot> removed;
-			removed = fileComponent.saveData(app.getDataComponent(), "temp.json", ""+start, ""+end);
+			removed = fileComponent.saveChangedTimes(this, ""+start, ""+end);
 
 			startHour = start;
 			endHour = end;
 
 			(((CSGWorkspace) app.getWorkspaceComponent()).getTeachingAssistantPane()).reloadTimes(this);
-			fileComponent.loadTAData(this, "temp.json");
-
-			File temp = new File("temp.json");
-			temp.delete();
-
+			fileComponent.loadChangedTimes(this);
 			return removed;
 		}
 		catch(IOException e) {

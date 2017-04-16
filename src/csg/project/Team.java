@@ -32,4 +32,17 @@ public class Team {
 	public String toString(){
 		return name.get();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Team))
+			return false;
+
+		Team that = (Team) obj;
+
+		return getColor().equals(that.getColor()) && getLink().equals(that.getLink())
+				&& getName().equals(that.getName()) && getTColor().equals(that.getTColor());
+	}
 }

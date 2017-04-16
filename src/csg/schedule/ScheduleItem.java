@@ -28,4 +28,17 @@ public class ScheduleItem {
 	public String getTopic() {
 		return topic.get();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof ScheduleItem))
+			return false;
+
+		ScheduleItem that = (ScheduleItem) obj;
+
+		return getType().equals(that.getType()) && getDate().equals(that.getDate())
+				&& getTitle().equals(that.getTitle()) && getTopic().equals(that.getTopic());
+	}
 }

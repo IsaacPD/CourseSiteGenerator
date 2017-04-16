@@ -59,4 +59,17 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
 	public String toString() {
 		return name.getValue() + ", " + email.getValue();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof TeachingAssistant))
+			return false;
+
+		TeachingAssistant that = (TeachingAssistant) obj;
+
+		return getEmail().equals(that.getEmail()) && getName().equals(that.getName())
+				&& (getUndergrad() == that.getUndergrad());
+	}
 }

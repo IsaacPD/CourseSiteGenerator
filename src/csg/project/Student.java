@@ -6,11 +6,11 @@ import javafx.beans.property.StringProperty;
 public class Student {
 	private final StringProperty fName, lName, team, role;
 
-	public Student(String firstName, String lastName, Team team, String role) {
+	public Student(String firstName, String lastName, String team, String role) {
 		this.fName = new SimpleStringProperty(firstName);
 		this.lName = new SimpleStringProperty(lastName);
 		this.role = new SimpleStringProperty(role);
-		this.team = new SimpleStringProperty(team.getName());
+		this.team = new SimpleStringProperty(team);
 	}
 
 	public String getFName() {
@@ -27,5 +27,18 @@ public class Student {
 
 	public String getRole() {
 		return role.get();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Student))
+			return false;
+
+		Student that = (Student) obj;
+
+		return getFName().equals(that.getFName()) && getLName().equals(that.getLName())
+				&& getRole().equals(that.getRole()) && getTeam().equals(that.getTeam());
 	}
 }
