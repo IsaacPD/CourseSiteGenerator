@@ -200,7 +200,7 @@ public class TAController {
 
 		for (Pane p : times.values()) {
 			if (GridPane.getRowIndex(p) == row) {
-				p.setStyle("-fx-border-style: dotted; -fx-border-color: white;");
+				p.setStyle("-fx-border-color: black;");
 			}
 		}
 
@@ -224,7 +224,6 @@ public class TAController {
 			TeachingAssistant ta = (TeachingAssistant) selectedItem;
 
 			if (ta != null) {
-				workspace.getAdd().setText("Update TA");
 				workspace.getNameTF().setText(ta.getName());
 				workspace.getEmailTF().setText(ta.getEmail());
 			}
@@ -235,6 +234,7 @@ public class TAController {
 	public void handleComboBox() {
 		TeachingAssistantPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getTeachingAssistantPane();
 		TAData dataSpace = ((CSGData) app.getDataComponent()).getTAData();
+		PropertiesManager props = PropertiesManager.getPropertiesManager();
 
 		String start = workspace.getStartTime().getSelectionModel().getSelectedItem();
 		String end = workspace.getEndTime().getSelectionModel().getSelectedItem();
@@ -244,7 +244,7 @@ public class TAController {
 
 		if (startTime >= endTime || startTime < TAData.MIN_START_HOUR || endTime > TAData.MAX_END_HOUR) {
 			AppMessageDialogSingleton single = AppMessageDialogSingleton.getSingleton();
-			single.show("Invalid Times", "Start Time must be less than the End Time");
+			single.show(props.getProperty(TA_INVALID_TIMES_TITLE), props.getProperty(TA_INVALID_TIMES_MESSAGE));
 		} else if (start != null || end != null) {
 			boolean verify = true;
 
@@ -252,7 +252,7 @@ public class TAController {
 				verify = false;
 
 				AppYesNoCancelDialogSingleton dialog = AppYesNoCancelDialogSingleton.getSingleton();
-				dialog.show("Verify Change", "Some Office Hours Will be Deleted, Continue?");
+				dialog.show(props.getProperty(TA_VERIFY_TITLE), props.getProperty(TA_VERIFY_MESSAGE));
 				String selection = dialog.getSelection();
 
 				if (selection.equals(AppYesNoCancelDialogSingleton.YES))
@@ -261,9 +261,6 @@ public class TAController {
 
 			if (verify) app.jtps.addTransaction(new ComboTimeTransaction(app, startTime, endTime));
 		}
-
-		//if (start != null) workspace.getStartTime().getSelectionModel().clearSelection();
-		//if (end != null) workspace.getEndTime().getSelectionModel().clearSelection();
 	}
 
 	private static int getTime(String time) {

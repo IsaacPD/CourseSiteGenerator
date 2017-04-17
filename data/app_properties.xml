@@ -68,7 +68,7 @@
         <property name="EXPORT_WORK_TITLE"		value="Export your work"></property>
 	<property name="LOAD_WORK_TITLE"		value="Select work file to load"></property>
 	<property name="WORK_FILE_EXT"			value=".json"></property>
-	<property name="WORK_FILE_EXT_DESC"		value="TA Office Hours"></property>
+	<property name="WORK_FILE_EXT_DESC"		value="Course Site Generator"></property>
 
         <!-- COURSE DETAILS CONTROLS STUFF -->
         <property name="CD_INFO_TEXT"       value="Course Info"></property>
@@ -94,6 +94,8 @@
         <property name="CD_FILE_NAME"       value="File Name"></property>
         <property name="CD_SCRIPT"       value="Script"></property>
         <property name="CD_INFO_TEXT"       value="Course Info"></property>
+        <property name="CD_CHANGE"       value="Change"></property>
+        <property name="CD_TEMPLATE_DIR"       value="Select Template Directory"></property>
         <property name="CD_USE_COL_TEXT"       value="Use"></property>
 
         <!-- SCHEDULE CONTROLS STUFF -->
@@ -149,6 +151,8 @@
         <property name="TAS_HEADER_TEXT"                value="Teaching Assistants"></property>
         <property name="TA_COMBO_START"                value="Start"></property>
         <property name="TA_COMBO_END"                value="End"></property>
+        <property name="TA_VERIFY_TITLE"                value="Verify Change"></property>
+        <property name="TA_VERIFY_MESSAGE"                value="Some Office Hours Will be Deleted, Continue?"></property>
         <property name="NAME_COLUMN_TEXT"               value="Name"></property>
         <property name="EMAIL_COLUMN_TEXT"              value="Email"></property>
         <property name="UNDERGRAD_COLUMN_TEXT"              value="Undergraduate"></property>
@@ -166,6 +170,8 @@
         <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_MESSAGE"   value="You must provide a unique TA Name and Email"></property>
         <property name="TA_INVALID_EMAIL_TITLE"        value="Invalid Email address"></property>
         <property name="TA_INVALID_EMAIL_MESSAGE"      value="You must provide a valid Email address."></property>
+        <property name="TA_INVALID_TIMES_TITLE"       value="Invalid Times"></property>
+        <property name="TA_INVALID_TIMES_MESSAGE"       value="Start Time must be less than the End Time"></property>
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

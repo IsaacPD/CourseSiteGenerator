@@ -62,6 +62,7 @@ public class TeachingAssistantPane extends HBox {
 
 		// MAKE THE TABLE AND SETUP THE DATA MODEL
 		taTable = new TableView<>();
+		taTable.setEditable(true);
 		taTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		TAData data = ((CSGData) app.getDataComponent()).getTAData();
 		ObservableList<TeachingAssistant> tableData = data.getTeachingAssistants();

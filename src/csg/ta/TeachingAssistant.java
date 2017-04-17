@@ -14,10 +14,10 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
 	/**
 	 * Constructor initializes the TA name
 	 */
-	public TeachingAssistant(String initName, String initEmail) {
+	public TeachingAssistant(String initName, String initEmail, boolean isUndergrad) {
 		name = new SimpleStringProperty(initName);
 		email = new SimpleStringProperty(initEmail);
-		undergrad = new SimpleBooleanProperty(false);
+		undergrad = new SimpleBooleanProperty(isUndergrad);
 	}
 
 	// ACCESSORS AND MUTATORS FOR THE PROPERTIES
@@ -42,8 +42,8 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
 		return undergrad;
 	}
 
-	public boolean getUndergrad() {
-		return undergrad.getValue();
+	public boolean isUndergrad() {
+		return undergrad.get();
 	}
 
 	public void setUndergrad(boolean isUG) {
@@ -70,6 +70,6 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
 		TeachingAssistant that = (TeachingAssistant) obj;
 
 		return getEmail().equals(that.getEmail()) && getName().equals(that.getName())
-				&& (getUndergrad() == that.getUndergrad());
+				&& (isUndergrad() == that.isUndergrad());
 	}
 }

@@ -113,6 +113,7 @@ public class CSGStyle extends AppStyleComponent {
 		workspace.getNameRow().getStyleClass().add(CLASS_HBOX);
 		workspace.getStudentButtonsRow().getStyleClass().add(CLASS_HBOX);
 		workspace.getLinkRow().getStyleClass().add(CLASS_HBOX);
+		workspace.getRoleRow().getStyleClass().add(CLASS_HBOX);
 		workspace.getStudentHead().getStyleClass().add(CLASS_HBOX);
 		workspace.getTeamRow().getStyleClass().add(CLASS_HBOX);
 		workspace.getTeamHead().getStyleClass().add(CLASS_HBOX);

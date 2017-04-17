@@ -13,13 +13,13 @@ public class UpdateTATransaction implements jtps.jTPS_Transaction{
 	public UpdateTATransaction(TeachingAssistant ta, String name, String email, CSGApp app){
 		this.app = app;
 		this.ta = ta;
-		this.update = new TeachingAssistant(name, email);
+		this.update = new TeachingAssistant(name, email, ta.isUndergrad());
 	}
 
 	@Override
 	public void doTransaction() {
 		TAData data = ((CSGData) app.getDataComponent()).getTAData();
-		TeachingAssistant temp = new TeachingAssistant(ta.getName(), ta.getEmail());
+		TeachingAssistant temp = new TeachingAssistant(ta.getName(), ta.getEmail(), ta.isUndergrad());
 
 		data.updateTA(ta, update.getName(), update.getEmail());
 

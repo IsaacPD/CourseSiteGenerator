@@ -201,9 +201,9 @@ public class TAData {
 		return false;
 	}
 
-	public void addTA(String initName, String email) {
+	public void addTA(String initName, String email, boolean isUndergrad) {
 		// MAKE THE TA
-		TeachingAssistant ta = new TeachingAssistant(initName, email);
+		TeachingAssistant ta = new TeachingAssistant(initName, email, isUndergrad);
 
 		// ADD THE TA
 		if (!containsTA(initName, email)) {

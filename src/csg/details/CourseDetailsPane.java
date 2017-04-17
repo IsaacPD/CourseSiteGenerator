@@ -18,7 +18,7 @@ import java.io.File;
 
 public class CourseDetailsPane extends VBox {
 	VBox courseInfo, siteTemplate, pageStyle;
-	Label infoL, subjectL, numberL, semesterL, yearL, titleL, instructorNameL, instructorHomeL, exportDirL;
+	Label infoL, subjectL, numberL, semesterL, yearL, titleL, instructorNameL, instructorHomeL, exportDirL, selectedExportDir;
 	Label siteL, descriptionL, templateDirL, sitePagesL;
 	Label pageStyleL, bannerSchoolImageL, leftFImageL, rightFImageL, styleL, noteL;
 	ComboBox<String> subjectCB, numberCB, semesterCB, yearCB;
@@ -32,6 +32,7 @@ public class CourseDetailsPane extends VBox {
 	Button bannerChange, leftChange, rightChange;
 	HBox subNumBox, semYearBox, titleBox, instrNameBox, instrHomeBox, exporBox;
 	HBox banner, leftFoot, rightFoot, style;
+	DetailsController controller;
 
 	CSGApp app;
 
@@ -57,7 +58,8 @@ public class CourseDetailsPane extends VBox {
 		instructorHomeL = new Label(props.getProperty(CD_INSTRUCTOR_HOME_TEXT) + ":");
 		instructorHome = new TextField();
 		exportDirL = new Label(props.getProperty(CD_EXPORT_TEXT) + ":");
-		exportChangeButton = new Button("Change");
+		selectedExportDir = new Label();
+		exportChangeButton = new Button(props.getProperty(CD_CHANGE));
 
 		subNumBox = new HBox();
 		subNumBox.getChildren().addAll(subjectL, subjectCB, numberL, numberCB);
@@ -70,7 +72,7 @@ public class CourseDetailsPane extends VBox {
 		instrHomeBox = new HBox();
 		instrHomeBox.getChildren().addAll(instructorHomeL, instructorHome);
 		exporBox = new HBox();
-		exporBox.getChildren().addAll(exportDirL, exportChangeButton);
+		exporBox.getChildren().addAll(exportDirL, selectedExportDir, exportChangeButton);
 
 		courseInfo = new VBox();
 		courseInfo.getChildren().addAll(infoL, subNumBox, semYearBox,
@@ -78,11 +80,12 @@ public class CourseDetailsPane extends VBox {
 
 		siteL = new Label(props.getProperty(CD_SITE_TEXT) + ":");
 		descriptionL = new Label(props.getProperty(CD_DESCRIPTION_TEXT));
-		templateDirL = new Label(props.getProperty(CD_TEMPLATE_TEXT));
-		selectTemplateButton = new Button("Select Template Directory");
+		templateDirL = new Label();
+		selectTemplateButton = new Button(props.getProperty(CD_TEMPLATE_DIR));
 		sitePagesL = new Label(props.getProperty(CD_SITE_PAGES_TEXT) + ":");
 
 		pages = new TableView<>(data.getDetails());
+		pages.setEditable(true);
 
 		navbarCol = new TableColumn<>(props.getProperty(CD_NAVBAR_TITLE));
 		navbarCol.setCellValueFactory(
@@ -90,7 +93,7 @@ public class CourseDetailsPane extends VBox {
 		);
 		fileCol = new TableColumn<>(props.getProperty(CD_FILE_NAME));
 		fileCol.setCellValueFactory(
-				new PropertyValueFactory<>("file")
+				new PropertyValueFactory<>("fileName")
 		);
 		scriptCol = new TableColumn<>(props.getProperty(CD_SCRIPT));
 		scriptCol.setCellValueFactory(
@@ -108,14 +111,14 @@ public class CourseDetailsPane extends VBox {
 
 		pageStyleL = new Label(props.getProperty(CD_PAGE_STYLE_TEXT));
 		bannerSchoolImageL = new Label(props.getProperty(CD_BANNER_SCHOOL_IMAGE_TEXT) + ":");
-		bannerChange = new Button("Change");
+		bannerChange = new Button(props.getProperty(CD_CHANGE));
 		bannerImage = new ImageView();
 		leftFImageL = new Label(props.getProperty(CD_LEFT_FOOTER_IMAGE_TEXT) + ":");
 		leftFImage = new ImageView();
-		leftChange = new Button("Change");
+		leftChange = new Button(props.getProperty(CD_CHANGE));
 		rightFImageL = new Label(props.getProperty(CD_RIGHT_FOOTER_IMAGE_TEXT) + ":");
 		rightFImage = new ImageView();
-		rightChange = new Button("Change");
+		rightChange = new Button(props.getProperty(CD_CHANGE));
 		styleL = new Label(props.getProperty(CD_STYLESHEET_TEXT) + ":");
 		styleCB = new ComboBox<>(data.getStylesheets());
 		noteL = new Label(props.getProperty(CD_NOTE_TEXT));
@@ -135,6 +138,17 @@ public class CourseDetailsPane extends VBox {
 		this.getChildren().add(courseInfo);
 		this.getChildren().add(siteTemplate);
 		this.getChildren().add(pageStyle);
+
+		data.getImages().put(bannerImage, null);
+		data.getImages().put(leftFImage, null);
+		data.getImages().put(rightFImage, null);
+
+		controller = new DetailsController(initApp);
+		exportChangeButton.setOnAction(e -> controller.handleExportDirButton());
+		selectTemplateButton.setOnAction(e -> controller.handleTemplateButton());
+		bannerChange.setOnAction(e -> controller.handleBannerChange());
+		leftChange.setOnAction(e -> controller.handleLeftImageChange());
+		rightChange.setOnAction(e -> controller.handleRightImageChange());
 	}
 
 	public VBox getCourseInfo() {
@@ -199,5 +213,25 @@ public class CourseDetailsPane extends VBox {
 
 	public HBox getStylePane() {
 		return style;
+	}
+
+	public Label getSelectedExportDir() {
+		return selectedExportDir;
+	}
+
+	public Label getTemplateDirL() {
+		return templateDirL;
+	}
+
+	public ImageView getBannerImage() {
+		return bannerImage;
+	}
+
+	public ImageView getLeftFImage() {
+		return leftFImage;
+	}
+
+	public ImageView getRightFImage() {
+		return rightFImage;
 	}
 }

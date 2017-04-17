@@ -34,11 +34,11 @@ public class LoadTest {
 				ScheduleItem si = ((CSGData) app.getDataComponent()).getScheduleData().getSchedules().get(0);
 				TeachingAssistant ta = ((CSGData) app.getDataComponent()).getTAData().getTeachingAssistants().get(0);
 
-				assertEquals(TestSaveAndLoad.testR, r);
-				assertEquals(TestSaveAndLoad.testSchedule, si);
-				assertEquals(TestSaveAndLoad.testStudent, s);
-				assertEquals(TestSaveAndLoad.testTA, ta);
-				assertEquals(TestSaveAndLoad.testTeam, t);
+				assertEquals(TestSave.testR, r);
+				assertEquals(TestSave.testSchedule, si);
+				assertEquals(TestSave.testStudent, s);
+				assertEquals(TestSave.testTA, ta);
+				assertEquals(TestSave.testTeam, t);
 			});
 		});
 		thread.start();

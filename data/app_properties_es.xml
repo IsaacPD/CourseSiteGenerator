@@ -68,7 +68,7 @@
         <property name="EXPORT_WORK_TITLE"		value="Exportar su trabajo"></property>
 	<property name="LOAD_WORK_TITLE"		value="Seleccionar archivo de trabajo para cargar"></property>
 	<property name="WORK_FILE_EXT"			value=".json"></property>
-	<property name="WORK_FILE_EXT_DESC"		value="AE horas de oficina"></property>
+	<property name="WORK_FILE_EXT_DESC"		value="Generador de Sitios de Curso"></property>
 
         <!-- COURSE DETAILS CONTROLS STUFF -->
         <property name="CD_INFO_TEXT"       value="Información del Curso"></property>
@@ -94,6 +94,8 @@
         <property name="CD_FILE_NAME"       value="Nombre del Archivo"></property>
         <property name="CD_SCRIPT"       value="Guión"></property>
         <property name="CD_INFO_TEXT"       value="Información del Curso"></property>
+        <property name="CD_CHANGE"       value="Cambiar"></property>
+        <property name="CD_TEMPLATE_DIR"       value="Seleccione el directorio de la plantilla"></property>
         <property name="CD_USE_COL_TEXT"       value="Utilizar"></property>
 
         <!-- SCHEDULE CONTROLS STUFF -->
@@ -149,9 +151,11 @@
         <property name="TAS_HEADER_TEXT"                value="Asistentes de Enseñanza (AE)"></property>
         <property name="TA_COMBO_START"                value="Empezar"></property>
         <property name="TA_COMBO_END"                value="Terminar"></property>
+        <property name="TA_VERIFY_TITLE"                value="Averigua Cambio"></property>
+        <property name="TA_VERIFY_MESSAGE"                value="Algunos horarios van a cambiar ¿Continue?"></property>
         <property name="NAME_COLUMN_TEXT"               value="Nombre"></property>
         <property name="EMAIL_COLUMN_TEXT"              value="Correo Electrónico"></property>
-        <property name="UNDERG_COLUMN_TEXT"              value="Estudiante de pregrado"></property>
+        <property name="UNDERGRAD_COLUMN_TEXT"              value="Estudiante de pregrado"></property>
         <property name="NAME_PROMPT_TEXT"               value="Nombre"></property>
         <property name="EMAIL_PROMPT_TEXT"              value="Correo Electrónico"></property>
         <property name="ADD_BUTTON_TEXT"                value="Añadir AE"></property>
@@ -166,6 +170,8 @@
         <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_MESSAGE"   value="Tienes que suministrar Correo Electrónicos y Nombres únicos"></property>
         <property name="TA_INVALID_EMAIL_TITLE"        value="Correo Electrónico Invalido"></property>
         <property name="TA_INVALID_EMAIL_MESSAGE"      value="Tienes que suministrar un Correo Electrónico válido."></property>
+        <property name="TA_INVALID_TIMES_TITLE"       value="Hora Invalido"></property>
+        <property name="TA_INVALID_TIMES_MESSAGE"       value="La hora de empezar tiene que ser ante de la hora de terminar."></property>
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

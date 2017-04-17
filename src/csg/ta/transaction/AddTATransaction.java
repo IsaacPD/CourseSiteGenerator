@@ -10,7 +10,7 @@ public class AddTATransaction implements jtps.jTPS_Transaction{
 	CSGApp app;
 
 	public AddTATransaction(String name, String email, CSGApp app){
-		ta = new TeachingAssistant(name, email);
+		ta = new TeachingAssistant(name, email, false);
 		this.app = app;
 	}
 

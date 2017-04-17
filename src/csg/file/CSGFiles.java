@@ -2,6 +2,7 @@ package csg.file;
 
 import csg.CSGApp;
 import csg.data.*;
+import csg.details.Details;
 import csg.project.Student;
 import csg.project.Team;
 import csg.recitation.Recitation;
@@ -28,6 +29,7 @@ public class CSGFiles implements AppFileComponent {
 	static final String JSON_TIME = "time";
 	static final String JSON_NAME = "name";
 	static final String JSON_UNDERGRAD_TAS = "undergrad_tas";
+	static final String JSON_GRAD_TAS = "grad_tas";
 	static final String JSON_EMAIL = "email";
 	static final String JSON_R_SECTION = "section";
 	static final String JSON_R_INSTRUCTOR = "instructor";
@@ -67,14 +69,17 @@ public class CSGFiles implements AppFileComponent {
 
 		// NOW BUILD THE TA JSON OBJCTS TO SAVE
 		JsonArrayBuilder taArrayBuilder = Json.createArrayBuilder();
+		JsonArrayBuilder gradTABuilder = Json.createArrayBuilder();
 		ObservableList<TeachingAssistant> tas = teachingAssistant.getTeachingAssistants();
 		for (TeachingAssistant ta : tas) {
 			JsonObject taJson = Json.createObjectBuilder()
 					.add(JSON_NAME, ta.getName())
 					.add(JSON_EMAIL, ta.getEmail()).build();
-			taArrayBuilder.add(taJson);
+			if (ta.isUndergrad()) taArrayBuilder.add(taJson);
+			else gradTABuilder.add(taJson);
 		}
 		JsonArray undergradTAsArray = taArrayBuilder.build();
+		JsonArray gradTAsArray = gradTABuilder.build();
 
 		// NOW BUILD THE TIME SLOT JSON OBJCTS TO SAVE
 		JsonArrayBuilder timeSlotArrayBuilder = Json.createArrayBuilder();
@@ -143,9 +148,10 @@ public class CSGFiles implements AppFileComponent {
 		JsonArray scheduleArray = scheduleItemArrayBuilder.build();
 
 		JsonObject dataManagerJSO = Json.createObjectBuilder()
-				.add(JSON_START_HOUR, ""+teachingAssistant.getStartHour())
-				.add(JSON_END_HOUR, ""+teachingAssistant.getEndHour())
+				.add(JSON_START_HOUR, "" + teachingAssistant.getStartHour())
+				.add(JSON_END_HOUR, "" + teachingAssistant.getEndHour())
 				.add(JSON_UNDERGRAD_TAS, undergradTAsArray)
+				.add(JSON_GRAD_TAS, gradTAsArray)
 				.add(JSON_OFFICE_HOURS, timeSlotsArray)
 				.add(JSON_RECITATION, recitationArray)
 				.add(JSON_TEAM, teamArray)
@@ -253,7 +259,16 @@ public class CSGFiles implements AppFileComponent {
 			String name = jsonTA.getString(JSON_NAME);
 			String email = jsonTA.getString(JSON_EMAIL);
 
-			teachingAssistant.addTA(name, email);
+			teachingAssistant.addTA(name, email, true);
+		}
+
+		JsonArray gradTAArray = json.getJsonArray(JSON_GRAD_TAS);
+		for (int i = 0; i < gradTAArray.size(); i++) {
+			JsonObject jsonTA = gradTAArray.getJsonObject(i);
+			String name = jsonTA.getString(JSON_NAME);
+			String email = jsonTA.getString(JSON_EMAIL);
+
+			teachingAssistant.addTA(name, email, false);
 		}
 
 		// AND THEN ALL THE OFFICE HOURS
@@ -341,12 +356,12 @@ public class CSGFiles implements AppFileComponent {
 	}
 
 	@Override
-	public void exportData(AppDataComponent appDataComponent, String s) throws IOException {
-
+	public void exportData(AppDataComponent appDataComponent, String filePath) throws IOException {
+		DetailsData data = ((CSGData) appDataComponent).getDetailsData();
 	}
 
 	@Override
-	public void importData(AppDataComponent appDataComponent, String s) throws IOException {
+	public void importData(AppDataComponent appDataComponent, String filePath) throws IOException {
 
 	}
 }
