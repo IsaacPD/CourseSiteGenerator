@@ -2,13 +2,22 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- TITLE HAS TO BE SET -->
 
-	<title>CSE 219</title>
+	<title></title>
 
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
 	<link href="index_files/course_homepage_layout.css" rel="stylesheet" type="text/css">
 
 	<link href="index_files/sea_wolf.css" rel="stylesheet" type="text/css">
+	<script src="jquery.js"></script>
+    <script src="NavbarBuilder.js"></script>        
+	
+		<script>
+		    $(document).ready()
+		    {
+			buildNavbar();
+		    }
+	    </script>
 
     </head>
 
@@ -18,16 +27,13 @@
 	<div id="content">
 
 	    <div id="navbar">
-
-		<a href="http://www.stonybrook.edu/"><img alt="Stony Brook University" class="sbu_navbar" src="index_files/SBUDarkRedShieldLogo.png"></a>
-                <!-- NAVIGATION LINKS GO HERE -->
-		<a class="open_nav" href="http://www3.cs.stonybrook.edu/%7Ecse219/Section02/index.html" id="home_link">Home</a><a class="nav" href="http://www3.cs.stonybrook.edu/%7Ecse219/Section02/syllabus.html" id="syllabus_link">Syllabus</a><a class="nav" href="http://www3.cs.stonybrook.edu/%7Ecse219/Section02/schedule.html" id="schedule_link">Schedule</a><a class="nav" href="http://www3.cs.stonybrook.edu/%7Ecse219/Section02/hws.html" id="hws_link">HWs</a>
+	    	<!-- NAVIGATION LINKS GO HERE -->
 	    </div>
 
 
 	    <div id="banner">
                 <!-- BANNER NEEDS TO BE SET -->
-		CSE 219 - Spring 2017<br>Computer Science III - 02</div>
+		</div>
 
 	    <div id="desc">
 
@@ -52,17 +58,7 @@ all grades will be posted to <a href="http://blackboard.stonybrook.edu/">Blackbo
 		<hr>
 
 
-		<a href="http://www.stonybrook.edu/"><img alt="SBU" class="sunysb" src="index_files/SBUWhiteShieldLogo.jpg" style="float:left"></a>
-                <a href="http://www.cs.stonybrook.edu/"><img alt="CS" src="index_files/CSLogo.png" style="float:right"></a>
-
-
-		<p style="font-size:9pt; text-align:center;">Web page created and maintained<br>
-                    by <span id="instructor_link"><a href="http://www.cs.stonybrook.edu/%7Erichard">Richard McKenna</a></span>
-		    <br>
-		    <br>
-		    <br>
-		    <br>
-		</p>
+		<div id="footer"></div>
 
 	    </div>
 

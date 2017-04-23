@@ -1,7 +1,7 @@
 <html><head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-	<title>CSE 219</title>
+	<title></title>
 
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
@@ -13,6 +13,7 @@
         <script src="syllabus_files/jquery.js"></script>
         <script src="syllabus_files/OfficeHoursGridBuilder.js"></script>
         <script src="syllabus_files/RecitationsBuilder.js"></script>
+        <script src="NavbarBuilder.js"></script>
 
         <!-- ONCE THE PAGE FULLY LOADS INITIALIZE THE SLIDESHOW -->
         <script>
@@ -20,6 +21,7 @@
             {
                 buildOfficeHoursGrid();
                 buildRecitations();
+                buildNavbar();
             }
             window.on
         </script>
@@ -62,15 +64,13 @@
 
 	    <div id="navbar">
 
-		<a href="http://www.stonybrook.edu/"><img alt="Stony Brook University" class="sbu_navbar" src="syllabus_files/SBUDarkRedShieldLogo.png"></a>
-                <!-- NAVIGATION LINKS GO HERE -->
-		<a class="nav" href="http://www3.cs.stonybrook.edu/%7Ecse219/Section02/index.html" id="home_link">Home</a><a class="open_nav" href="http://www3.cs.stonybrook.edu/%7Ecse219/Section02/syllabus.html" id="syllabus_link">Syllabus</a><a class="nav" href="http://www3.cs.stonybrook.edu/%7Ecse219/Section02/schedule.html" id="schedule_link">Schedule</a><a class="nav" href="http://www3.cs.stonybrook.edu/%7Ecse219/Section02/hws.html" id="hws_link">HWs</a>
+		<!-- NAVIGATION LINKS GO HERE -->
 	    </div>
 
 
 	    <div id="banner">
                 <!-- BANNER NEEDS TO BE SET -->
-		CSE 219 - Spring 2017<br>Computer Science III - 02</div>
+		</div>
 
 	    <div id="desc">
 
@@ -381,13 +381,8 @@ the campus network. The Help Desk office is located in the SBCS Office -
 
 		<br>
 
-
-		<a href="http://www.stonybrook.edu/"><img alt="SBU" class="sunysb" src="syllabus_files/SBUWhiteShieldLogo.jpg" style="float:left"></a>
-                <a href="http://www.cs.stonybrook.edu/"><img alt="CS" src="syllabus_files/CSLogo.png" style="float:right"></a>
-
-
-		<p style="font-size:9pt; text-align:center;">Web page created and maintained<br>
-                    by <span id="instructor_link"><a href="http://www.cs.stonybrook.edu/%7Erichard">Richard McKenna</a></span>
+		<div id="footer"></div>
+		</span>
 		    <br>
 		    <br>
 		    <br>

@@ -66,6 +66,16 @@ public class CSGFiles implements AppFileComponent {
 	static final String JSON_SI_REFERENCES = "references";
 	static final String JSON_SI_HWS = "hws";
 	static final String JSON_SI_CRITERIA = "criteria";
+	static final String JSON_SUBJECT = "subject";
+	static final String JSON_NUMBER = "number";
+	static final String JSON_SEMESTER = "semester";
+	static final String JSON_YEAR = "year";
+	static final String JSON_TITLE = "title";
+	static final String JSON_INSTRUCTOR_NAME = "instructor_name";
+	static final String JSON_INSTRUCTOR_HOME = "instructor_home";
+	static final String JSON_DETAILS = "details";
+	static final String JSON_FILE_NAME = "file_name";
+	static final String JSON_NAVBAR_TITLE = "navbar_title";
 	CSGApp app;
 
 	public CSGFiles(CSGApp initApp) {
@@ -196,6 +206,38 @@ public class CSGFiles implements AppFileComponent {
 			scheduleItemArrayBuilder.add(sJson);
 		}
 		builder.add(JSON_SCHEDULE_ITEM, scheduleItemArrayBuilder.build());
+	}
+
+	private void saveDetailsData(DetailsData details, JsonObjectBuilder builder) {
+		CourseDetailsPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getCourseDetailsPane();
+
+		String subject = workspace.getSubjectCB().getSelectionModel().getSelectedItem();
+		String number = workspace.getNumberCB().getSelectionModel().getSelectedItem();
+		String semester = workspace.getSemesterCB().getSelectionModel().getSelectedItem();
+		String year = workspace.getYearCB().getSelectionModel().getSelectedItem();
+		String title = workspace.getTitleTF().getText();
+		String instructorName = workspace.getInstructorName().getText();
+		String instructorHome = workspace.getInstructorHome().getText();
+
+		JsonArrayBuilder detailsArrayBuilder = Json.createArrayBuilder();
+		for (Details d : details.getDetails()) {
+			if (d.isUse()) {
+				JsonObject dJson = Json.createObjectBuilder()
+						.add(JSON_FILE_NAME, d.getFileName())
+						.add(JSON_NAVBAR_TITLE, d.getNavbarTitle()).build();
+				detailsArrayBuilder.add(dJson);
+			}
+		}
+		JsonArray detailsArray = detailsArrayBuilder.build();
+
+		builder.add(JSON_SUBJECT, subject)
+				.add(JSON_NUMBER, number)
+				.add(JSON_SEMESTER, semester)
+				.add(JSON_YEAR, year)
+				.add(JSON_TITLE, title)
+				.add(JSON_INSTRUCTOR_NAME, instructorName)
+				.add(JSON_INSTRUCTOR_HOME, instructorHome)
+				.add(JSON_DETAILS, detailsArray);
 	}
 
 	@Override
@@ -395,7 +437,6 @@ public class CSGFiles implements AppFileComponent {
 		TAData teachingAssistant = data.getTAData();
 		DetailsData detailsData = ((CSGData) appDataComponent).getDetailsData();
 		CourseDetailsPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getCourseDetailsPane();
-		ObservableList<Details> details = detailsData.getDetails();
 
 		File dir = new File(workspace.getSelectedExportDir().getText() + "/");
 		File exportDir = new File(workspace.getTemplateDirL().getText());
@@ -406,37 +447,14 @@ public class CSGFiles implements AppFileComponent {
 		js.mkdir();
 
 		exportScheduleData(schedule, js.getPath() + "/ScheduleData.json");
+		exportDetailsData(detailsData, js.getPath() + "/DetailsData.json");
 		exportTAData(teachingAssistant, js.getPath() + "/OfficeHoursGridData.json");
 		exportProjectData(project, js.getPath() + "/ProjectsData.json");
 		exportRecitationData(recitation, js.getPath() + "/RecitationsData.json");
 
-		/*
-		String exportDir = workspace.getSelectedExportDir().getText();
-		String templateDir = workspace.getTemplateDirL().getText();
-
-		for (Details d : details) {
-			if (d.useProperty().get()) {
-				File tempCopy = new File(exportDir + "/temp");
-				File dir = new File(exportDir + "/" + d.getNavbarTitle());
-				dir.mkdir();
-
-				File to = new File(exportDir + "/" + d.getNavbarTitle() + "/" + d.getFileName());
-				File toScript = new File(exportDir + "/" + d.getNavbarTitle() + "/" + d.getScript());
-
-				File copy = new File(templateDir + "/" + d.getFileName());
-				File script = new File(templateDir + "/" +d.getNavbarTitle() + "_files/" + d.getScript());
-
-				Files.copy(copy.toPath(), tempCopy.toPath());
-				Files.copy(tempCopy.toPath(), to.toPath());
-
-				tempCopy.delete();
-
-				Files.copy(script.toPath(), tempCopy.toPath());
-				Files.copy(tempCopy.toPath(), toScript.toPath());
-
-				tempCopy.delete();
-			}*/
-
+		File images = new File(dir.getPath() + "/images/");
+		images.mkdir();
+		exportImages(detailsData, images.getPath());
 	}
 
 
@@ -544,6 +562,28 @@ public class CSGFiles implements AppFileComponent {
 		saveProjectData(projects, builder);
 		JsonObject dataManagerJSO = builder.build();
 		writeJson(dataManagerJSO, filePath);
+	}
+
+	private void exportDetailsData(DetailsData details, String filePath) throws FileNotFoundException {
+		JsonObjectBuilder builder = Json.createObjectBuilder();
+		saveDetailsData(details, builder);
+		JsonObject dataManagerJSO = builder.build();
+		writeJson(dataManagerJSO, filePath);
+	}
+
+	private void exportImages(DetailsData data, String filePath) throws IOException {
+		CourseDetailsPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getCourseDetailsPane();
+		File leftImage = data.getImages().get(workspace.getLeftFImage());
+		File rightImage = data.getImages().get(workspace.getRightFImage());
+		File bannerImage = data.getImages().get(workspace.getBannerImage());
+
+		File l = new File(filePath + "/left_image.png");
+		File r = new File(filePath + "/right_image.png");
+		File b = new File(filePath + "/banner_image.png");
+
+		Files.copy(leftImage.toPath(), l.toPath());
+		Files.copy(rightImage.toPath(), r.toPath());
+		Files.copy(bannerImage.toPath(), b.toPath());
 	}
 
 	private void writeJson(JsonObject dataManagerJSO, String filePath) throws FileNotFoundException {

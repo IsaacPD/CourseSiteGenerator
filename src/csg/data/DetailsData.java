@@ -22,7 +22,7 @@ public class DetailsData {
 		details = FXCollections.observableArrayList();
 		stylesheets = FXCollections.observableArrayList(sheets);
 		subjects = FXCollections.observableArrayList("CSE");
-		years = FXCollections.observableArrayList();
+		years = FXCollections.observableArrayList("2017", "2018");
 		semesters = FXCollections.observableArrayList("Fall", "Spring", "Winter", "Summer");
 		numbers = FXCollections.observableArrayList("219", "308", "380");
 	}

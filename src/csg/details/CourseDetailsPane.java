@@ -208,4 +208,36 @@ public class CourseDetailsPane extends VBox {
 	public Button getBannerChange() {
 		return bannerChange;
 	}
+
+	public ComboBox<String> getSubjectCB() {
+		return subjectCB;
+	}
+
+	public ComboBox<String> getNumberCB() {
+		return numberCB;
+	}
+
+	public ComboBox<String> getSemesterCB() {
+		return semesterCB;
+	}
+
+	public ComboBox<String> getYearCB() {
+		return yearCB;
+	}
+
+	public TextField getTitleTF() {
+		return titleTF;
+	}
+
+	public TextField getInstructorName() {
+		return instructorName;
+	}
+
+	public TextField getInstructorHome() {
+		return instructorHome;
+	}
+
+	public CSGApp getApp() {
+		return app;
+	}
 }
