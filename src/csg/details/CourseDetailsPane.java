@@ -6,7 +6,9 @@ import csg.data.DetailsData;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import properties_manager.PropertiesManager;
 
@@ -29,9 +31,9 @@ public class CourseDetailsPane extends VBox {
 	TableColumn<Details, Boolean> useCol;
 	ImageView bannerImage, leftFImage, rightFImage;
 	ComboBox<File> styleCB;
+	GridPane imageIn, comboIn, tfIn;
 	Button bannerChange, leftChange, rightChange;
-	HBox subNumBox, semYearBox, titleBox, instrNameBox, instrHomeBox, exporBox;
-	HBox banner, leftFoot, rightFoot, style;
+	HBox style;
 	DetailsController controller;
 
 	CSGApp app;
@@ -61,22 +63,16 @@ public class CourseDetailsPane extends VBox {
 		selectedExportDir = new Label();
 		exportChangeButton = new Button(props.getProperty(CD_CHANGE));
 
-		subNumBox = new HBox();
-		subNumBox.getChildren().addAll(subjectL, subjectCB, numberL, numberCB);
-		semYearBox = new HBox();
-		semYearBox.getChildren().addAll(semesterL, semesterCB, yearL, yearCB);
-		titleBox = new HBox();
-		titleBox.getChildren().addAll(titleL, titleTF);
-		instrNameBox = new HBox();
-		instrNameBox.getChildren().addAll(instructorNameL, instructorName);
-		instrHomeBox = new HBox();
-		instrHomeBox.getChildren().addAll(instructorHomeL, instructorHome);
-		exporBox = new HBox();
-		exporBox.getChildren().addAll(exportDirL, selectedExportDir, exportChangeButton);
+		comboIn = new GridPane();
+		comboIn.addRow(0, subjectL, subjectCB, numberL, numberCB);
+		comboIn.addRow(1, semesterL, semesterCB, yearL, yearCB);
+		comboIn.addRow(2, titleL, titleTF);
+		comboIn.addRow(3, instructorNameL, instructorName);
+		comboIn.addRow(4, instructorHomeL, instructorHome);
+		comboIn.addRow(5, exportDirL, selectedExportDir, exportChangeButton);
 
 		courseInfo = new VBox();
-		courseInfo.getChildren().addAll(infoL, subNumBox, semYearBox,
-				titleBox, instrNameBox, instrHomeBox, exporBox);
+		courseInfo.getChildren().addAll(infoL, comboIn);
 
 		siteL = new Label(props.getProperty(CD_SITE_TEXT) + ":");
 		descriptionL = new Label(props.getProperty(CD_DESCRIPTION_TEXT));
@@ -123,17 +119,15 @@ public class CourseDetailsPane extends VBox {
 		styleCB = new ComboBox<>(data.getStylesheets());
 		noteL = new Label(props.getProperty(CD_NOTE_TEXT));
 
-		banner = new HBox();
-		banner.getChildren().addAll(bannerSchoolImageL, bannerImage, bannerChange);
-		leftFoot = new HBox();
-		leftFoot.getChildren().addAll(leftFImageL, leftFImage, leftChange);
-		rightFoot = new HBox();
-		rightFoot.getChildren().addAll(rightFImageL, rightFImage, rightChange);
+		imageIn = new GridPane();
+		imageIn.addRow(0, bannerSchoolImageL, bannerImage, bannerChange);
+		imageIn.addRow(1, leftFImageL, leftFImage, leftChange);
+		imageIn.addRow(2, rightFImageL, rightFImage, rightChange);
 		style = new HBox();
 		style.getChildren().addAll(styleL, styleCB);
 
 		pageStyle = new VBox();
-		pageStyle.getChildren().addAll(pageStyleL, banner, leftFoot, rightFoot, style, noteL);
+		pageStyle.getChildren().addAll(pageStyleL, imageIn, style, noteL);
 
 		this.getChildren().add(courseInfo);
 		this.getChildren().add(siteTemplate);
@@ -175,42 +169,6 @@ public class CourseDetailsPane extends VBox {
 		return pageStyleL;
 	}
 
-	public HBox getSubNumBox() {
-		return subNumBox;
-	}
-
-	public HBox getSemYearBox() {
-		return semYearBox;
-	}
-
-	public HBox getTitleBox() {
-		return titleBox;
-	}
-
-	public HBox getInstrNameBox() {
-		return instrNameBox;
-	}
-
-	public HBox getInstrHomeBox() {
-		return instrHomeBox;
-	}
-
-	public HBox getExporBox() {
-		return exporBox;
-	}
-
-	public HBox getBanner() {
-		return banner;
-	}
-
-	public HBox getLeftFoot() {
-		return leftFoot;
-	}
-
-	public HBox getRightFoot() {
-		return rightFoot;
-	}
-
 	public HBox getStylePane() {
 		return style;
 	}
@@ -233,5 +191,21 @@ public class CourseDetailsPane extends VBox {
 
 	public ImageView getRightFImage() {
 		return rightFImage;
+	}
+
+	public GridPane getImageIn() {
+		return imageIn;
+	}
+
+	public GridPane getComboIn() {
+		return comboIn;
+	}
+
+	public GridPane getTfIn() {
+		return tfIn;
+	}
+
+	public Button getBannerChange() {
+		return bannerChange;
 	}
 }

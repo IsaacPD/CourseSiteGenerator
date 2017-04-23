@@ -69,8 +69,9 @@ public class DetailsData {
 				String path = filePath + "/" + name + "_files";
 				File files = new File(path);
 				for (File data : files.listFiles()) {
-					if (data.getName().contains(".js") && data.getName().toLowerCase().contains(name)) {
+					if (data.getName().contains(".js") && data.getName().contains("Builder")) {
 						detailsBuilder.addScript(data.getName());
+						System.out.println(data.getName());
 						break;
 					}
 				}

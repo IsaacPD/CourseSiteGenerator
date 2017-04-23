@@ -1,0 +1,12 @@
+{
+    "recitations":[
+        {
+            "section":"23",
+            "instructor":"Prof. Duarte",
+            "day_time":"Tuesday",
+            "location":"OLD CS",
+            "ta_1":"Isaac",
+            "ta_2":"Duarte"
+        }
+    ]
+}

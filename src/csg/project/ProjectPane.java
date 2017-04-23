@@ -5,6 +5,7 @@ import csg.data.CSGData;
 import csg.data.ProjectData;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import properties_manager.PropertiesManager;
@@ -19,8 +20,8 @@ public class ProjectPane extends VBox {
 	TextField nameTF, linkTF, fNameTF, lNameTF, roleTF;
 	ColorPicker colorPicker, textColor;
 	VBox team, students;
-	HBox teamHead, studentHead, nameRow, colorRow, linkRow, teamButtonRow;
-	HBox fNameRow, lNameRow, teamRow, roleRow, studentButtonsRow;
+	HBox teamHead, studentHead;
+	GridPane studentIn, teamIn;
 	Label sAddEdit, fNameL, lNameL, student, teamL, roleL;
 	ComboBox<Team> teamCB;
 	TableColumn<Team, String> nameCol, colorCol, textColorCol, linkCol;
@@ -42,8 +43,10 @@ public class ProjectPane extends VBox {
 		nameTF = new TextField();
 		colorL = new Label(props.getProperty(P_COLOR_TEXT) + ":");
 		colorPicker = new ColorPicker();
+		colorPicker.setMinHeight(25);
 		textColorL = new Label(props.getProperty(P_TEXT_COLOR_TEXT) + ":");
 		textColor = new ColorPicker();
+		textColor.setMinHeight(25);
 		linkL = new Label(props.getProperty(LINK_TEXT) + ":");
 		linkTF = new TextField();
 		addButton = new Button(props.getProperty(ADD_UP_TEXT));
@@ -68,21 +71,19 @@ public class ProjectPane extends VBox {
 		);
 		teamTable.getColumns().addAll(nameCol, colorCol, textColorCol, linkCol);
 
+		teamIn = new GridPane();
+		teamIn.addColumn(0, nameL, colorL, linkL, addButton);
+		teamIn.addColumn(1, nameTF, colorPicker, linkTF, clearButton);
+		teamIn.add(textColorL, 2, 1);
+		teamIn.add(textColor, 3, 1);
+
 		teamHead = new HBox();
 		teamHead.getChildren().add(teamsL);
 		removeTeam = app.getGUI().initChildButton(teamHead, REMOVE_ICON.toString(),
 				REMOVE_TOOLTIP.toString(), false);
-		nameRow = new HBox();
-		nameRow.getChildren().addAll(nameL, nameTF);
-		colorRow = new HBox();
-		colorRow.getChildren().addAll(colorL, colorPicker, textColorL, textColor);
-		linkRow = new HBox();
-		linkRow.getChildren().addAll(linkL, linkTF);
-		teamButtonRow = new HBox();
-		teamButtonRow.getChildren().addAll(addButton, clearButton);
 
 		team = new VBox();
-		team.getChildren().addAll(teamHead, teamTable, addEditL, nameRow, colorRow, linkRow, teamButtonRow);
+		team.getChildren().addAll(teamHead, teamTable, addEditL, teamIn);
 
 		student = new Label(props.getProperty(P_STUDENTS_TEXT));
 		studentTable = new TableView<>(data.getStudents());
@@ -115,25 +116,19 @@ public class ProjectPane extends VBox {
 		roleTF = new TextField();
 		addStudent = new Button(props.getProperty(ADD_UP_TEXT));
 		clearStudent = new Button(props.getProperty(CLEAR_TEXT));
-		studentButtonsRow = new HBox();
-		studentButtonsRow.getChildren().addAll(addStudent, clearStudent);
 
 		studentHead = new HBox();
 		studentHead.getChildren().add(student);
 		studentRemove = app.getGUI().initChildButton(studentHead, REMOVE_ICON.toString(),
 				REMOVE_TOOLTIP.toString(), false);
-		fNameRow = new HBox();
-		fNameRow.getChildren().addAll(fNameL, fNameTF);
-		lNameRow = new HBox();
-		lNameRow.getChildren().addAll(lNameL, lNameTF);
-		teamRow = new HBox();
-		teamRow.getChildren().addAll(teamL, teamCB);
-		roleRow = new HBox();
-		roleRow.getChildren().addAll(roleL, roleTF);
+
+		studentIn = new GridPane();
+		studentIn.addColumn(0, fNameL, lNameL, teamL, roleL, addStudent);
+		studentIn.addColumn(1, fNameTF, lNameTF, teamCB, roleTF, clearStudent);
 
 		students = new VBox();
 		students.getChildren().addAll(studentHead, studentTable, sAddEdit,
-				fNameRow, lNameRow, teamRow, roleRow, studentButtonsRow);
+				studentIn);
 
 		this.getChildren().addAll(header, team, students);
 	}
@@ -174,39 +169,11 @@ public class ProjectPane extends VBox {
 		return studentHead;
 	}
 
-	public HBox getNameRow() {
-		return nameRow;
+	public GridPane getStudentIn() {
+		return studentIn;
 	}
 
-	public HBox getColorRow() {
-		return colorRow;
-	}
-
-	public HBox getLinkRow() {
-		return linkRow;
-	}
-
-	public HBox getTeamButtonRow() {
-		return teamButtonRow;
-	}
-
-	public HBox getfNameRow() {
-		return fNameRow;
-	}
-
-	public HBox getlNameRow() {
-		return lNameRow;
-	}
-
-	public HBox getTeamRow() {
-		return teamRow;
-	}
-
-	public HBox getRoleRow() {
-		return roleRow;
-	}
-
-	public HBox getStudentButtonsRow() {
-		return studentButtonsRow;
+	public GridPane getTeamIn() {
+		return teamIn;
 	}
 }

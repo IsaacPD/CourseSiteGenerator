@@ -29,7 +29,7 @@ public class DetailsController {
 
 		CourseDetailsPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getCourseDetailsPane();
 		if (selection != null) {
-			workspace.getTemplateDirL().setText(selection.getPath());
+			workspace.getSelectedExportDir().setText(selection.getPath());
 		}
 	}
 

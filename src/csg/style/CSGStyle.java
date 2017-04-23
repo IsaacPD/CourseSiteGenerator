@@ -9,10 +9,12 @@ import csg.ta.TeachingAssistantPane;
 import csg.workspace.CSGWorkspace;
 import djf.components.AppStyleComponent;
 import djf.AppTemplate;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CSGStyle extends AppStyleComponent {
@@ -43,13 +45,13 @@ public class CSGStyle extends AppStyleComponent {
 	public static String CLASS_OFFICE_HOURS_GRID_TA_CELL_LABEL = "office_hours_grid_ta_cell_label";
 
 	public static String CLASS_TAB = "tab";
+	public static String CLASS_INPUT_GRID = "input_grid";
 	public static String CLASS_SUBHEADER = "subheader_label";
 	public static String CLASS_VBOX = "vbox";
 	public static String CLASS_TAB_VBOX = "tab_vbox";
 	public static String CLASS_HBOX = "hbox";
 	public static String CLASS_RPANE = "rpane";
 	public static String CLASS_LABEL = "label";
-	public static String CLASS_SCROLL = "scroll_pane";
 
 	// THIS PROVIDES ACCESS TO OTHER COMPONENTS
 	private AppTemplate app;
@@ -87,17 +89,10 @@ public class CSGStyle extends AppStyleComponent {
 		workspace.getStyleClass().add(CLASS_RPANE);
 		workspace.getInputBox().getStyleClass().add(CLASS_VBOX);
 		workspace.getSectionL().getStyleClass().add(CLASS_LABEL);
-		workspace.getButtons().getStyleClass().add(CLASS_HBOX);
-		workspace.getSupTA1Box().getStyleClass().add(CLASS_HBOX);
-		workspace.getSupTA2Box().getStyleClass().add(CLASS_HBOX);
-		workspace.getDayBox().getStyleClass().add(CLASS_HBOX);
-		workspace.getInstrBox().getStyleClass().add(CLASS_HBOX);
-		workspace.getLocationBox().getStyleClass().add(CLASS_HBOX);
-		workspace.getSection().getStyleClass().add(CLASS_HBOX);
 		workspace.getHeaderBox().getStyleClass().add(CLASS_HBOX);
-
 		workspace.getHeader().getStyleClass().add(CLASS_HEADER_LABEL);
 		workspace.getAddEditL().getStyleClass().add(CLASS_SUBHEADER);
+		workspace.getInputGrid().getStyleClass().add(CLASS_INPUT_GRID);
 	}
 
 	public void initProjectStyle() {
@@ -107,23 +102,15 @@ public class CSGStyle extends AppStyleComponent {
 		workspace.getTeam().getStyleClass().add(CLASS_VBOX);
 		workspace.getStudents().getStyleClass().add(CLASS_VBOX);
 		workspace.getStyleClass().add(CLASS_RPANE);
-		workspace.getfNameRow().getStyleClass().add(CLASS_HBOX);
-		workspace.getlNameRow().getStyleClass().add(CLASS_HBOX);
-		workspace.getColorRow().getStyleClass().add(CLASS_HBOX);
-		workspace.getNameRow().getStyleClass().add(CLASS_HBOX);
-		workspace.getStudentButtonsRow().getStyleClass().add(CLASS_HBOX);
-		workspace.getLinkRow().getStyleClass().add(CLASS_HBOX);
-		workspace.getRoleRow().getStyleClass().add(CLASS_HBOX);
 		workspace.getStudentHead().getStyleClass().add(CLASS_HBOX);
-		workspace.getTeamRow().getStyleClass().add(CLASS_HBOX);
 		workspace.getTeamHead().getStyleClass().add(CLASS_HBOX);
-		workspace.getTeamButtonRow().getStyleClass().add(CLASS_HBOX);
-		workspace.getStudentButtonsRow().getStyleClass().add(CLASS_HBOX);
 		workspace.getHeader().getStyleClass().add(CLASS_HEADER_LABEL);
 		workspace.getStudent().getStyleClass().add(CLASS_SUBHEADER);
 		workspace.getTeamsL().getStyleClass().add(CLASS_SUBHEADER);
 		workspace.getAddEditL().getStyleClass().add(CLASS_SUBHEADER);
 		workspace.getSAddEdit().getStyleClass().add(CLASS_SUBHEADER);
+		workspace.getTeamIn().getStyleClass().add(CLASS_INPUT_GRID);
+		workspace.getStudentIn().getStyleClass().add(CLASS_INPUT_GRID);
 	}
 
 	public void initDetailsStyle() {
@@ -133,19 +120,12 @@ public class CSGStyle extends AppStyleComponent {
 		workspace.getCourseInfo().getStyleClass().add(CLASS_VBOX);
 		workspace.getSiteTemplate().getStyleClass().add(CLASS_VBOX);
 		workspace.getPageStyle().getStyleClass().add(CLASS_VBOX);
-		workspace.getInstrHomeBox().getStyleClass().add(CLASS_HBOX);
-		workspace.getInstrNameBox().getStyleClass().add(CLASS_HBOX);
-		workspace.getExporBox().getStyleClass().add(CLASS_HBOX);
-		workspace.getBanner().getStyleClass().add(CLASS_HBOX);
-		workspace.getLeftFoot().getStyleClass().add(CLASS_HBOX);
-		workspace.getRightFoot().getStyleClass().add(CLASS_HBOX);
-		workspace.getTitleBox().getStyleClass().add(CLASS_HBOX);
-		workspace.getSubNumBox().getStyleClass().add(CLASS_HBOX);
 		workspace.getStylePane().getStyleClass().add(CLASS_HBOX);
-		workspace.getSemYearBox().getStyleClass().add(CLASS_HBOX);
 		workspace.getSiteL().getStyleClass().add(CLASS_SUBHEADER);
 		workspace.getInfoL().getStyleClass().add(CLASS_SUBHEADER);
 		workspace.getPageStyleL().getStyleClass().add(CLASS_SUBHEADER);
+		workspace.getImageIn().getStyleClass().add(CLASS_INPUT_GRID);
+		workspace.getComboIn().getStyleClass().add(CLASS_INPUT_GRID);
 	}
 
 	public void initScheduleStyle() {
@@ -154,17 +134,9 @@ public class CSGStyle extends AppStyleComponent {
 		workspace.getStyleClass().add(CLASS_TAB_VBOX);
 		workspace.getCalendar().getStyleClass().add(CLASS_VBOX);
 		workspace.getInput().getStyleClass().add(CLASS_VBOX);
-		workspace.getAdd().getStyleClass().add(CLASS_HBOX);
-		workspace.getButtons().getStyleClass().add(CLASS_HBOX);
-		workspace.getCalendarSelection().getStyleClass().add(CLASS_HBOX);
-		workspace.getCriteria().getStyleClass().add(CLASS_HBOX);
-		workspace.getDate().getStyleClass().add(CLASS_HBOX);
-		workspace.getInTitle().getStyleClass().add(CLASS_HBOX);
+		workspace.getScheduleIn().getStyleClass().add(CLASS_INPUT_GRID);
+		workspace.getCalendarIn().getStyleClass().add(CLASS_INPUT_GRID);
 		workspace.getInputHead().getStyleClass().add(CLASS_HBOX);
-		workspace.getLink().getStyleClass().add(CLASS_HBOX);
-		workspace.getTime().getStyleClass().add(CLASS_HBOX);
-		workspace.getTopic().getStyleClass().add(CLASS_HBOX);
-		workspace.getType().getStyleClass().add(CLASS_HBOX);
 		workspace.getAddL().getStyleClass().add(CLASS_SUBHEADER);
 		workspace.getCalendarL().getStyleClass().add(CLASS_SUBHEADER);
 		workspace.getItemL().getStyleClass().add(CLASS_SUBHEADER);

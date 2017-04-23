@@ -7,6 +7,7 @@ import csg.data.RecitationData;
 import csg.ta.TeachingAssistant;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import properties_manager.PropertiesManager;
@@ -21,7 +22,8 @@ public class RecitationPane extends VBox {
 	TextField sectionTF, instructorTF, dayTimeTF, locationTF;
 	ComboBox<TeachingAssistant> comboBox1, comboBox2;
 	VBox inputBox;
-	HBox headerBox, section, instrBox, dayBox, locationBox, supTA1Box, supTA2Box, buttons;
+	HBox headerBox;
+	GridPane inputGrid;
 	TableColumn<Recitation, String> sectionCol, instructorCol,
 			dayTimeCol, locationCol, ta1Col, ta2Col;
 
@@ -82,22 +84,11 @@ public class RecitationPane extends VBox {
 		addUp = new Button(props.getProperty(CSGAppProp.ADD_UP_TEXT));
 		clear = new Button(props.getProperty(CSGAppProp.CLEAR_TEXT));
 
-		section = new HBox();
-		section.getChildren().addAll(sectionL, sectionTF);
-		instrBox = new HBox();
-		instrBox.getChildren().addAll(instructor, instructorTF);
-		dayBox = new HBox();
-		dayBox.getChildren().addAll(dayTime, dayTimeTF);
-		locationBox = new HBox();
-		locationBox.getChildren().addAll(location, locationTF);
-		supTA1Box = new HBox();
-		supTA1Box.getChildren().addAll(supervisingLabel1, comboBox1);
-		supTA2Box = new HBox();
-		supTA2Box.getChildren().addAll(supervisingLabel2, comboBox2);
-		buttons = new HBox();
-		buttons.getChildren().addAll(addUp, clear);
-		inputBox.getChildren().addAll(addEditL, section, instrBox, dayBox, locationBox,
-				supTA1Box, supTA2Box, buttons);
+		inputGrid = new GridPane();
+		inputGrid.addColumn(0, sectionL, instructor, dayTime, location, supervisingLabel1, supervisingLabel2, addUp);
+		inputGrid.addColumn(1, sectionTF, instructorTF, dayTimeTF, locationTF, comboBox1, comboBox2, clear);
+
+		inputBox.getChildren().addAll(addEditL, inputGrid);
 
 		this.getChildren().addAll(headerBox, table, inputBox);
 
@@ -198,32 +189,8 @@ public class RecitationPane extends VBox {
 		return headerBox;
 	}
 
-	public HBox getSection() {
-		return section;
-	}
-
-	public HBox getInstrBox() {
-		return instrBox;
-	}
-
-	public HBox getDayBox() {
-		return dayBox;
-	}
-
-	public HBox getLocationBox() {
-		return locationBox;
-	}
-
-	public HBox getSupTA1Box() {
-		return supTA1Box;
-	}
-
-	public HBox getSupTA2Box() {
-		return supTA2Box;
-	}
-
-	public HBox getButtons() {
-		return buttons;
+	public GridPane getInputGrid() {
+		return inputGrid;
 	}
 
 	public TableColumn<Recitation, String> getSectionCol() {

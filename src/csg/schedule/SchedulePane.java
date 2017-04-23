@@ -9,17 +9,20 @@ import csg.data.CSGData;
 import csg.data.ScheduleData;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import properties_manager.PropertiesManager;
 
 public class SchedulePane extends VBox {
 	Label header, calendarL, start, end, itemL;
-	HBox calendarSelection, inputHead;
+	HBox inputHead;
 	VBox calendar, input;
 	TableView table;
 	Label addL, typeL, dateL, timeL, titleL, topicL, linkL, criteriaL;
-	HBox add, type, date, time, inTitle, topic, link, criteria, buttons;
+	HBox add;
+	GridPane calendarIn, scheduleIn;
 	ComboBox<String> typeCB;
 	DatePicker startDate, endDate, inDate;
 	TextField timeTF, titleTF, linkTF, criteriaTF, topicTF;
@@ -40,13 +43,13 @@ public class SchedulePane extends VBox {
 
 		header = new Label(props.getProperty(CSGAppProp.S_TITLE));
 		calendarL = new Label(props.getProperty(CSGAppProp.S_CALENDAR_BOUNDS));
-		start = new Label(props.getProperty(CSGAppProp.S_CAL_START_TEXT));
-		end = new Label(props.getProperty(CSGAppProp.S_CAL_END_TEXT));
+		start = new Label(props.getProperty(CSGAppProp.S_CAL_START_TEXT) + ":");
+		end = new Label(props.getProperty(CSGAppProp.S_CAL_END_TEXT) + ":");
 
 		calendar = new VBox();
-		calendarSelection = new HBox();
-		calendarSelection.getChildren().addAll(start, startDate, end, endDate);
-		calendar.getChildren().addAll(calendarL, calendarSelection);
+		calendarIn = new GridPane();
+		calendarIn.addRow(0, start, startDate, new Pane(), end, endDate);
+		calendar.getChildren().addAll(calendarL, calendarIn);
 
 		ScheduleData sData = ((CSGData) app.getDataComponent()).getScheduleData();
 		itemL = new Label(props.getProperty(CSGAppProp.S_ITEMS_TEXT));
@@ -88,35 +91,20 @@ public class SchedulePane extends VBox {
 		table.getColumns().addAll(typeCol, dateCol, titleCol, topicCol);
 
 		inputHead = new HBox();
+		scheduleIn = new GridPane();
 		add = new HBox();
-		type = new HBox();
-		date = new HBox();
-		time = new HBox();
-		inTitle = new HBox();
-		topic = new HBox();
-		link = new HBox();
-		criteria = new HBox();
-		buttons = new HBox();
-
 		inputHead.getChildren().add(itemL);
 		removeButton = app.getGUI().initChildButton(inputHead, CSGAppProp.REMOVE_ICON.toString(),
 				CSGAppProp.REMOVE_TOOLTIP.toString(), false);
 		add.getChildren().add(addL);
-		type.getChildren().addAll(typeL, typeCB);
-		date.getChildren().addAll(dateL, inDate);
-		time.getChildren().addAll(timeL, timeTF);
-		inTitle.getChildren().addAll(titleL, titleTF);
-		topic.getChildren().addAll(topicL, topicTF);
-		link.getChildren().addAll(linkL, linkTF);
-		criteria.getChildren().addAll(criteriaL, criteriaTF);
 
 		addButton = new Button(props.getProperty(CSGAppProp.ADD_UP_TEXT));
 		clearButton = new Button(props.getProperty(CSGAppProp.CLEAR_TEXT));
-		buttons.getChildren().addAll(addButton, clearButton);
+		scheduleIn.addColumn(0, typeL, dateL, timeL, titleL, topicL, linkL, criteriaL, addButton);
+		scheduleIn.addColumn(1, typeCB, inDate, timeTF, titleTF, topicTF, linkTF, criteriaTF, clearButton);
 
 		input = new VBox();
-		input.getChildren().addAll(inputHead, table, add, type,
-				date, time, inTitle, topic, link, criteria, buttons);
+		input.getChildren().addAll(inputHead, table, add, scheduleIn);
 
 		this.getChildren().addAll(header, calendar, input);
 	}
@@ -145,48 +133,16 @@ public class SchedulePane extends VBox {
 		return addL;
 	}
 
-	public HBox getCalendarSelection() {
-		return calendarSelection;
+	public GridPane getCalendarIn() {
+		return calendarIn;
 	}
 
-	public HBox getInputHead() {
+	public GridPane getScheduleIn() {
+		return scheduleIn;
+	}
+
+	public HBox getInputHead(){
 		return inputHead;
-	}
-
-	public HBox getAdd() {
-		return add;
-	}
-
-	public HBox getType() {
-		return type;
-	}
-
-	public HBox getDate() {
-		return date;
-	}
-
-	public HBox getTime() {
-		return time;
-	}
-
-	public HBox getInTitle() {
-		return inTitle;
-	}
-
-	public HBox getTopic() {
-		return topic;
-	}
-
-	public HBox getLink() {
-		return link;
-	}
-
-	public HBox getCriteria() {
-		return criteria;
-	}
-
-	public HBox getButtons() {
-		return buttons;
 	}
 }
 

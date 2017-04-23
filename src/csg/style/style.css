@@ -24,6 +24,11 @@
     -fx-alignment: CENTER_LEFT;
 }
 
+.input_grid{
+    -fx-hgap: 20px;
+    -fx-vgap: 5px;
+}
+
 .dialog_heading {
 }
 

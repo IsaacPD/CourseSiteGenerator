@@ -21,10 +21,10 @@
         {
             "section":"23",
             "instructor":"Prof. Duarte",
-            "day":"Tuesday",
+            "day_time":"Tuesday",
             "location":"OLD CS",
-            "ta1":"Isaac",
-            "ta2":"Duarte"
+            "ta_1":"Isaac",
+            "ta_2":"Duarte"
         }
     ],
     "teams":[
@@ -43,12 +43,19 @@
             "role":"Cool Guy"
         }
     ],
+    "startingMondayMonth":"0",
+    "startingMondayDay":"0",
+    "endingFridayMonth":"0",
+    "endingFridayDay":"0",
     "schedule_items":[
         {
             "type":"Holiday",
             "date":"10/31/17",
             "title":"HallowBEEN",
-            "topic":"SCARY"
+            "topic":"SCARY",
+            "link":"FUN",
+            "time":"",
+            "criteria":""
         }
     ]
 }

@@ -1,0 +1,28 @@
+{
+    "startHour":"9",
+    "endHour":"20",
+    "undergrad_tas":[
+        {
+            "name":"Isaac Duarte",
+            "email":"i@you.com"
+        }
+    ],
+    "grad_tas":[
+        {
+            "name":"Paul Duarte",
+            "email":"i@you.com"
+        }
+    ],
+    "officeHours":[
+        {
+            "day":"MONDAY",
+            "time":"10_00am",
+            "name":"Isaac"
+        },
+        {
+            "day":"FRIDAY",
+            "time":"10_00am",
+            "name":"Paul"
+        }
+    ]
+}
