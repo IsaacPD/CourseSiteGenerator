@@ -216,4 +216,11 @@ public class RecitationPane extends VBox {
 	public TableColumn<Recitation, String> getTa2Col() {
 		return ta2Col;
 	}
+
+	public void resetWorkspace() {
+		clear.fire();
+	}
+
+	public void reloadWorkspace() {
+	}
 }

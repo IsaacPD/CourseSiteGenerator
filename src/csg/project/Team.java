@@ -33,6 +33,13 @@ public class Team {
 		return name.get();
 	}
 
+	public void setAll(Team other){
+		name.set(other.getName());
+		color.set(other.getColor());
+		tColor.set(other.getTColor());
+		link.set(other.getLink());
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

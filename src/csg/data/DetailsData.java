@@ -79,4 +79,9 @@ public class DetailsData {
 			}
 		}
 	}
+
+	public void resetData() {
+		images.clear();
+		details.clear();
+	}
 }

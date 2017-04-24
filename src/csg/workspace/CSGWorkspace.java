@@ -57,23 +57,23 @@ public class CSGWorkspace extends AppWorkspaceComponent {
 	}
 
 	public TeachingAssistantPane getTeachingAssistantPane() {
-		return (TeachingAssistantPane) tabSpace.getTabs().get(1).getContent();
+		return taPane;
 	}
 
 	public RecitationPane getRecitationPane() {
-		return (RecitationPane) tabSpace.getTabs().get(2).getContent();
+		return rPane;
 	}
 
 	public ProjectPane getProjectPane() {
-		return (ProjectPane) tabSpace.getTabs().get(4).getContent();
+		return pPane;
 	}
 
 	public SchedulePane getSchedulePane() {
-		return (SchedulePane) tabSpace.getTabs().get(3).getContent();
+		return sPane;
 	}
 
 	public CourseDetailsPane getCourseDetailsPane() {
-		return (CourseDetailsPane) tabSpace.getTabs().get(0).getContent();
+		return cdPane;
 	}
 
 	public TabPane getTabSpace() {
@@ -82,11 +82,20 @@ public class CSGWorkspace extends AppWorkspaceComponent {
 
 	@Override
 	public void resetWorkspace() {
+		app.jtps.clearTransactions();
 		taPane.resetWorkspace();
+		cdPane.resetWorkspace();
+		sPane.resetWorkspace();
+		pPane.resetWorkspace();
+		rPane.resetWorkspace();
 	}
 
 	@Override
 	public void reloadWorkspace(AppDataComponent appDataComponent) {
 		taPane.reloadWorkspace();
+		cdPane.reloadWorkspace();
+		sPane.reloadWorkspace();
+		pPane.reloadWorkspace();
+		rPane.reloadWorkspace();
 	}
 }

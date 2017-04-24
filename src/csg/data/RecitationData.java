@@ -23,4 +23,8 @@ public class RecitationData {
 		recitations.remove(r);
 		return r;
 	}
+
+	public void resetData() {
+		recitations.clear();
+	}
 }

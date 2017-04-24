@@ -51,11 +51,11 @@
         {
             "type":"Holiday",
             "date":"10/31/17",
+            "time":"12:00am",
             "title":"HallowBEEN",
             "topic":"SCARY",
             "link":"FUN",
-            "time":"",
-            "criteria":""
+            "criteria":"https://www.google.com"
         }
     ]
 }

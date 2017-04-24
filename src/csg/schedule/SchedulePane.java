@@ -19,7 +19,7 @@ public class SchedulePane extends VBox {
 	Label header, calendarL, start, end, itemL;
 	HBox inputHead;
 	VBox calendar, input;
-	TableView table;
+	TableView<ScheduleItem> table;
 	Label addL, typeL, dateL, timeL, titleL, topicL, linkL, criteriaL;
 	HBox add;
 	GridPane calendarIn, scheduleIn;
@@ -107,6 +107,24 @@ public class SchedulePane extends VBox {
 		input.getChildren().addAll(inputHead, table, add, scheduleIn);
 
 		this.getChildren().addAll(header, calendar, input);
+
+		controller = new ScheduleController(app);
+
+		addButton.setOnAction(e -> controller.handleAdd());
+		clearButton.setOnAction(event -> {
+			typeCB.getSelectionModel().clearSelection();
+			inDate.setValue(LocalDate.now());
+			timeTF.clear();
+			titleTF.clear();
+			topicTF.clear();
+			linkTF.clear();
+			criteriaTF.clear();
+			table.getSelectionModel().clearSelection();
+		});
+		removeButton.setOnAction(e -> controller.handleRemove());
+		startDate.setOnAction(e -> controller.handleStartDayChange());
+		endDate.setOnAction(e -> controller.handleEndDayChange());
+		table.setOnMouseClicked(e -> controller.handleTableClick());
 	}
 
 	public VBox getCalendar() {
@@ -143,6 +161,53 @@ public class SchedulePane extends VBox {
 
 	public HBox getInputHead(){
 		return inputHead;
+	}
+
+	public ComboBox<String> getTypeCB() {
+		return typeCB;
+	}
+
+	public DatePicker getStartDate() {
+		return startDate;
+	}
+
+	public DatePicker getEndDate() {
+		return endDate;
+	}
+
+	public DatePicker getInDate() {
+		return inDate;
+	}
+
+	public TextField getTimeTF() {
+		return timeTF;
+	}
+
+	public TextField getTitleTF() {
+		return titleTF;
+	}
+
+	public TextField getLinkTF() {
+		return linkTF;
+	}
+
+	public TextField getCriteriaTF() {
+		return criteriaTF;
+	}
+
+	public TextField getTopicTF() {
+		return topicTF;
+	}
+
+	public TableView<ScheduleItem> getTable() {
+		return table;
+	}
+
+	public void resetWorkspace() {
+		clearButton.fire();
+	}
+
+	public void reloadWorkspace() {
 	}
 }
 

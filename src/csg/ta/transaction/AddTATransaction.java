@@ -17,16 +17,13 @@ public class AddTATransaction implements jtps.jTPS_Transaction{
 	@Override
 	public void doTransaction() {
 		TAData data = ((CSGData) app.getDataComponent()).getTAData();
-
 		data.addTA(ta);
-
 		app.getGUI().getFileController().markAsEdited(app.getGUI());
 	}
 
 	@Override
 	public void undoTransaction() {
 		TAData data = ((CSGData) app.getDataComponent()).getTAData();
-
 		data.removeTA(ta);
 	}
 

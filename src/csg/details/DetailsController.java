@@ -33,7 +33,6 @@ public class DetailsController {
 		}
 	}
 
-
 	public void handleTemplateButton() {
 		DirectoryChooser dc = new DirectoryChooser();
 		dc.setInitialDirectory(new File("./templates"));

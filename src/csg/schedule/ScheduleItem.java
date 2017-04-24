@@ -40,8 +40,18 @@ public class ScheduleItem {
 		return criteria.get();
 	}
 
-	public String getTime() {
+	public String getTime(){
 		return time.get();
+	}
+
+	public void setAll(ScheduleItem obj){
+		type.set(obj.getType());
+		date.set(obj.getDate());
+		title.set(obj.getTitle());
+		topic.set(obj.getTopic());
+		link.set(obj.getLink());
+		criteria.set(obj.getCriteria());
+		time.set(obj.getTime());
 	}
 
 	@Override
@@ -54,6 +64,8 @@ public class ScheduleItem {
 		ScheduleItem that = (ScheduleItem) obj;
 
 		return getType().equals(that.getType()) && getDate().equals(that.getDate())
-				&& getTitle().equals(that.getTitle()) && getTopic().equals(that.getTopic());
+				&& getTitle().equals(that.getTitle()) && getTopic().equals(that.getTopic())
+				&& getTime().equals(that.getTime()) && getCriteria().equals(that.getCriteria())
+				&& getLink().equals(that.getLink());
 	}
 }

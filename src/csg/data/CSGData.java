@@ -45,6 +45,10 @@ public class CSGData implements AppDataComponent {
 
 	@Override
 	public void resetData() {
-
+		scheduleData.resetData();
+		taData.resetData();
+		recitationData.resetData();
+		projectData.resetData();
+		detailsData.resetData();
 	}
 }

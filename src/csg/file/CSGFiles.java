@@ -200,9 +200,11 @@ public class CSGFiles implements AppFileComponent {
 			JsonObject sJson = Json.createObjectBuilder()
 					.add(JSON_SI_TYPE, s.getType())
 					.add(JSON_SI_DATE, s.getDate())
+					.add(JSON_TIME, s.getTime())
 					.add(JSON_SI_TITLE, s.getTitle())
 					.add(JSON_SI_TOPIC, s.getTopic())
-					.add(JSON_SI_LINK, s.getLink()).build();
+					.add(JSON_SI_LINK, s.getLink())
+					.add(JSON_SI_CRITERIA, s.getCriteria()).build();
 			scheduleItemArrayBuilder.add(sJson);
 		}
 		builder.add(JSON_SCHEDULE_ITEM, scheduleItemArrayBuilder.build());

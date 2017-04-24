@@ -29,6 +29,13 @@ public class Student {
 		return role.get();
 	}
 
+	public void setAll(Student other){
+		fName.set(other.getFName());
+		lName.set(other.getLName());
+		team.set(other.getTeam());
+		role.set(other.getRole());
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

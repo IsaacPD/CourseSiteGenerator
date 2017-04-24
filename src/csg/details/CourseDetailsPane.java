@@ -240,4 +240,22 @@ public class CourseDetailsPane extends VBox {
 	public CSGApp getApp() {
 		return app;
 	}
+
+	public void resetWorkspace() {
+		selectedExportDir.setText("");
+		templateDirL.setText("");
+		titleTF.clear();
+		instructorHome.clear();
+		instructorName.clear();
+		subjectCB.getSelectionModel().clearSelection();
+		numberCB.getSelectionModel().clearSelection();
+		yearCB.getSelectionModel().clearSelection();
+		semesterCB.getSelectionModel().clearSelection();
+		leftFImage.setImage(null);
+		rightFImage.setImage(null);
+		bannerImage.setImage(null);
+	}
+
+	public void reloadWorkspace() {
+	}
 }

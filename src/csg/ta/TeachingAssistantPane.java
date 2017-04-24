@@ -144,9 +144,7 @@ public class TeachingAssistantPane extends HBox {
 
 		controller = new TAController(app);
 
-		taTable.setOnMouseClicked(e -> {
-			controller.handleTableClick();
-		});
+		taTable.setOnMouseClicked(e -> controller.handleTableClick());
 
 		// CONTROLS FOR ADDING TAs
 		clear.setOnAction(e -> {
@@ -155,33 +153,19 @@ public class TeachingAssistantPane extends HBox {
 			nameTF.requestFocus();
 			taTable.getSelectionModel().clearSelection();
 		});
-		nameTF.setOnAction(e -> {
-			controller.handleAddTA();
-		});
-		emailTF.setOnAction(e -> {
-			controller.handleAddTA();
-		});
-		add.setOnAction(e -> {
-			controller.handleAddTA();
-		});
+		nameTF.setOnAction(e -> controller.handleAddTA());
+		emailTF.setOnAction(e -> controller.handleAddTA());
+		add.setOnAction(e -> controller.handleAddTA());
 
-		remove.setOnAction(e -> {
-			controller.handleRemoveTA();
-		});
+		remove.setOnAction(e -> controller.handleRemoveTA());
 
 		// CONTROLS FOR KEY PRESSES
-		this.setOnKeyPressed(e -> {
-			controller.handleKeyPress(e);
-		});
+		this.setOnKeyPressed(e -> controller.handleKeyPress(e));
 
 		// CONTROLS FOR COMBOBOX
-		startTime.setOnAction(e -> {
-			controller.handleComboBox();
-		});
+		startTime.setOnAction(e -> controller.handleComboBox());
 
-		endTime.setOnAction(e -> {
-			controller.handleComboBox();
-		});
+		endTime.setOnAction(e -> controller.handleComboBox());
 	}
 
 	public TableView getTaTable() {
@@ -322,7 +306,6 @@ public class TeachingAssistantPane extends HBox {
 		ohGridTACellLabels.clear();
 
 		// CLEAR TRANSACTIONS AND TEXT FIELD
-		app.jtps.clearTransactions();
 		clear.fireEvent(new ActionEvent());
 	}
 

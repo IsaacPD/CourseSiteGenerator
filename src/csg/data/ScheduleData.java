@@ -56,4 +56,22 @@ public class ScheduleData {
 		schedules.remove(s);
 		return s;
 	}
+
+	public void resetData() {
+		schedules.clear();
+		mondayDay = 0;
+		mondayMonth = 0;
+		fridayDay = 0;
+		fridayMonth = 0;
+	}
+
+	public void setStartingMonday(int month, int day) {
+		mondayMonth = month;
+		mondayDay = day;
+	}
+
+	public void setEndingFriday(int month, int day){
+		fridayMonth = month;
+		fridayDay = day;
+	}
 }

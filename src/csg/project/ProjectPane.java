@@ -8,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import properties_manager.PropertiesManager;
 
 import static csg.CSGAppProp.*;
@@ -131,6 +132,29 @@ public class ProjectPane extends VBox {
 				studentIn);
 
 		this.getChildren().addAll(header, team, students);
+
+		controller = new ProjectController(app);
+
+		removeTeam.setOnAction(e -> controller.handleRemoveTeam());
+		studentRemove.setOnAction(e -> controller.handleRemoveStudent());
+		addStudent.setOnAction(e -> controller.handleAddStudent());
+		addButton.setOnAction(e -> controller.handleAddTeam());
+		studentTable.setOnMouseClicked(e -> controller.handleStudentTableClick());
+		teamTable.setOnMouseClicked(e -> controller.handleTeamTableClick());
+		clearStudent.setOnAction(e -> {
+			fNameTF.clear();
+			lNameTF.clear();
+			teamCB.getSelectionModel().clearSelection();
+			roleTF.clear();
+			studentTable.getSelectionModel().clearSelection();
+		});
+		clearButton.setOnAction(e -> {
+			nameTF.clear();
+			colorPicker.setValue(Color.WHITE);
+			textColor.setValue(Color.WHITE);
+			linkTF.clear();
+			teamTable.getSelectionModel().clearSelection();
+		});
 	}
 
 	public VBox getTeam() {
@@ -175,5 +199,61 @@ public class ProjectPane extends VBox {
 
 	public GridPane getTeamIn() {
 		return teamIn;
+	}
+
+	public TableView<Team> getTeamTable() {
+		return teamTable;
+	}
+
+	public TableView<Student> getStudentTable() {
+		return studentTable;
+	}
+
+	public TextField getNameTF() {
+		return nameTF;
+	}
+
+	public TextField getLinkTF() {
+		return linkTF;
+	}
+
+	public TextField getfNameTF() {
+		return fNameTF;
+	}
+
+	public TextField getlNameTF() {
+		return lNameTF;
+	}
+
+	public TextField getRoleTF() {
+		return roleTF;
+	}
+
+	public ColorPicker getColorPicker() {
+		return colorPicker;
+	}
+
+	public ColorPicker getTextColor() {
+		return textColor;
+	}
+
+	public ComboBox<Team> getTeamCB() {
+		return teamCB;
+	}
+
+	public Button getClearButton() {
+		return clearButton;
+	}
+
+	public Button getClearStudent() {
+		return clearStudent;
+	}
+
+	public void resetWorkspace() {
+		clearButton.fire();
+		clearStudent.fire();
+	}
+
+	public void reloadWorkspace() {
 	}
 }

@@ -41,4 +41,18 @@ public class ProjectData {
 		students.remove(s);
 		return s;
 	}
+
+	public Team getTeam(String name){
+		for (Team t: teams){
+			if (t.getName().equals(name))
+				return t;
+		}
+
+		return null;
+	}
+
+	public void resetData() {
+		teams.clear();
+		students.clear();
+	}
 }
