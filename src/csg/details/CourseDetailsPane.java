@@ -143,6 +143,17 @@ public class CourseDetailsPane extends VBox {
 		bannerChange.setOnAction(e -> controller.handleBannerChange());
 		leftChange.setOnAction(e -> controller.handleLeftImageChange());
 		rightChange.setOnAction(e -> controller.handleRightImageChange());
+		semesterCB.setOnAction(e -> change());
+		subjectCB.setOnAction(e -> change());
+		yearCB.setOnAction(e -> change());
+		numberCB.setOnAction(e -> change());
+		titleTF.setOnAction(e -> change());
+		instructorName.setOnKeyTyped(e -> change());
+		instructorHome.setOnKeyTyped(e -> change());
+	}
+
+	private void change() {
+		app.getGUI().getFileController().markAsEdited(app.getGUI());
 	}
 
 	public VBox getCourseInfo() {
@@ -199,6 +210,10 @@ public class CourseDetailsPane extends VBox {
 
 	public GridPane getComboIn() {
 		return comboIn;
+	}
+
+	public ComboBox<File> getStyleCB() {
+		return styleCB;
 	}
 
 	public GridPane getTfIn() {

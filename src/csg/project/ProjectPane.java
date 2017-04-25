@@ -25,6 +25,7 @@ public class ProjectPane extends VBox {
 	GridPane studentIn, teamIn;
 	Label sAddEdit, fNameL, lNameL, student, teamL, roleL;
 	ComboBox<Team> teamCB;
+	ComboBox<String> roles;
 	TableColumn<Team, String> nameCol, colorCol, textColorCol, linkCol;
 	TableColumn<Student, String> fNameCol, lNameCol, roleCol, teamCol;
 
@@ -115,6 +116,7 @@ public class ProjectPane extends VBox {
 		teamCB = new ComboBox<>(data.getTeams());
 		roleL = new Label(props.getProperty(P_ROLE_TEXT) + ":");
 		roleTF = new TextField();
+		roles = new ComboBox<>(data.getRole());
 		addStudent = new Button(props.getProperty(ADD_UP_TEXT));
 		clearStudent = new Button(props.getProperty(CLEAR_TEXT));
 
@@ -126,6 +128,7 @@ public class ProjectPane extends VBox {
 		studentIn = new GridPane();
 		studentIn.addColumn(0, fNameL, lNameL, teamL, roleL, addStudent);
 		studentIn.addColumn(1, fNameTF, lNameTF, teamCB, roleTF, clearStudent);
+		studentIn.add(roles, 2, 3);
 
 		students = new VBox();
 		students.getChildren().addAll(studentHead, studentTable, sAddEdit,
@@ -146,6 +149,7 @@ public class ProjectPane extends VBox {
 			lNameTF.clear();
 			teamCB.getSelectionModel().clearSelection();
 			roleTF.clear();
+			roles.getSelectionModel().clearSelection();
 			studentTable.getSelectionModel().clearSelection();
 		});
 		clearButton.setOnAction(e -> {
@@ -255,5 +259,9 @@ public class ProjectPane extends VBox {
 	}
 
 	public void reloadWorkspace() {
+	}
+
+	public ComboBox<String> getRoles() {
+		return roles;
 	}
 }

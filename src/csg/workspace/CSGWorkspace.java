@@ -37,7 +37,6 @@ public class CSGWorkspace extends AppWorkspaceComponent {
 		pPane = new ProjectPane(initApp);
 
 		tabSpace = new TabPane();
-		tabSpace.setMaxHeight(800);
 		tabSpace.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 		tabSpace.getTabs().add(new Tab(properties.getProperty(TAB_COURSE_DETAILS), cdPane));
 		tabSpace.getTabs().add(new Tab(properties.getProperty(TAB_TA_DATA), taPane));
@@ -49,6 +48,8 @@ public class CSGWorkspace extends AppWorkspaceComponent {
 		workspace = new VBox();
 		workspace.getChildren().add(tabSpace);
 
+		workspace.prefHeightProperty().bind(app.getGUI().getAppPane().heightProperty().multiply(.95));
+		tabSpace.prefWidthProperty().bind(workspace.prefWidthProperty());
 		tabSpace.tabMinWidthProperty().bind(workspace.widthProperty().divide(6));
 
 		workspace.setOnKeyPressed(e -> {

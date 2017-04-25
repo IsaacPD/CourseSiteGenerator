@@ -42,6 +42,7 @@ public class DetailsController {
 		if (selection != null) {
 			workspace.getTemplateDirL().setText(selection.getPath());
 			((CSGData) app.getDataComponent()).getDetailsData().addDetails(selection.getPath());
+			app.getGUI().getFileController().markAsEdited(app.getGUI());
 		}
 	}
 
@@ -80,6 +81,7 @@ public class DetailsController {
 		fc.setInitialDirectory(new File(PATH_IMAGES));
 		File selection = fc.showOpenDialog(app.getGUI().getWindow());
 		pane.setImage(new Image(new FileInputStream(selection)));
-		((CSGData) app.getDataComponent()).getDetailsData().getImages().replace(pane, selection);
+		((CSGData) app.getDataComponent()).getDetailsData().getImages().put(pane, selection);
+		app.getGUI().getFileController().markAsEdited(app.getGUI());
 	}
 }

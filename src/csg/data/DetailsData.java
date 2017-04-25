@@ -71,7 +71,6 @@ public class DetailsData {
 				for (File data : files.listFiles()) {
 					if (data.getName().contains(".js") && data.getName().contains("Builder")) {
 						detailsBuilder.addScript(data.getName());
-						System.out.println(data.getName());
 						break;
 					}
 				}
@@ -83,5 +82,15 @@ public class DetailsData {
 	public void resetData() {
 		images.clear();
 		details.clear();
+	}
+
+	public File getStyle(String css) {
+		String[] n = css.replace('\\', '/').split("/");
+		String name = n[n.length - 1];
+		for (File f : stylesheets) {
+			if (f.getName().equals(name))
+				return f;
+		}
+		return null;
 	}
 }

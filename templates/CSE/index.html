@@ -8,14 +8,17 @@
 
 	<link href="index_files/course_homepage_layout.css" rel="stylesheet" type="text/css">
 
+
 	<link href="index_files/sea_wolf.css" rel="stylesheet" type="text/css">
 	<script src="jquery.js"></script>
-    <script src="NavbarBuilder.js"></script>        
+	<script src="index_files/TeamsBuilder.js"></script>
+    <script src="NavbarBuilder.js"></script>
 	
 		<script>
 		    $(document).ready()
 		    {
 			buildNavbar();
+			initTeamsAndStudents();
 		    }
 	    </script>
 
@@ -37,7 +40,7 @@
 
 	    <div id="desc">
 
-		<p>Welcome to the <span id="inlined_course">CSE219</span> Web site. If
+		<p>Welcome to the <span id="inlined_course"></span> Web site. If
  you are enrolled in the course, be sure to periodically check this site
  for all materials and changes as the semester moves along. Note that 
 all grades will be posted to <a href="http://blackboard.stonybrook.edu/">Blackboard</a>.<br>
@@ -48,10 +51,13 @@ all grades will be posted to <a href="http://blackboard.stonybrook.edu/">Blackbo
 		    <br>
 		    <br>
 		    <br>
-		    <br>
-		    <br>
-		    <br>
 		</p>
+
+			<div id="teams_tables">
+				<!-- JavaScript WILL FILL THIS IN WITH DATA
+                PULLED FROM A JSon FILE -->
+				<br>
+			</div>
 
 		<br>
 

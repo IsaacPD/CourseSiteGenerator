@@ -39,7 +39,8 @@ public class ProjectController {
 		String fName = workspace.getfNameTF().getText();
 		String lName = workspace.getlNameTF().getText();
 		String team = workspace.getTeamCB().getSelectionModel().getSelectedItem().getName();
-		String role = workspace.getRoleTF().getText();
+		String role = (workspace.getRoles().getSelectionModel().getSelectedItem() != null)
+				? workspace.getRoles().getSelectionModel().getSelectedItem() : workspace.getRoleTF().getText();
 
 		if (selected == null)
 			app.jtps.addTransaction(new AddStudentTransaction(app, new Student(fName, lName, team, role)));

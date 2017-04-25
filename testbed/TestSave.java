@@ -14,7 +14,7 @@ import java.io.IOException;
 public class TestSave {
 	static Recitation testR = new Recitation("23", "Prof. Duarte", "Tuesday", "OLD CS", "Isaac", "Duarte");
 	static TeachingAssistant testTA = new TeachingAssistant("Isaac Duarte", "i@you.com", true);
-	static Team testTeam = new Team("ROBOBOTS", "FFFFFF", "000000", "www.youtube.com");
+	static Team testTeam = new Team("ROBOBOTS", "#FFFFFF", "#000000", "www.youtube.com");
 	static Student testStudent = new Student("Isaac", "Pablo", testTeam.getName(), "Cool Guy");
 	static ScheduleItem testSchedule = new ScheduleItem("Holiday", "10/31/17","12:00am", "HallowBEEN", "SCARY", "FUN", "https://www.google.com");
 
@@ -25,7 +25,6 @@ public class TestSave {
 			new JFXPanel(); // Initializes the JavaFx Platform
 			Platform.runLater(() -> {
 				app.start(new Stage());
-				app.getGUI().getFileController().handleNewRequest();
 				CSGData dataComponent = (CSGData) app.getDataComponent();
 				dataComponent.getRecitationData().addRecitation(testR);
 				dataComponent.getTAData().addTA(testTA);

@@ -34,7 +34,7 @@ public class TAData {
 	public static final int MIN_START_HOUR = 9;
 	public static final int MAX_END_HOUR = 20;
 
-	public TAData(CSGApp initApp){
+	public TAData(CSGApp initApp) {
 		app = initApp;
 
 		// CONSTRUCT THE LIST OF TAs FOR THE TABLE
@@ -47,7 +47,7 @@ public class TAData {
 		endHour = MAX_END_HOUR;
 
 		//THIS WILL STORE OUR OFFICE HOURS
-		officeHours = new HashMap();
+		officeHours = new HashMap<>();
 
 		// THESE ARE THE LANGUAGE-DEPENDENT OFFICE HOURS GRID HEADERS
 		PropertiesManager props = PropertiesManager.getPropertiesManager();
@@ -57,7 +57,7 @@ public class TAData {
 		gridHeaders.addAll(timeHeaders);
 		gridHeaders.addAll(dowHeaders);
 
-		for (int i = 9; i < 20; i++) {
+		for (int i = 0; i < 24; i++) {
 			times.add(getTimeString(i, true));
 		}
 	}
@@ -93,11 +93,11 @@ public class TAData {
 		return times;
 	}
 
-	public String getCellKey(int col, int row){
+	public String getCellKey(int col, int row) {
 		return col + "_" + row;
 	}
 
-	public StringProperty getCellTextProperty(int col, int row){
+	public StringProperty getCellTextProperty(int col, int row) {
 		String cellKey = getCellKey(col, row);
 		return officeHours.get(cellKey);
 	}
@@ -117,7 +117,7 @@ public class TAData {
 		if (hour > 12) {
 			hour -= 12;
 		}
-		if (hour == 0){
+		if (hour == 0) {
 			hour = 12;
 		}
 		String cellText = "" + hour + ":" + minutesText;
@@ -182,12 +182,8 @@ public class TAData {
 		int initStartHour = Integer.parseInt(startHourText);
 		int initEndHour = Integer.parseInt(endHourText);
 
-		if ((initStartHour >= MIN_START_HOUR)
-				&& (initEndHour <= MAX_END_HOUR)
-				&& (initStartHour <= initEndHour)) {
-			// THESE ARE VALID HOURS SO KEEP THEM
-			initOfficeHours(initStartHour, initEndHour);
-		}
+		// THESE ARE VALID HOURS SO KEEP THEM
+		initOfficeHours(initStartHour, initEndHour);
 	}
 
 	public boolean containsTA(String testName, String testEmail) {
@@ -215,7 +211,7 @@ public class TAData {
 	}
 
 	public void addTA(TeachingAssistant ta) {
-		if(!containsTA(ta.getName(), ta.getEmail())){
+		if (!containsTA(ta.getName(), ta.getEmail())) {
 			teachingAssistants.add(ta);
 		}
 
@@ -291,7 +287,7 @@ public class TAData {
 
 		TeachingAssistantPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getTeachingAssistantPane();
 
-		if (!newName.equals(name)){
+		if (!newName.equals(name)) {
 			HashMap<String, Pane> panes = workspace.getOfficeHoursGridTACellPanes();
 
 			for (Pane p : panes.values()) {
@@ -313,11 +309,11 @@ public class TAData {
 		((TableColumn) (workspace.getTaTable().getColumns().get(0))).setVisible(true);
 	}
 
-	public ArrayList<TimeSlot> changeHours(int start, int end){
+	public ArrayList<TimeSlot> changeHours(int start, int end) {
 		try {
 			CSGFiles fileComponent = (CSGFiles) app.getFileComponent();
 			ArrayList<TimeSlot> removed;
-			removed = fileComponent.saveChangedTimes(this, ""+start, ""+end);
+			removed = fileComponent.saveChangedTimes(this, "" + start, "" + end);
 
 			startHour = start;
 			endHour = end;
@@ -325,8 +321,7 @@ public class TAData {
 			(((CSGWorkspace) app.getWorkspaceComponent()).getTeachingAssistantPane()).reloadTimes(this);
 			fileComponent.loadChangedTimes(this);
 			return removed;
-		}
-		catch(IOException e) {
+		} catch (IOException e) {
 			return null;
 		}
 	}

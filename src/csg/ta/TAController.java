@@ -242,7 +242,7 @@ public class TAController {
 		int startTime = (start != null) ? getTime(start) : dataSpace.getStartHour();
 		int endTime = (end != null) ? getTime(end) : dataSpace.getEndHour();
 
-		if (startTime >= endTime || startTime < TAData.MIN_START_HOUR || endTime > TAData.MAX_END_HOUR) {
+		if (startTime >= endTime) {
 			AppMessageDialogSingleton single = AppMessageDialogSingleton.getSingleton();
 			single.show(props.getProperty(TA_INVALID_TIMES_TITLE), props.getProperty(TA_INVALID_TIMES_MESSAGE));
 		} else if (start != null || end != null) {

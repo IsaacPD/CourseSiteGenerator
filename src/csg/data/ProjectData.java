@@ -8,12 +8,14 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
 public class ProjectData {
+	ObservableList<String> roles;
 	ObservableList<Team> teams;
 	ObservableList<Student> students;
 
 	public ProjectData(){
 		teams = FXCollections.observableArrayList();
 		students = FXCollections.observableArrayList();
+		roles = FXCollections.observableArrayList("Lead Programmer", "Project Manager", "Lead Designer", "Data Designer", "Mobile Developer");
 	}
 
 	public ObservableList<Team> getTeams() {
@@ -54,5 +56,9 @@ public class ProjectData {
 	public void resetData() {
 		teams.clear();
 		students.clear();
+	}
+
+	public ObservableList<String> getRole() {
+		return roles;
 	}
 }
