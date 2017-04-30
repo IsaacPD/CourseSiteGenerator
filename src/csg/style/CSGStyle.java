@@ -9,12 +9,10 @@ import csg.ta.TeachingAssistantPane;
 import csg.workspace.CSGWorkspace;
 import djf.components.AppStyleComponent;
 import djf.AppTemplate;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CSGStyle extends AppStyleComponent {

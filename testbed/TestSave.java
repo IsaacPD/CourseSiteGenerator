@@ -14,9 +14,9 @@ import java.io.IOException;
 public class TestSave {
 	static Recitation testR = new Recitation("23", "Prof. Duarte", "Tuesday", "OLD CS", "Isaac", "Duarte");
 	static TeachingAssistant testTA = new TeachingAssistant("Isaac Duarte", "i@you.com", true);
-	static Team testTeam = new Team("ROBOBOTS", "#FFFFFF", "#000000", "www.youtube.com");
-	static Student testStudent = new Student("Isaac", "Pablo", testTeam.getName(), "Cool Guy");
-	static ScheduleItem testSchedule = new ScheduleItem("Holiday", "10/31/17","12:00am", "HallowBEEN", "SCARY", "FUN", "https://www.google.com");
+	static Team testTeam = new Team("ROBOBOTS", "#9980E6", "#990000", "www.youtube.com");
+	static Student testStudent = new Student("Isaac", "Pablo", testTeam.getName(), "Lead Designer");
+	static ScheduleItem testSchedule = new ScheduleItem("Holiday", "4/18/18","12:00am", "HallowBEEN", "SCARY", "FUN", "https://www.google.com");
 
 	public static void main(String... args) throws InterruptedException {
 		CSGApp app = new CSGApp();

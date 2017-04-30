@@ -87,6 +87,7 @@ public class CSGFiles implements AppFileComponent {
 	static final String JSON_BLUE = "blue";
 	static final String JSON_GREEN = "green";
 	static final String JSON_STYLE = "import_style";
+	static final String JSON_EXPORT_DIR = "export_dir";
 	CSGApp app;
 
 	public CSGFiles(CSGApp initApp) {
@@ -277,6 +278,7 @@ public class CSGFiles implements AppFileComponent {
 		String instructorName = workspace.getInstructorName().getText();
 		String instructorHome = workspace.getInstructorHome().getText();
 		String templateDir = workspace.getTemplateDirL().getText();
+		String exportDir = workspace.getSelectedExportDir().getText();
 
 		File sheet = workspace.getStyleCB().getSelectionModel().getSelectedItem();
 		String css = (sheet != null) ? sheet.getPath() : "";
@@ -306,6 +308,7 @@ public class CSGFiles implements AppFileComponent {
 				.add(JSON_SEMESTER, (semester == null) ? "" : semester)
 				.add(JSON_YEAR, (year == null) ? "" : year)
 				.add(JSON_TITLE, (title == null) ? "" : title)
+				.add(JSON_EXPORT_DIR, (exportDir == null) ? "" : exportDir)
 				.add(JSON_TEMPLATE_DIR, (templateDir))
 				.add(JSON_LEFT_IMAGE, leftImage)
 				.add(JSON_RIGHT_IMAGE, rightImage)
@@ -399,21 +402,18 @@ public class CSGFiles implements AppFileComponent {
 
 		String subject = json.getString(JSON_SUBJECT);
 		workspace.getSubjectCB().getSelectionModel().select(subject);
-
 		String number = json.getString(JSON_NUMBER);
 		workspace.getNumberCB().getSelectionModel().select(number);
-
 		String semester = json.getString(JSON_SEMESTER);
 		workspace.getSemesterCB().getSelectionModel().select(semester);
-
 		String year = json.getString(JSON_YEAR);
 		workspace.getYearCB().getSelectionModel().select(year);
-
 		String title = json.getString(JSON_TITLE);
 		workspace.getTitleTF().setText(title);
-
 		String css = json.getString(JSON_STYLE);
 		workspace.getStyleCB().getSelectionModel().select(details.getStyle(css));
+		String export = json.getString(JSON_EXPORT_DIR);
+		workspace.getSelectedExportDir().setText(export);
 
 		String leftImage = json.getString(JSON_LEFT_IMAGE);
 		if (!leftImage.equals("")) {
@@ -438,10 +438,8 @@ public class CSGFiles implements AppFileComponent {
 
 		String instructorHome = json.getString(JSON_INSTRUCTOR_HOME);
 		workspace.getInstructorHome().setText(instructorHome);
-
 		String instructorName = json.getString(JSON_INSTRUCTOR_NAME);
 		workspace.getInstructorName().setText(instructorName);
-
 		String templateDir = json.getString(JSON_TEMPLATE_DIR);
 		workspace.getTemplateDirL().setText(templateDir);
 
@@ -577,8 +575,8 @@ public class CSGFiles implements AppFileComponent {
 		if (css != null) {
 			File temp = new File("temp");
 
-			Files.copy(css.toPath(), temp.toPath());
-			Files.copy(temp.toPath(), new File(dir.getPath() + "/" + css.getName()).toPath());
+			Files.copy(css.toPath(), temp.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(temp.toPath(), new File(dir.getPath() + "/" + css.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
 
 			temp.delete();
 		}
