@@ -6,6 +6,10 @@
         {
             "name":"Isaac Duarte",
             "email":"i@you.com"
+        },
+        {
+            "name":"apple",
+            "email":"man@cool.com"
         }
     ],
     "grad_tas":[
@@ -26,24 +30,57 @@
             "name":"lil"
         },
         {
+            "day":"THURSDAY",
+            "time":"12_00pm",
+            "name":"apple"
+        },
+        {
             "day":"TUESDAY",
             "time":"12_30pm",
             "name":"lil"
         },
         {
+            "day":"WEDNESDAY",
+            "time":"12_30pm",
+            "name":"apple"
+        },
+        {
             "day":"TUESDAY",
             "time":"2_00pm",
             "name":"lil"
+        },
+        {
+            "day":"THURSDAY",
+            "time":"3_00pm",
+            "name":"apple"
+        },
+        {
+            "day":"TUESDAY",
+            "time":"4_00pm",
+            "name":"apple"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"5_30pm",
+            "name":"apple"
         }
     ],
     "recitations":[
         {
-            "section":"23",
+            "section":"45",
             "instructor":"Prof. Duarte",
             "day_time":"Tuesday",
             "location":"OLD CS",
-            "ta_1":"Isaac",
-            "ta_2":"Duarte"
+            "ta_1":"Isaac Duarte",
+            "ta_2":"lil"
+        },
+        {
+            "section":"13",
+            "instructor":"Me",
+            "day_time":"Friday",
+            "location":"Your Hosue",
+            "ta_1":"apple",
+            "ta_2":""
         }
     ],
     "teams":[
@@ -52,6 +89,18 @@
             "color":"#9980E6",
             "text_color":"#990000",
             "link":"www.youtube.com"
+        },
+        {
+            "name":"Cool Guys",
+            "color":"#336633",
+            "text_color":"#FFFF4D",
+            "link":"https://www.reddit.com/r/all"
+        },
+        {
+            "name":"bill guys",
+            "color":"#331A80",
+            "text_color":"#E699B3",
+            "link":"asdasdfsdf"
         }
     ],
     "students":[
@@ -60,33 +109,56 @@
             "lastName":"Pablo",
             "team":"ROBOBOTS",
             "role":"Lead Designer"
+        },
+        {
+            "firstName":"Phil",
+            "lastName":"Fish",
+            "team":"ROBOBOTS",
+            "role":"Data Designer"
+        },
+        {
+            "firstName":"Ok",
+            "lastName":"ME",
+            "team":"Cool Guys",
+            "role":"Data Designer"
         }
     ],
     "startingMondayMonth":"4",
     "startingMondayDay":"3",
-    "endingFridayMonth":"4",
-    "endingFridayDay":"28",
+    "startingMondayYear":"2017",
+    "endingFridayMonth":"6",
+    "endingFridayDay":"2",
+    "endingFridayYear":"2017",
     "schedule_items":[
         {
             "type":"Holiday",
-            "date":"4/18/18",
+            "date":"4/18/2018",
             "time":"12:00am",
             "title":"HallowBEEN",
             "topic":"SCARY",
             "link":"FUN",
             "criteria":"https://www.google.com"
+        },
+        {
+            "type":"HW",
+            "date":"5/17/2017",
+            "time":"3:00am",
+            "title":"Better do it",
+            "topic":"Learn",
+            "link":"https://www.youtube.com",
+            "criteria":"https://www.apple.com"
         }
     ],
     "subject":"CSE",
-    "number":"308",
-    "semester":"Winter",
+    "number":"380",
+    "semester":"Spring",
     "year":"2017",
     "title":"Learning about The WORLD",
     "export_dir":"C:\\Users\\isaac\\Desktop\\Homework\\college'\\CSE219\\Project\\CourseSiteGenerator\\testexport",
-    "template_dir":"C:\\Users\\isaac\\Desktop\\Homework\\college'\\CSE219\\Project\\CourseSiteGenerator\\templates\\CSE",
-    "left_image":"C:\\Users\\isaac\\Desktop\\Homework\\college'\\CSE219\\Project\\CourseSiteGenerator\\images\\about.png",
-    "right_image":"C:\\Users\\isaac\\Desktop\\Homework\\college'\\CSE219\\Project\\CourseSiteGenerator\\images\\saveas.png",
-    "banner_image":"C:\\Users\\isaac\\Desktop\\Homework\\college'\\CSE219\\Project\\CourseSiteGenerator\\images\\logo.png",
+    "template_dir":"F:\\Users\\isaac\\Desktop\\Homework\\college'\\CSE219\\Project\\CourseSiteGenerator\\templates\\CSE",
+    "left_image":"C:\\Users\\isaac\\Desktop\\Homework\\college'\\CSE219\\Project\\CourseSiteGenerator\\images\\undo.png",
+    "right_image":"D:\\Users\\isaac\\Desktop\\Homework\\college'\\CSE219\\Project\\CourseSiteGenerator\\images\\saveas.png",
+    "banner_image":"C:\\Users\\isaac\\Desktop\\Homework\\college'\\CSE219\\Project\\CourseSiteGenerator\\images\\exit.png",
     "import_style":".\\work\\css\\style.css",
     "instructor_name":"Prof. Smith",
     "instructor_home":"https://www.google.com",
