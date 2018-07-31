@@ -4,15 +4,31 @@ import csg.schedule.ScheduleItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
+
 public class ScheduleData {
 	private ObservableList<ScheduleItem> schedules;
 	private ObservableList<String> types;
 
-	private int mondayMonth, mondayDay, fridayMonth, fridayDay;
+	private int mondayMonth, mondayDay, fridayMonth, fridayDay, mondayYear, fridayYear;
 
 	// TODO
 	// ADD TYPES TO PROPERTIES
 	public ScheduleData() {
+		LocalDate now = LocalDate.now();
+		int daysToMonday = 1 - now.getDayOfWeek().getValue();
+		int daysToFriday = 5 - now.getDayOfWeek().getValue();
+
+		LocalDate friday = now.minusDays(-daysToFriday);
+		fridayDay = friday.getDayOfMonth();
+		fridayMonth = friday.getMonthValue();
+		fridayYear = friday.getYear();
+
+		LocalDate monday = now.minusDays(-daysToMonday);
+		mondayDay = monday.getDayOfMonth();
+		mondayMonth = monday.getMonthValue();
+		mondayYear = monday.getYear();
+
 		schedules = FXCollections.observableArrayList();
 		types = FXCollections.observableArrayList("Holiday", "Lecture", "HW", "Reference", "Recitation");
 	}
@@ -41,11 +57,21 @@ public class ScheduleData {
 		return fridayDay;
 	}
 
-	public void initScheduleBoundaries(String mMonth, String mDay, String fMonth, String fDay){
+	public int getMondayYear() {
+		return mondayYear;
+	}
+
+	public int getFridayYear() {
+		return fridayYear;
+	}
+
+	public void initScheduleBoundaries(String mMonth, String mDay, String mYear, String fMonth, String fDay, String fYear){
 		mondayMonth = Integer.parseInt(mMonth);
 		mondayDay = Integer.parseInt(mDay);
+		mondayYear = Integer.parseInt(mYear);
 		fridayMonth = Integer.parseInt(fMonth);
 		fridayDay = Integer.parseInt(fDay);
+		fridayYear = Integer.parseInt(fYear);
 	}
 
 	public void addSchedule(ScheduleItem s) {
@@ -65,13 +91,15 @@ public class ScheduleData {
 		fridayMonth = 0;
 	}
 
-	public void setStartingMonday(int month, int day) {
+	public void setStartingMonday(int month, int day, int year) {
 		mondayMonth = month;
 		mondayDay = day;
+		mondayYear = year;
 	}
 
-	public void setEndingFriday(int month, int day){
+	public void setEndingFriday(int month, int day, int year){
 		fridayMonth = month;
 		fridayDay = day;
+		fridayYear = year;
 	}
 }

@@ -18,7 +18,7 @@ public class ProjectPane extends VBox {
 	TableView<Team> teamTable;
 	TableView<Student> studentTable;
 	Button addButton, clearButton, removeTeam, studentRemove, addStudent, clearStudent;
-	TextField nameTF, linkTF, fNameTF, lNameTF, roleTF;
+	TextField nameTF, linkTF, fNameTF, lNameTF;
 	ColorPicker colorPicker, textColor;
 	VBox team, students;
 	HBox teamHead, studentHead;
@@ -115,7 +115,6 @@ public class ProjectPane extends VBox {
 		teamL = new Label(props.getProperty(P_TEAM_TEXT) + ":");
 		teamCB = new ComboBox<>(data.getTeams());
 		roleL = new Label(props.getProperty(P_ROLE_TEXT) + ":");
-		roleTF = new TextField();
 		roles = new ComboBox<>(data.getRole());
 		addStudent = new Button(props.getProperty(ADD_UP_TEXT));
 		clearStudent = new Button(props.getProperty(CLEAR_TEXT));
@@ -127,8 +126,7 @@ public class ProjectPane extends VBox {
 
 		studentIn = new GridPane();
 		studentIn.addColumn(0, fNameL, lNameL, teamL, roleL, addStudent);
-		studentIn.addColumn(1, fNameTF, lNameTF, teamCB, roleTF, clearStudent);
-		studentIn.add(roles, 2, 3);
+		studentIn.addColumn(1, fNameTF, lNameTF, teamCB, roles, clearStudent);
 
 		students = new VBox();
 		students.getChildren().addAll(studentHead, studentTable, sAddEdit,
@@ -148,7 +146,6 @@ public class ProjectPane extends VBox {
 			fNameTF.clear();
 			lNameTF.clear();
 			teamCB.getSelectionModel().clearSelection();
-			roleTF.clear();
 			roles.getSelectionModel().clearSelection();
 			studentTable.getSelectionModel().clearSelection();
 		});
@@ -227,10 +224,6 @@ public class ProjectPane extends VBox {
 
 	public TextField getlNameTF() {
 		return lNameTF;
-	}
-
-	public TextField getRoleTF() {
-		return roleTF;
 	}
 
 	public ColorPicker getColorPicker() {

@@ -172,6 +172,16 @@
         <property name="TA_INVALID_EMAIL_MESSAGE"      value="Tienes que suministrar un Correo Electrónico válido."></property>
         <property name="TA_INVALID_TIMES_TITLE"       value="Hora Invalido"></property>
         <property name="TA_INVALID_TIMES_MESSAGE"       value="La hora de empezar tiene que ser ante de la hora de terminar."></property>
+        <property name="R_INVALID_SECTION_MESSAGE"      value="Tienes que suministrar un numero de sección única"></property>
+        <property name="R_INVALID_SECTION_MESSAGE_TITLE"      value="La sección no es única"></property>
+        <property name="R_INVALID_INPUT_TITLE"                value="Entradas Inválida"></property>
+        <property name="R_INVALID_INPUT"                value="Tienes que suminstrar un numero de sección, instructor, día/hora, y ubicación"></property>
+        <property name="S_INVALID_START_DAY"            value="Tienes que seleccionar un lunes"></property>
+        <property name="S_INVALID_START_DAY_TITLE"            value="Inválido primer Lunes"></property>
+        <property name="S_INVALID_END_DAY"            value="Tienes que seleccionar un viernes"></property>
+        <property name="S_INVALID_END_DAY_TITLE"            value="Inválido Viernes final"></property>
+        <property name="P_UNIQUE_TEAM"                  value="Tienes que suministrar un equipo nombre única"></property>
+        <property name="P_UNIQUE_TEAM_TITLE"                  value="Nombre del Equipo no es única"></property>
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

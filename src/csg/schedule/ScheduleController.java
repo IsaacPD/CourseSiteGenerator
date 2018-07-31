@@ -1,14 +1,22 @@
 package csg.schedule;
 
 import csg.CSGApp;
+import csg.CSGAppProp;
 import csg.data.CSGData;
 import csg.data.ScheduleData;
 import csg.schedule.transaction.AddScheduleTransaction;
 import csg.schedule.transaction.RemoveScheduleTransaction;
 import csg.schedule.transaction.UpdateScheduleTransaction;
 import csg.workspace.CSGWorkspace;
+import djf.ui.AppMessageDialogSingleton;
+import properties_manager.PropertiesManager;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
+
+import static java.time.temporal.ChronoField.YEAR_OF_ERA;
 
 public class ScheduleController {
 	private CSGApp app;
@@ -24,7 +32,7 @@ public class ScheduleController {
 		ScheduleItem selected = workspace.getTable().getSelectionModel().getSelectedItem();
 
 		String type = workspace.getTypeCB().getSelectionModel().getSelectedItem();
-		String date = localDate.getMonthValue() + "/" + localDate.getDayOfMonth() + "/" + localDate.getYear();
+		String date = localDate.getMonthValue() + "/" + localDate.getDayOfMonth() + "/" + localDate.get(YEAR_OF_ERA);
 		String time = workspace.getTimeTF().getText();
 		String title = workspace.getTitleTF().getText();
 		String topic = workspace.getTopicTF().getText();
@@ -50,18 +58,38 @@ public class ScheduleController {
 		SchedulePane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getSchedulePane();
 		ScheduleData data = ((CSGData) app.getDataComponent()).getScheduleData();
 		LocalDate localDate = workspace.getStartDate().getValue();
-		int month = localDate.getMonthValue();
-		int day = localDate.getDayOfMonth();
-		data.setStartingMonday(month, day);
+		if (localDate.getDayOfWeek().equals(DayOfWeek.MONDAY)) {
+			int month = localDate.getMonthValue();
+			int day = localDate.getDayOfMonth();
+			data.setStartingMonday(month, day, localDate.getYear());
+		} else {
+			PropertiesManager props = PropertiesManager.getPropertiesManager();
+			AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+			dialog.show(props.getProperty(CSGAppProp.S_INVALID_START_DAY_TITLE), props.getProperty(CSGAppProp.S_INVALID_START_DAY));
+
+			LocalDate now = LocalDate.now();
+			int daysToAdd = 1 - now.getDayOfWeek().getValue();
+			workspace.getStartDate().setValue( now.minusDays(-daysToAdd));
+		}
 	}
 
 	public void handleEndDayChange() {
 		SchedulePane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getSchedulePane();
 		ScheduleData data = ((CSGData) app.getDataComponent()).getScheduleData();
 		LocalDate localDate = workspace.getEndDate().getValue();
-		int month = localDate.getMonthValue();
-		int day = localDate.getDayOfMonth();
-		data.setEndingFriday(month, day);
+		if (localDate.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
+			int month = localDate.getMonthValue();
+			int day = localDate.getDayOfMonth();
+			data.setEndingFriday(month, day, localDate.getYear());
+		} else {
+			PropertiesManager props = PropertiesManager.getPropertiesManager();
+			AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+			dialog.show(props.getProperty(CSGAppProp.S_INVALID_END_DAY_TITLE), props.getProperty(CSGAppProp.S_INVALID_END_DAY));
+
+			LocalDate now = LocalDate.now();
+			int daysToAdd = 5 - now.getDayOfWeek().getValue();
+			workspace.getEndDate().setValue( now.minusDays(-daysToAdd));
+		}
 	}
 
 	public void handleTableClick() {

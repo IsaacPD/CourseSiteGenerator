@@ -35,10 +35,14 @@ public class SchedulePane extends VBox {
 	public SchedulePane(CSGApp initApp) {
 		app = initApp;
 
+		ScheduleData sData = ((CSGData) app.getDataComponent()).getScheduleData();
 		PropertiesManager props = PropertiesManager.getPropertiesManager();
 
-		startDate = new DatePicker(LocalDate.now());
-		endDate = new DatePicker(LocalDate.now());
+		LocalDate startMonday = LocalDate.of(sData.getMondayYear(), sData.getMondayMonth(), sData.getMondayDay());
+		LocalDate endFriday = LocalDate.of(sData.getFridayYear(), sData.getFridayMonth(), sData.getFridayDay());
+
+		startDate = new DatePicker(startMonday);
+		endDate = new DatePicker(endFriday);
 		inDate = new DatePicker(LocalDate.now());
 
 		header = new Label(props.getProperty(CSGAppProp.S_TITLE));
@@ -51,7 +55,6 @@ public class SchedulePane extends VBox {
 		calendarIn.addRow(0, start, startDate, new Pane(), end, endDate);
 		calendar.getChildren().addAll(calendarL, calendarIn);
 
-		ScheduleData sData = ((CSGData) app.getDataComponent()).getScheduleData();
 		itemL = new Label(props.getProperty(CSGAppProp.S_ITEMS_TEXT));
 		table = new TableView(sData.getSchedules());
 		addL = new Label(props.getProperty(CSGAppProp.S_ADD_TEXT));
@@ -208,6 +211,14 @@ public class SchedulePane extends VBox {
 	}
 
 	public void reloadWorkspace() {
+	}
+
+	public void initScheduleBoundaries(ScheduleData sData) {
+		LocalDate startMonday = LocalDate.of(sData.getMondayYear(), sData.getMondayMonth(), sData.getMondayDay());
+		LocalDate endFriday = LocalDate.of(sData.getFridayYear(), sData.getFridayMonth(), sData.getFridayDay());
+
+		startDate.setValue(startMonday);
+		endDate.setValue(endFriday);
 	}
 }
 

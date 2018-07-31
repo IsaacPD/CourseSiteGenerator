@@ -40,6 +40,14 @@ public class Recitation {
 		return ta2.get();
 	}
 
+	public void setTa1(String ta1) {
+		this.ta1.set(ta1);
+	}
+
+	public void setTa2(String ta2) {
+		this.ta2.set(ta2);
+	}
+
 	public void setAll(Recitation all) {
 		section.set(all.getSection());
 		instructor.set(all.getInstructor());

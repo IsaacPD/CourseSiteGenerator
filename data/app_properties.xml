@@ -172,6 +172,16 @@
         <property name="TA_INVALID_EMAIL_MESSAGE"      value="You must provide a valid Email address."></property>
         <property name="TA_INVALID_TIMES_TITLE"       value="Invalid Times"></property>
         <property name="TA_INVALID_TIMES_MESSAGE"       value="Start Time must be less than the End Time"></property>
+        <property name="R_INVALID_SECTION_MESSAGE"      value="You must provide a unique section number"></property>
+        <property name="R_INVALID_SECTION_MESSAGE_TITLE"      value="Section not unique"></property>
+        <property name="R_INVALID_INPUT_TITLE"                value="Invalid Input"></property>
+        <property name="R_INVALID_INPUT"                value="You must provide a section number, instructor, day/time, and location"></property>
+        <property name="S_INVALID_START_DAY"            value="You must choose a monday"></property>
+        <property name="S_INVALID_START_DAY_TITLE"            value="Invalid Starting Monday"></property>
+        <property name="S_INVALID_END_DAY"            value="You must choose a friday"></property>
+        <property name="S_INVALID_END_DAY_TITLE"            value="Invalid Ending Friday"></property>
+        <property name="P_UNIQUE_TEAM"                  value="You must enter a unique team name"></property>
+        <property name="P_UNIQUE_TEAM_TITLE"                  value="Team Name not Unique"></property>
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

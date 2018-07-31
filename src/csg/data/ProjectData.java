@@ -61,4 +61,12 @@ public class ProjectData {
 	public ObservableList<String> getRole() {
 		return roles;
 	}
+
+	public boolean containsTeam(String name) {
+		for (Team t: teams){
+			if (t.getName().equalsIgnoreCase(name))
+				return true;
+		}
+		return false;
+	}
 }
