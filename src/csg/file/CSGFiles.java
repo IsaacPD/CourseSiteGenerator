@@ -8,7 +8,6 @@ import csg.project.Student;
 import csg.project.Team;
 import csg.recitation.Recitation;
 import csg.schedule.ScheduleItem;
-import csg.schedule.SchedulePane;
 import csg.ta.TeachingAssistant;
 import csg.ta.TimeSlot;
 import csg.workspace.CSGWorkspace;
@@ -21,7 +20,6 @@ import javafx.scene.paint.Color;
 import javax.json.*;
 import javax.json.stream.JsonGenerator;
 import java.io.*;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
@@ -37,8 +35,6 @@ public class CSGFiles implements AppFileComponent {
 	static final String JSON_STARTING_MONDAY_DAY = "startingMondayDay";
 	static final String JSON_ENDING_FRIDAY_MONTH = "endingFridayMonth";
 	static final String JSON_ENDING_FRIDAY_DAY = "endingFridayDay";
-	static final String JSON_STARTING_MONDAY_YEAR = "startingMondayYear";
-	static final String JSON_ENDING_FRIDAY_YEAR = "endingFridayYear";
 	static final String JSON_DAY = "day";
 	static final String JSON_TIME = "time";
 	static final String JSON_NAME = "name";
@@ -91,7 +87,7 @@ public class CSGFiles implements AppFileComponent {
 	static final String JSON_BLUE = "blue";
 	static final String JSON_GREEN = "green";
 	static final String JSON_STYLE = "import_style";
-
+	static final String JSON_EXPORT_DIR = "export_dir";
 	CSGApp app;
 
 	public CSGFiles(CSGApp initApp) {
@@ -213,7 +209,7 @@ public class CSGFiles implements AppFileComponent {
 					.add(JSON_R_DAY, r.getDay())
 					.add(JSON_R_LOCATION, r.getLocation())
 					.add(JSON_R_TA1, r.getTa1())
-					.add(JSON_R_TA2, (r.getTa2() == null) ? "" : r.getTa2()).build();
+					.add(JSON_R_TA2, r.getTa2()).build();
 			recitationArrayBuilder.add(rJson);
 		}
 		builder.add(JSON_RECITATION, recitationArrayBuilder.build());
@@ -252,10 +248,8 @@ public class CSGFiles implements AppFileComponent {
 	private void saveScheduleData(ScheduleData schedule, JsonObjectBuilder builder) {
 		builder.add(JSON_STARTING_MONDAY_MONTH, "" + schedule.getMondayMonth())
 				.add(JSON_STARTING_MONDAY_DAY, "" + schedule.getMondayDay())
-				.add(JSON_STARTING_MONDAY_YEAR, "" + schedule.getMondayYear())
 				.add(JSON_ENDING_FRIDAY_MONTH, "" + schedule.getFridayMonth())
-				.add(JSON_ENDING_FRIDAY_DAY, "" + schedule.getFridayDay())
-				.add(JSON_ENDING_FRIDAY_YEAR, "" + schedule.getFridayYear());
+				.add(JSON_ENDING_FRIDAY_DAY, "" + schedule.getFridayDay());
 
 		JsonArrayBuilder scheduleItemArrayBuilder = Json.createArrayBuilder();
 		ObservableList<ScheduleItem> scheduleItems = schedule.getSchedules();
@@ -284,6 +278,7 @@ public class CSGFiles implements AppFileComponent {
 		String instructorName = workspace.getInstructorName().getText();
 		String instructorHome = workspace.getInstructorHome().getText();
 		String templateDir = workspace.getTemplateDirL().getText();
+		String exportDir = workspace.getSelectedExportDir().getText();
 
 		File sheet = workspace.getStyleCB().getSelectionModel().getSelectedItem();
 		String css = (sheet != null) ? sheet.getPath() : "";
@@ -313,6 +308,7 @@ public class CSGFiles implements AppFileComponent {
 				.add(JSON_SEMESTER, (semester == null) ? "" : semester)
 				.add(JSON_YEAR, (year == null) ? "" : year)
 				.add(JSON_TITLE, (title == null) ? "" : title)
+				.add(JSON_EXPORT_DIR, (exportDir == null) ? "" : exportDir)
 				.add(JSON_TEMPLATE_DIR, (templateDir))
 				.add(JSON_LEFT_IMAGE, leftImage)
 				.add(JSON_RIGHT_IMAGE, rightImage)
@@ -381,16 +377,11 @@ public class CSGFiles implements AppFileComponent {
 	}
 
 	private void loadScheduleData(ScheduleData schedule, JsonObject json) {
-		SchedulePane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getSchedulePane();
-
 		String mMonth = json.getString(JSON_STARTING_MONDAY_MONTH);
 		String mDay = json.getString(JSON_STARTING_MONDAY_DAY);
-		String mYear = json.getString(JSON_STARTING_MONDAY_YEAR);
 		String fMonth = json.getString(JSON_ENDING_FRIDAY_MONTH);
 		String fDay = json.getString(JSON_ENDING_FRIDAY_DAY);
-		String fYear = json.getString(JSON_ENDING_FRIDAY_YEAR);
-		schedule.initScheduleBoundaries(mMonth, mDay, mYear, fMonth, fDay, fYear);
-		workspace.initScheduleBoundaries(schedule);
+		schedule.initScheduleBoundaries(mMonth, mDay, fMonth, fDay);
 
 		JsonArray jsonScheduleArray = json.getJsonArray(JSON_SCHEDULE_ITEM);
 		for (int i = 0; i < jsonScheduleArray.size(); i++) {
@@ -406,76 +397,53 @@ public class CSGFiles implements AppFileComponent {
 		}
 	}
 
-	private void loadDetailsData(DetailsData details, JsonObject json) {
+	private void loadDetailsData(DetailsData details, JsonObject json) throws FileNotFoundException {
 		CourseDetailsPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getCourseDetailsPane();
 
 		String subject = json.getString(JSON_SUBJECT);
 		workspace.getSubjectCB().getSelectionModel().select(subject);
-
 		String number = json.getString(JSON_NUMBER);
 		workspace.getNumberCB().getSelectionModel().select(number);
-
 		String semester = json.getString(JSON_SEMESTER);
 		workspace.getSemesterCB().getSelectionModel().select(semester);
-
 		String year = json.getString(JSON_YEAR);
 		workspace.getYearCB().getSelectionModel().select(year);
-
 		String title = json.getString(JSON_TITLE);
 		workspace.getTitleTF().setText(title);
-
 		String css = json.getString(JSON_STYLE);
 		workspace.getStyleCB().getSelectionModel().select(details.getStyle(css));
+		String export = json.getString(JSON_EXPORT_DIR);
+		workspace.getSelectedExportDir().setText(export);
 
 		String leftImage = json.getString(JSON_LEFT_IMAGE);
 		if (!leftImage.equals("")) {
 			File left = new File(leftImage);
-			try {
-				workspace.getLeftFImage().setImage(new Image(new FileInputStream(left)));
-			} catch (FileNotFoundException e) {
-				workspace.getLeftFImage().setImage(null);
-			}
+			workspace.getLeftFImage().setImage(new Image(new FileInputStream(left)));
 			details.getImages().put(workspace.getLeftFImage(), left);
 		}
 
 		String rightImage = json.getString(JSON_RIGHT_IMAGE);
 		if (!rightImage.equals("")) {
 			File right = new File(rightImage);
-			try {
-				workspace.getRightFImage().setImage(new Image(new FileInputStream(right)));
-			} catch (FileNotFoundException e) {
-				workspace.getRightFImage().setImage(null);
-			}
+			workspace.getRightFImage().setImage(new Image(new FileInputStream(right)));
 			details.getImages().put(workspace.getRightFImage(), right);
 		}
 
 		String bannerImage = json.getString(JSON_BANNER_IMAGE);
 		if (!bannerImage.equals("")) {
 			File banner = new File(bannerImage);
-			try {
-				workspace.getBannerImage().setImage(new Image(new FileInputStream(banner)));
-			} catch (FileNotFoundException e) {
-				workspace.getBannerImage().setImage(null);
-			}
+			workspace.getBannerImage().setImage(new Image(new FileInputStream(banner)));
 			details.getImages().put(workspace.getBannerImage(), banner);
 		}
 
 		String instructorHome = json.getString(JSON_INSTRUCTOR_HOME);
 		workspace.getInstructorHome().setText(instructorHome);
-
 		String instructorName = json.getString(JSON_INSTRUCTOR_NAME);
 		workspace.getInstructorName().setText(instructorName);
-
 		String templateDir = json.getString(JSON_TEMPLATE_DIR);
 		workspace.getTemplateDirL().setText(templateDir);
 
-		if (!templateDir.equals("")) {
-			try {
-				details.addDetails(templateDir);
-			} catch (Exception e){
-				workspace.getTemplateDirL().setText("");
-			}
-		}
+		if (!templateDir.equals("")) details.addDetails(templateDir);
 	}
 
 	private void loadTAData(TAData teachingAssistant, JsonObject json) {
@@ -585,9 +553,6 @@ public class CSGFiles implements AppFileComponent {
 		DetailsData detailsData = ((CSGData) appDataComponent).getDetailsData();
 		CourseDetailsPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getCourseDetailsPane();
 
-		if (workspace.getTemplateDirL().getText().equals("") || workspace.getSelectedExportDir().getText().equals(""))
-			throw new IOException();
-
 		File dir = new File(workspace.getSelectedExportDir().getText() + "/");
 		File exportDir = new File(workspace.getTemplateDirL().getText());
 
@@ -688,23 +653,24 @@ public class CSGFiles implements AppFileComponent {
 					.add(JSON_SI_TOPIC, s.getTopic())
 					.add(JSON_SI_LINK, s.getLink());
 
+			JsonObject sJson = sJsonBuilder.build();
 			switch (s.getType()) {
 				case "Holiday":
-					holidaysArrayBuilder.add(sJsonBuilder.build());
+					holidaysArrayBuilder.add(sJson);
 					break;
 				case "Lecture":
-					lecturesArrayBuilder.add(sJsonBuilder.build());
+					lecturesArrayBuilder.add(sJson);
 					break;
 				case "Reference":
-					referencesArrayBuilder.add(sJsonBuilder.build());
+					referencesArrayBuilder.add(sJson);
 					break;
 				case "Recitation":
-					recitationsArrayBuilder.add(sJsonBuilder.build());
+					recitationsArrayBuilder.add(sJson);
 					break;
 				case "HW":
-					sJsonBuilder.add(JSON_TIME, s.getTime())
-							.add(JSON_SI_CRITERIA, s.getCriteria());
-					hwsArrayBuilder.add(sJsonBuilder.build());
+					JsonObject hJson = sJsonBuilder.add(JSON_TIME, s.getTime())
+							.add(JSON_SI_CRITERIA, s.getCriteria()).build();
+					hwsArrayBuilder.add(hJson);
 			}
 		}
 		builder.add(JSON_SI_HOLIDAYS, holidaysArrayBuilder.build())

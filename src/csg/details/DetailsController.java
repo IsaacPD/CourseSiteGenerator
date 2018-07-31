@@ -2,15 +2,15 @@ package csg.details;
 
 import csg.CSGApp;
 import csg.data.CSGData;
+import csg.details.transaction.EditLabelTransaction;
+import csg.details.transaction.EditTemplateTransaction;
+import csg.details.transaction.ImageSelectTransaction;
 import csg.workspace.CSGWorkspace;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 import static djf.settings.AppStartupConstants.PATH_IMAGES;
 import static djf.settings.AppStartupConstants.PATH_WORK;
@@ -29,7 +29,9 @@ public class DetailsController {
 
 		CourseDetailsPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getCourseDetailsPane();
 		if (selection != null) {
-			workspace.getSelectedExportDir().setText(selection.getPath());
+			String newPath = selection.getPath();
+			String oldPath = workspace.getSelectedExportDir().getText();
+			app.jtps.addTransaction(new EditLabelTransaction(workspace.getSelectedExportDir(), oldPath, newPath, app));
 		}
 	}
 
@@ -40,48 +42,37 @@ public class DetailsController {
 
 		CourseDetailsPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getCourseDetailsPane();
 		if (selection != null) {
-			workspace.getTemplateDirL().setText(selection.getPath());
-			((CSGData) app.getDataComponent()).getDetailsData().addDetails(selection.getPath());
-			app.getGUI().getFileController().markAsEdited(app.getGUI());
+			String newPath = selection.getPath();
+			String oldPath = workspace.getTemplateDirL().getText();
+			app.jtps.addTransaction(new EditTemplateTransaction(workspace.getTemplateDirL(), oldPath, newPath, app));
 		}
 	}
 
 	public void handleBannerChange() {
 		CourseDetailsPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getCourseDetailsPane();
 		ImageView pane = workspace.getBannerImage();
-		try {
-			addImage(pane);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		addImage(pane);
 	}
 
 	public void handleLeftImageChange() {
 		CourseDetailsPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getCourseDetailsPane();
 		ImageView pane = workspace.getLeftFImage();
-		try {
-			addImage(pane);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		addImage(pane);
 	}
 
 	public void handleRightImageChange() {
 		CourseDetailsPane workspace = ((CSGWorkspace) app.getWorkspaceComponent()).getCourseDetailsPane();
 		ImageView pane = workspace.getRightFImage();
-		try {
-			addImage(pane);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		addImage(pane);
 	}
 
-	private void addImage(ImageView pane) throws FileNotFoundException {
+	private void addImage(ImageView pane) {
 		FileChooser fc = new FileChooser();
 		fc.setInitialDirectory(new File(PATH_IMAGES));
 		File selection = fc.showOpenDialog(app.getGUI().getWindow());
-		pane.setImage(new Image(new FileInputStream(selection)));
-		((CSGData) app.getDataComponent()).getDetailsData().getImages().put(pane, selection);
-		app.getGUI().getFileController().markAsEdited(app.getGUI());
+		if (selection != null) {
+			File prev = ((CSGData) app.getDataComponent()).getDetailsData().getImages().get(pane);
+			app.jtps.addTransaction(new ImageSelectTransaction(pane, selection, prev, app));
+		}
 	}
 }

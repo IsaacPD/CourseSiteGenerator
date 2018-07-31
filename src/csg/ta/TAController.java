@@ -227,7 +227,7 @@ public class TAController {
 				workspace.getNameTF().setText(ta.getName());
 				workspace.getEmailTF().setText(ta.getEmail());
 			}
-		} catch (Exception e) {
+		} catch (Exception ignored) {
 		}
 	}
 
