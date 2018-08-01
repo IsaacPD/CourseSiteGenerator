@@ -16,6 +16,5 @@
     <orderEntry type="library" name="PropertiesManager" level="project" />
     <orderEntry type="library" name="jTPS" level="project" />
     <orderEntry type="library" name="DesktopJavaFramework" level="project" />
-    <orderEntry type="library" name="Arquillian JUnit:Release" level="project" />
   </component>
 </module>
